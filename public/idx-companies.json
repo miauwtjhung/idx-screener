@@ -1,0 +1,5774 @@
+[
+  {
+    "code": "AADI",
+    "name": "Adaro Andalan Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "AALI",
+    "name": "Astra Agro Lestari Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ABBA",
+    "name": "Mahaka Media Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ABDA",
+    "name": "Asuransi Bina Dana Arta Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "ABMM",
+    "name": "ABM Investama Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "ACES",
+    "name": "Aspirasi Hidup Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ACRO",
+    "name": "Samcro Hyosung Adilestari Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ACST",
+    "name": "Acset Indonusa Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "ADCP",
+    "name": "Adhi Commuter Properti Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "ADES",
+    "name": "Akasha Wira International Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ADHI",
+    "name": "Adhi Karya (Persero) Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "ADMF",
+    "name": "Adira Dinamika Multi Finance T",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "ADMG",
+    "name": "Polychem Indonesia Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ADMR",
+    "name": "Alamtri Minerals Indonesia Tbk",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "ADRO",
+    "name": "Alamtri Resources Indonesia Tb",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "AEGS",
+    "name": "Anugerah Spareparts Sejahtera",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "AGAR",
+    "name": "Asia Sejahtera Mina Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "AGII",
+    "name": "Samator Indo Gas Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "AGRO",
+    "name": "Bank Raya Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "AGRS",
+    "name": "Bank IBK Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "AHAP",
+    "name": "Asuransi Harta Aman Pratama Tb",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "AIMS",
+    "name": "Artha Mahiya Investama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "AISA",
+    "name": "FKS Food Sejahtera Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "AKKU",
+    "name": "Anugerah Kagum Karya Utama Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "AKPI",
+    "name": "Argha Karya Prima Industry Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "AKRA",
+    "name": "AKR Corporindo Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "AKSI",
+    "name": "Mineral Sumberdaya Mandiri Tbk",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "ALDO",
+    "name": "Alkindo Naratama Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ALII",
+    "name": "Ancara Logistics Indonesia Tbk",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "ALKA",
+    "name": "Alakasa Industrindo Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ALMI",
+    "name": "Alumindo Light Metal Industry",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ALTO",
+    "name": "Tri Banyan Tirta Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "AMAG",
+    "name": "Asuransi Multi Artha Guna Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "AMAN",
+    "name": "Makmur Berkah Amanda Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "AMAR",
+    "name": "Bank Amar Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "AMFG",
+    "name": "Asahimas Flat Glass Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "AMIN",
+    "name": "Ateliers Mecaniques D Indonesi",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "AMMN",
+    "name": "Amman Mineral Internasional Tb",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "AMMS",
+    "name": "Agung Menjangan Mas Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "AMOR",
+    "name": "Ashmore Asset Management Indon",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "AMRT",
+    "name": "Sumber Alfaria Trijaya Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ANDI",
+    "name": "Andira Agro Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ANJT",
+    "name": "Austindo Nusantara Jaya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ANTM",
+    "name": "ANTAM (Persero) Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "APEX",
+    "name": "Apexindo Pratama Duta Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "APIC",
+    "name": "Pacific Strategic Financial Tb",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "APII",
+    "name": "Arita Prima Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "APLI",
+    "name": "Asiaplast Industries Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "APLN",
+    "name": "Agung Podomoro Land Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "ARCI",
+    "name": "Archi Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "AREA",
+    "name": "Dunia Virtual Online Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "ARGO",
+    "name": "Argo Pantes Tbk",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "ARII",
+    "name": "Atlas Resources Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "ARKA",
+    "name": "Arkha Jayanti Persada Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "ARKO",
+    "name": "Arkora Hydro Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "ARMY",
+    "name": "Armidian Karyatama Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "ARNA",
+    "name": "Arwana Citramulia Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "ARTA",
+    "name": "Arthavest Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ARTI",
+    "name": "Ratu Prabu Energi Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "ARTO",
+    "name": "Bank Jago Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "ASBI",
+    "name": "Asuransi Bintang Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "ASDM",
+    "name": "Asuransi Dayin Mitra Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "ASGR",
+    "name": "Astra Graphia Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "ASHA",
+    "name": "Cilacap Samudera Fishing Indus",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ASII",
+    "name": "Astra International Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "ASJT",
+    "name": "Asuransi Jasa Tania Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "ASLC",
+    "name": "Autopedia Sukses Lestari Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ASLI",
+    "name": "Asri Karya Lestari Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "ASMI",
+    "name": "Asuransi Maximus Graha Persada",
+    "board": "Pemantauan Khusus",
+    "sector": "Financials"
+  },
+  {
+    "code": "ASPI",
+    "name": "Andalan Sakti Primaindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "ASPR",
+    "name": "Asia Pramulia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ASRI",
+    "name": "Alam Sutera Realty Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "ASRM",
+    "name": "Asuransi Ramayana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "ASSA",
+    "name": "Adi Sarana Armada Tbk.",
+    "board": "Utama",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "ATAP",
+    "name": "Trimitra Prawara Goldland Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "ATIC",
+    "name": "Anabatic Technologies Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "ATLA",
+    "name": "Atlantis Subsea Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "AUTO",
+    "name": "Astra Otoparts Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "AVIA",
+    "name": "Avia Avian Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "AWAN",
+    "name": "Era Digital Media Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "AXIO",
+    "name": "Tera Data Indonusa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "AYAM",
+    "name": "Janu Putra Sejahtera Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "AYLS",
+    "name": "Arkayana Lestari Grup Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BABP",
+    "name": "Bank MNC Internasional Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BABY",
+    "name": "Multitrend Indo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BACA",
+    "name": "Bank Capital Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BACH",
+    "name": "Bach Multi Global Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "BAIK",
+    "name": "Bersama Mencapai Puncak Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BAJA",
+    "name": "Saranacentral Bajatama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BALI",
+    "name": "Bali Towerindo Sentra Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "BANK",
+    "name": "Bank Aladin Syariah Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BAPA",
+    "name": "Bekasi Asri Pemula Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BAPI",
+    "name": "Bhakti Agung Propertindo Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BATA",
+    "name": "Sepatu Bata Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BATR",
+    "name": "Benteng Api Technic Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BAUT",
+    "name": "Mitra Angkasa Sejahtera Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BAYU",
+    "name": "Bayu Buana Tbk",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BBCA",
+    "name": "Bank Central Asia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BBHI",
+    "name": "Allo Bank Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BBKP",
+    "name": "Bank KB Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BBLD",
+    "name": "Buana Finance Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BBMD",
+    "name": "Bank Mestika Dharma Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BBNI",
+    "name": "Bank Negara Indonesia (Persero",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BBRI",
+    "name": "Bank Rakyat Indonesia (Persero",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BBRM",
+    "name": "Pelayaran Nasional Bina Buana",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "BBSI",
+    "name": "Krom Bank Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BBSS",
+    "name": "Bumi Benowo Sukses Sejahtera T",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BBTN",
+    "name": "Bank Tabungan Negara (Persero)",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BBYB",
+    "name": "Bank Neo Commerce Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BCAP",
+    "name": "MNC Kapital Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BCIC",
+    "name": "Bank JTrust Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BCIP",
+    "name": "Bumi Citra Permai Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BDKR",
+    "name": "Berdikari Pondasi Perkasa Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "BDMN",
+    "name": "Bank Danamon Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BEBS",
+    "name": "Berkah Beton Sadaya Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BEEF",
+    "name": "Estika Tata Tiara Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "BEER",
+    "name": "Jobubu Jarum Minahasa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "BEKS",
+    "name": "Bank Pembangunan Daerah Banten",
+    "board": "Pemantauan Khusus",
+    "sector": "Financials"
+  },
+  {
+    "code": "BELI",
+    "name": "Global Digital Niaga Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "BELL",
+    "name": "Trisula Textile Industries Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BESS",
+    "name": "Batulicin Nusantara Maritim Tb",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "BEST",
+    "name": "Bekasi Fajar Industrial Estate",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BFIN",
+    "name": "BFI Finance  Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BGTG",
+    "name": "Bank Ganesha Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BHAT",
+    "name": "Bhakti Multi Artha Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BHIT",
+    "name": "MNC Asia Holding Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "BIKA",
+    "name": "Binakarya Jaya Abadi Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BIKE",
+    "name": "Bhineka Inovasi Ketahanan Ener",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BIMA",
+    "name": "Primarindo Asia Infrastructure",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BINA",
+    "name": "Bank Ina Perdana Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BINO",
+    "name": "Perma Plasindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "BIPI",
+    "name": "Astrindo Nusantara Infrastrukt",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "BIPP",
+    "name": "Bhuwanatala Indah Permai Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BIRD",
+    "name": "Blue Bird Tbk.",
+    "board": "Utama",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "BISI",
+    "name": "BISI International Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "BJBR",
+    "name": "Bank Pembangunan Daerah Jawa B",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BJTM",
+    "name": "Bank Pembangunan Daerah Jawa T",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BKDP",
+    "name": "Bukit Darmo Property Tbk",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BKSL",
+    "name": "Sentul City Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BKSW",
+    "name": "Bank QNB Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BLES",
+    "name": "Superior Prima Sukses Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BLOG",
+    "name": "Trimitra Trans Persada Tbk.",
+    "board": "Utama",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "BLTA",
+    "name": "Berlian Laju Tanker Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "BLTZ",
+    "name": "Graha Layar Prima Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BLUE",
+    "name": "Berkah Prima Perkasa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "BMAS",
+    "name": "Bank Kasikorn Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BMBL",
+    "name": "Lavender Bina Cendikia Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BMHS",
+    "name": "Bundamedik Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "BMRI",
+    "name": "Bank Mandiri (Persero) Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BMSR",
+    "name": "Bintang Mitra Semestaraya Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BMTR",
+    "name": "Global Mediacom Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BNBA",
+    "name": "Bank Bumi Arta Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BNBR",
+    "name": "Bakrie & Brothers Tbk",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "BNGA",
+    "name": "Bank CIMB Niaga Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BNII",
+    "name": "Bank Maybank Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BNLI",
+    "name": "Bank Permata Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BOAT",
+    "name": "Newport Marine Services Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "BOBA",
+    "name": "Formosa Ingredient Factory Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "BOGA",
+    "name": "Apollo Global Interactive Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BOLA",
+    "name": "Bali Bintang Sejahtera Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BOLT",
+    "name": "Garuda Metalindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BOSS",
+    "name": "Borneo Olah Sarana Sukses Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "BPFI",
+    "name": "Woori Finance Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BPII",
+    "name": "Batavia Prosperindo Internasio",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "BPTR",
+    "name": "Batavia Prosperindo Trans Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "BRAM",
+    "name": "Indo Kordsa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BREN",
+    "name": "Barito Renewables Energy Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "BRIS",
+    "name": "Bank Syariah Indonesia (Perser",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BRMS",
+    "name": "Bumi Resources Minerals Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BRNA",
+    "name": "Berlina Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BRPT",
+    "name": "Barito Pacific Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BRRC",
+    "name": "Raja Roti Cemerlang Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "BSBK",
+    "name": "Wulandari Bangun Laksana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BSDE",
+    "name": "Bumi Serpong Damai Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "BSIM",
+    "name": "Bank Sinarmas Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BSML",
+    "name": "Bintang Samudera Mandiri Lines",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "BSSR",
+    "name": "Baramulti Suksessarana Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "BSWD",
+    "name": "Bank Of India Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Financials"
+  },
+  {
+    "code": "BTEK",
+    "name": "Bumi Teknokultura Unggul Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "BTEL",
+    "name": "Bakrie Telecom Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "BTON",
+    "name": "Betonjaya Manunggal Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "BTPN",
+    "name": "Bank SMBC Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BTPS",
+    "name": "Bank BTPN Syariah Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BUAH",
+    "name": "Segar Kumala Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "BUDI",
+    "name": "Budi Starch & Sweetener Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "BUKA",
+    "name": "Bukalapak.com Tbk.",
+    "board": "Ekonomi Baru",
+    "sector": "Technology"
+  },
+  {
+    "code": "BUKK",
+    "name": "Bukaka Teknik Utama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "BULL",
+    "name": "Buana Lintas Lautan Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "BUMI",
+    "name": "Bumi Resources Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "BUVA",
+    "name": "Bukit Uluwatu Villa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "BVIC",
+    "name": "Bank Victoria International Tb",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "BWPT",
+    "name": "Eagle High Plantations Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "BYAN",
+    "name": "Bayan Resources Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "CAKK",
+    "name": "Cahayaputra Asa Keramik Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "CAMP",
+    "name": "Campina Ice Cream Industry Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "CANI",
+    "name": "Capitol Nusantara Indonesia Tb",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "CARE",
+    "name": "Metro Healthcare Indonesia Tbk",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "CARS",
+    "name": "Industri dan Perdagangan Bintr",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "CASA",
+    "name": "Capital Financial Indonesia Tb",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "CASH",
+    "name": "Cashlez Worldwide Indonesia Tb",
+    "board": "Akselerasi",
+    "sector": "Technology"
+  },
+  {
+    "code": "CASS",
+    "name": "Cahaya Aero Services Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "CBDK",
+    "name": "Bangun Kosambi Sukses Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "CBMF",
+    "name": "Cahaya Bintang Medan Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "CBPE",
+    "name": "Citra Buana Prasida Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "CBRE",
+    "name": "Cakra Buana Resources Energi T",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "CBUT",
+    "name": "Citra Borneo Utama Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "CCSI",
+    "name": "Communication Cable Systems In",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "CDIA",
+    "name": "Chandra Daya Investasi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "CEKA",
+    "name": "Wilmar Cahaya Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "CENT",
+    "name": "Centratama Telekomunikasi Indo",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "CFIN",
+    "name": "Clipan Finance Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "CGAS",
+    "name": "Citra Nusantara Gemilang Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "CHEK",
+    "name": "Diastika Biotekindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "CHEM",
+    "name": "Chemstar Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "CHIP",
+    "name": "Pelita Teknologi Global Tbk.",
+    "board": "Akselerasi",
+    "sector": "Technology"
+  },
+  {
+    "code": "CINT",
+    "name": "Chitose Internasional Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "CITA",
+    "name": "Cita Mineral Investindo Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "CITY",
+    "name": "Natura City Developments Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "CLAY",
+    "name": "Citra Putra Realty Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "CLEO",
+    "name": "Sariguna Primatirta Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "CLPI",
+    "name": "Colorpak Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "CMNP",
+    "name": "Citra Marga Nusaphala Persada",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "CMNT",
+    "name": "Cemindo Gemilang Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "CMPP",
+    "name": "AirAsia Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "CMRY",
+    "name": "Cisarua Mountain Dairy Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "CNKO",
+    "name": "Exploitasi Energi Indonesia Tb",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "CNMA",
+    "name": "Nusantara Sejahtera Raya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "COAL",
+    "name": "Black Diamond Resources Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "COCO",
+    "name": "Wahana Interfood Nusantara Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "COIN",
+    "name": "Indokripto Koin Semesta Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "COWL",
+    "name": "Cowell Development Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "CPIN",
+    "name": "Charoen Pokphand Indonesia Tbk",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "CPRI",
+    "name": "Capri Nusa Satu Properti Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "CPRO",
+    "name": "Central Proteina Prima Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "CRAB",
+    "name": "Toba Surimi Industries Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "CRSN",
+    "name": "Carsurin Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "CSAP",
+    "name": "Catur Sentosa Adiprana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "CSIS",
+    "name": "Cahayasakti Investindo Sukses",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "CSMI",
+    "name": "Cipta Selera Murni Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "CSRA",
+    "name": "Cisadane Sawit Raya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "CTBN",
+    "name": "Citra Tubindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "CTRA",
+    "name": "Ciputra Development Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "CTTH",
+    "name": "Citatah Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "CUAN",
+    "name": "Petrindo Jaya Kreasi Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "CYBR",
+    "name": "ITSEC Asia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "DAAZ",
+    "name": "Daaz Bara Lestari Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "DADA",
+    "name": "Diamond Citra Propertindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "DART",
+    "name": "Duta Anggada Realty Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "DATA",
+    "name": "Remala Abadi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "DAYA",
+    "name": "Duta Intidaya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "DCII",
+    "name": "DCI Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "DEAL",
+    "name": "Dewata Freightinternational Tb",
+    "board": "Pemantauan Khusus",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "DEFI",
+    "name": "Danasupra Erapacific Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "DEPO",
+    "name": "Caturkarda Depo Bangunan Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "DEWA",
+    "name": "Darma Henwa Tbk",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "DEWI",
+    "name": "Dewi Shri Farmindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "DFAM",
+    "name": "Dafam Property Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "DGIK",
+    "name": "Nusa Konstruksi Enjiniring Tbk",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "DGNS",
+    "name": "Diagnos Laboratorium Utama Tbk",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "DGWG",
+    "name": "Delta Giri Wacana Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "DIGI",
+    "name": "Arkadia Digital Media Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "DILD",
+    "name": "Intiland Development Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "DIVA",
+    "name": "Distribusi Voucher Nusantara T",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "DKFT",
+    "name": "Central Omega Resources Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "DKHH",
+    "name": "Cipta Sarana Medika Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "DLTA",
+    "name": "Delta Djakarta Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "DMAS",
+    "name": "Puradelta Lestari Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "DMMX",
+    "name": "Digital Mediatama Maxima Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "DMND",
+    "name": "Diamond Food Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "DNAR",
+    "name": "Bank Oke Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "DNET",
+    "name": "Indoritel Makmur Internasional",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "DOID",
+    "name": "BUMA Internasional Grup Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "DOOH",
+    "name": "Era Media Sejahtera Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "DOSS",
+    "name": "Global Sukses Digital Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "DPNS",
+    "name": "Duta Pertiwi Nusantara Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "DPUM",
+    "name": "Dua Putra Utama Makmur Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "DRMA",
+    "name": "Dharma Polimetal Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "DSFI",
+    "name": "Dharma Samudera Fishing Indust",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "DSNG",
+    "name": "Dharma Satya Nusantara Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "DSSA",
+    "name": "Dian Swastatika Sentosa Tbk",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "DUCK",
+    "name": "Jaya Bersama Indo Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "DUTI",
+    "name": "Duta Pertiwi Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "DVLA",
+    "name": "Darya-Varia Laboratoria Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "DWGL",
+    "name": "Dwi Guna Laksana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "DYAN",
+    "name": "Dyandra Media International Tb",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "EAST",
+    "name": "Eastparc Hotel Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ECII",
+    "name": "Electronic City Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "EDGE",
+    "name": "Indointernet Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Technology"
+  },
+  {
+    "code": "EKAD",
+    "name": "Ekadharma International Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ELIT",
+    "name": "Data Sinergitama Jaya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "ELPI",
+    "name": "Pelayaran Nasional Ekalya Purn",
+    "board": "Utama",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "ELSA",
+    "name": "Elnusa Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "ELTY",
+    "name": "Bakrieland Development Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "EMAS",
+    "name": "Merdeka Gold Resources Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "EMDE",
+    "name": "Megapolitan Developments Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "EMMI",
+    "name": "Esa Medika Mandiri Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "EMTK",
+    "name": "Elang Mahkota Teknologi Tbk.",
+    "board": "Utama",
+    "sector": "Technology"
+  },
+  {
+    "code": "ENAK",
+    "name": "Champ Resto Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ENRG",
+    "name": "Energi Mega Persada Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "ENVY",
+    "name": "Envy Technologies Indonesia Tb",
+    "board": "Pemantauan Khusus",
+    "sector": "Technology"
+  },
+  {
+    "code": "ENZO",
+    "name": "Morenzo Abadi Perkasa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "EPAC",
+    "name": "Megalestari Epack Sentosaraya",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "EPMT",
+    "name": "Enseval Putera Megatrading Tbk",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ERAA",
+    "name": "Erajaya Swasembada Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ERAL",
+    "name": "Sinar Eka Selaras Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ERTX",
+    "name": "Eratex Djaja Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ESIP",
+    "name": "Sinergi Inti Plastindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ESSA",
+    "name": "ESSA Industries Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ESTA",
+    "name": "Esta Multi Usaha Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ESTI",
+    "name": "Ever Shine Tex Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ETWA",
+    "name": "Eterindo Wahanatama Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "EURO",
+    "name": "Estee Gold Feet Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "EXCL",
+    "name": "XLSMART Telecom Sejahtera Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "FAPA",
+    "name": "FAP Agri Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "FAST",
+    "name": "Fast Food Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "FASW",
+    "name": "Fajar Surya Wisesa Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "FILM",
+    "name": "MD Entertainment Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "FIMP",
+    "name": "Fimperkasa Utama Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "FIRE",
+    "name": "Alfa Energi Investama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "FISH",
+    "name": "FKS Multi Agro Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "FITT",
+    "name": "Fortune Resources Investment T",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "FLMC",
+    "name": "Falmaco Nonwoven Industri Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "FMII",
+    "name": "Fortune Mate Indonesia Tbk",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "FOLK",
+    "name": "Multi Garam Utama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "FOOD",
+    "name": "Sentra Food Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "FORE",
+    "name": "Fore Kopi Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "FORU",
+    "name": "Fortune Indonesia Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "FPNI",
+    "name": "Lotte Chemical Titan Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "FUJI",
+    "name": "Fuji Finance Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "FUTR",
+    "name": "Futura Energi Global Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "FWCT",
+    "name": "Wijaya Cahaya Timber Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "GAMA",
+    "name": "Aksara Global Development Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "GDST",
+    "name": "Gunawan Dianjaya Steel Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "GDYR",
+    "name": "Goodyear Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "GEMA",
+    "name": "Gema Grahasarana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "GEMS",
+    "name": "Golden Energy Mines Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "GGRM",
+    "name": "Gudang Garam Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "GGRP",
+    "name": "Gunung Raja Paksi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "GHON",
+    "name": "Gihon Telekomunikasi Indonesia",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "GIAA",
+    "name": "Garuda Indonesia (Persero) Tbk",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "GJTL",
+    "name": "Gajah Tunggal Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "GLOB",
+    "name": "Globe Kita Terang Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "GLVA",
+    "name": "Galva Technologies Tbk.",
+    "board": "Utama",
+    "sector": "Technology"
+  },
+  {
+    "code": "GMFI",
+    "name": "Garuda Maintenance Facility Ae",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "GMTD",
+    "name": "Gowa Makassar Tourism Developm",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "GOLD",
+    "name": "Visi Telekomunikasi Infrastruk",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "GOLF",
+    "name": "Intra Golflink Resorts Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "GOLL",
+    "name": "Golden Plantation Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "GOOD",
+    "name": "Garudafood Putra Putri Jaya Tb",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "GOTO",
+    "name": "GoTo Gojek Tokopedia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "GPRA",
+    "name": "Perdana Gapuraprima Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "GPSO",
+    "name": "Geoprima Solusi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "GRIA",
+    "name": "Ingria Pratama Capitalindo Tbk",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "GRPH",
+    "name": "Griptha Putra Persada Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "GRPM",
+    "name": "Graha Prima Mentari Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "GSMF",
+    "name": "Equity Development Investment",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "GTBO",
+    "name": "Garda Tujuh Buana Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "GTRA",
+    "name": "Grahaprima Suksesmandiri Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "GTSI",
+    "name": "GTS Internasional Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "GULA",
+    "name": "Aman Agrindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "GUNA",
+    "name": "Gunanusa Eramandiri Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "GWSA",
+    "name": "Greenwood Sejahtera Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "GZCO",
+    "name": "Gozco Plantations Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "HADE",
+    "name": "Himalaya Energi Perkasa Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "HAIS",
+    "name": "Hasnur Internasional Shipping",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "HAJJ",
+    "name": "Arsy Buana Travelindo Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "HALO",
+    "name": "Haloni Jane Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "HATM",
+    "name": "Habco Trans Maritima Tbk.",
+    "board": "Utama",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "HBAT",
+    "name": "Minahasa Membangun Hebat Tbk.",
+    "board": "Akselerasi",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "HDFA",
+    "name": "Radana Bhaskara Finance Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "HDIT",
+    "name": "Hensel Davest Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Technology"
+  },
+  {
+    "code": "HEAL",
+    "name": "Medikaloka Hermina Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "HELI",
+    "name": "Jaya Trishindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "HERO",
+    "name": "DFI Retail Nusantara Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "HEXA",
+    "name": "Hexindo Adiperkasa Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "HGII",
+    "name": "Hero Global Investment Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "HILL",
+    "name": "Hillcon Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "HITS",
+    "name": "Humpuss Intermoda Transportasi",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "HKMU",
+    "name": "HK Metals Utama Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "HMSP",
+    "name": "H.M. Sampoerna Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "HOKI",
+    "name": "Buyung Poetra Sembada Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "HOME",
+    "name": "Hotel Mandarine Regency Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "HOMI",
+    "name": "Grand House Mulia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "HOPE",
+    "name": "Harapan Duta Pertiwi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "HOTL",
+    "name": "Saraswati Griya Lestari Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "HRME",
+    "name": "Menteng Heritage Realty Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "HRTA",
+    "name": "Hartadinata Abadi Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "HRUM",
+    "name": "Harum Energy Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "HUMI",
+    "name": "Humpuss Maritim Internasional",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "HYGN",
+    "name": "Ecocare Indo Pasifik Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "IATA",
+    "name": "Karya Pacific Energy Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "IBFN",
+    "name": "Intan Baru Prana Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "IBOS",
+    "name": "Indo Boga Sukses Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "IBST",
+    "name": "Inti Bangun Sejahtera Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "ICBP",
+    "name": "Indofood CBP Sukses Makmur Tbk",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ICON",
+    "name": "Island Concepts Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "IDEA",
+    "name": "Idea Indonesia Akademi Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "IDPR",
+    "name": "Indonesia Pondasi Raya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "IFII",
+    "name": "Indonesia Fibreboard Industry",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "IFSH",
+    "name": "Ifishdeco Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "IGAR",
+    "name": "Champion Pacific Indonesia Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "IIKP",
+    "name": "Inti Agri Resources Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "IKAI",
+    "name": "Intikeramik Alamasri Industri",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "IKAN",
+    "name": "Era Mandiri Cemerlang Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "IKBI",
+    "name": "Sumi Indo Kabel Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "IKPM",
+    "name": "Ikapharmindo Putramas Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "IMAS",
+    "name": "Indomobil Sukses Internasional",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "IMJS",
+    "name": "Indomobil Multi Jasa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "IMPC",
+    "name": "Impack Pratama Industri Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "INAF",
+    "name": "Indofarma Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "INAI",
+    "name": "Indal Aluminium Industry Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "INCF",
+    "name": "Indo Komoditi Korpora Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "INCI",
+    "name": "Intanwijaya Internasional Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "INCO",
+    "name": "Vale Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "INDF",
+    "name": "Indofood Sukses Makmur Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "INDO",
+    "name": "Royalindo Investa Wijaya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "INDR",
+    "name": "Indo-Rama Synthetics Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "INDS",
+    "name": "Indospring Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "INDX",
+    "name": "Tanah Laut Tbk",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "INDY",
+    "name": "Indika Energy Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "INET",
+    "name": "Sinergi Inti Andalan Prima Tbk",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "INKP",
+    "name": "Indah Kiat Pulp & Paper Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "INOV",
+    "name": "Inocycle Technology Group Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "INPC",
+    "name": "Bank Artha Graha Internasional",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "INPP",
+    "name": "Indonesian Paradise Property T",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "INPS",
+    "name": "Indah Prakasa Sentosa Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "INRU",
+    "name": "Toba Pulp Lestari Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "INTA",
+    "name": "Intraco Penta Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "INTD",
+    "name": "Inter Delta Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "INTP",
+    "name": "Indocement Tunggal Prakarsa Tb",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "IOTF",
+    "name": "Sumber Sinergi Makmur Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "IPAC",
+    "name": "Era Graharealty Tbk.",
+    "board": "Akselerasi",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "IPCC",
+    "name": "Indonesia Kendaraan Terminal T",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "IPCM",
+    "name": "Jasa Armada Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "IPOL",
+    "name": "Indopoly Swakarsa Industry Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "IPPE",
+    "name": "Indo Pureco Pratama Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "IPTV",
+    "name": "MNC Vision Networks Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "IRRA",
+    "name": "Itama Ranoraya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "IRSX",
+    "name": "Folago Global Nusantara Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "ISAP",
+    "name": "Isra Presisi Indonesia Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ISAT",
+    "name": "Indosat Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "ISEA",
+    "name": "Indo American Seafoods Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ISSP",
+    "name": "Steel Pipe Industry of Indones",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ITIC",
+    "name": "Indonesian Tobacco Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ITMA",
+    "name": "Sumber Energi Andalan Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "ITMG",
+    "name": "Indo Tambangraya Megah Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "JARR",
+    "name": "Jhonlin Agro Raya Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "JAST",
+    "name": "Jasnita Telekomindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "JATI",
+    "name": "Informasi Teknologi Indonesia",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "JAWA",
+    "name": "Jaya Agra Wattie Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "JAYA",
+    "name": "Armada Berjaya Trans Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "JECC",
+    "name": "Jembo Cable Company Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "JECX",
+    "name": "Nitrasanata Dharma Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "JELI",
+    "name": "Niramas Utama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "JGLE",
+    "name": "Graha Andrasentra Propertindo",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "JIHD",
+    "name": "Jakarta International Hotels &",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "JKON",
+    "name": "Jaya Konstruksi Manggala Prata",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "JMAS",
+    "name": "Asuransi Jiwa Syariah Jasa Mit",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "JPFA",
+    "name": "Japfa Comfeed Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "JRPT",
+    "name": "Jaya Real Property Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "JSKY",
+    "name": "Sky Energy Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "JSMR",
+    "name": "Jasa Marga (Persero) Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "JSPT",
+    "name": "Jakarta Setiabudi Internasiona",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "JTPE",
+    "name": "Jasuindo Tiga Perkasa Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "KAEF",
+    "name": "Kimia Farma (Persero) Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "KAQI",
+    "name": "Jantra Grupo Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "KARW",
+    "name": "Meratus Jasa Prima Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "KAYU",
+    "name": "Darmi Bersaudara Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "KBAG",
+    "name": "Karya Bersama Anugerah Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "KBLI",
+    "name": "KMI Wire & Cable Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "KBLM",
+    "name": "Kabelindo Murni Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "KBLV",
+    "name": "First Media Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "KBRI",
+    "name": "Kertas Basuki Rachmat Indonesi",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "KDSI",
+    "name": "Kedawung Setia Industrial Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "KDTN",
+    "name": "Puri Sentul Permai Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "KEEN",
+    "name": "Kencana Energi Lestari Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "KEJU",
+    "name": "Mulia Boga Raya Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "KETR",
+    "name": "Ketrosden Triasmitra Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "KIAS",
+    "name": "Keramika Indonesia Assosiasi T",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "KICI",
+    "name": "Kedaung Indah Can Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "KIJA",
+    "name": "Kawasan Industri Jababeka Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "KING",
+    "name": "Hoffmen Cleanindo Tbk.",
+    "board": "Akselerasi",
+    "sector": "Industrials"
+  },
+  {
+    "code": "KINO",
+    "name": "Kino Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "KIOS",
+    "name": "Kioson Komersial Indonesia Tbk",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "KJEN",
+    "name": "Krida Jaringan Nusantara Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "KKES",
+    "name": "Kusuma Kemindo Sentosa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "KKGI",
+    "name": "Resource Alam Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "KLAS",
+    "name": "Pelayaran Kurnia Lautan Semest",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "KLBF",
+    "name": "Kalbe Farma Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "KLIN",
+    "name": "Klinko Karya Imaji Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "KMDS",
+    "name": "Kurniamitra Duta Sentosa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "KMTR",
+    "name": "Kirana Megatara Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "KOBX",
+    "name": "Kobexindo Tractors Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "KOCI",
+    "name": "Kokoh Exa Nusantara Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "KOIN",
+    "name": "Kokoh Inti Arebama Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "KOKA",
+    "name": "Koka Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "KONI",
+    "name": "Perdana Bangun Pusaka Tbk",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "KOPI",
+    "name": "Mitra Energi Persada Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "KOTA",
+    "name": "DMS Propertindo Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "KPIG",
+    "name": "MNC Tourism Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "KRAS",
+    "name": "Krakatau Steel (Persero) Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "KREN",
+    "name": "Quantum Clovera Investama Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Technology"
+  },
+  {
+    "code": "KRYA",
+    "name": "Bangun Karya Perkasa Jaya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "KSIX",
+    "name": "Kentanix Supra International T",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "KUAS",
+    "name": "Ace Oldfields Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "LABA",
+    "name": "Green Power Group Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "LABS",
+    "name": "UBC Medical Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "LAJU",
+    "name": "Jasa Berdikari Logistics Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "LAND",
+    "name": "Trimitra Propertindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "LAPD",
+    "name": "Leyand International Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "LCGP",
+    "name": "Eureka Prima Jakarta Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "LCKM",
+    "name": "LCK Global Kedaton Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "LEAD",
+    "name": "Logindo Samudramakmur Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "LFLO",
+    "name": "Imago Mulia Persada Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "LIFE",
+    "name": "MSIG Life Insurance Indonesia",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "LINK",
+    "name": "Link Net Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "LION",
+    "name": "Lion Metal Works Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "LIVE",
+    "name": "Homeco Victoria Makmur Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "LMAS",
+    "name": "Limas Indonesia Makmur Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Technology"
+  },
+  {
+    "code": "LMAX",
+    "name": "Lupromax Pelumas Indonesia Tbk",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "LMPI",
+    "name": "Langgeng Makmur Industri Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "LMSH",
+    "name": "Lionmesh Prima Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "LOPI",
+    "name": "Logisticsplus International Tb",
+    "board": "Akselerasi",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "LPCK",
+    "name": "Lippo Cikarang Tbk",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "LPGI",
+    "name": "Lippo General Insurance Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "LPIN",
+    "name": "Multi Prima Sejahtera Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "LPKR",
+    "name": "Lippo Karawaci Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "LPLI",
+    "name": "Star Pacific Tbk",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "LPPF",
+    "name": "MDS Retailing Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "LPPS",
+    "name": "Lenox Pasifik Investama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "LRNA",
+    "name": "Eka Sari Lorena Transport Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "LSIP",
+    "name": "PP London Sumatra Indonesia Tb",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "LTLS",
+    "name": "Lautan Luas Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "LUCK",
+    "name": "Sentral Mitra Informatika Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "LUCY",
+    "name": "Lima Dua Lima Tiga Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MABA",
+    "name": "Marga Abhinaya Abadi Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MAGP",
+    "name": "Multi Agro Gemilang Plantation",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MAHA",
+    "name": "Mandiri Herindo Adiperkasa Tbk",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "MAIN",
+    "name": "Malindo Feedmill Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MANG",
+    "name": "Manggung Polahraya Tbk.",
+    "board": "Akselerasi",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "MAPA",
+    "name": "Map Aktif Adiperkasa Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MAPB",
+    "name": "MAP Boga Adiperkasa Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MAPI",
+    "name": "Mitra Adiperkasa Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MARI",
+    "name": "Mahaka Radio Integra Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MARK",
+    "name": "Mark Dynamics Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "MASB",
+    "name": "Bank Multiarta Sentosa Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "MAXI",
+    "name": "Maxindo Karya Anugerah Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MAYA",
+    "name": "Bank Mayapada Internasional Tb",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "MBAP",
+    "name": "Mitrabara Adiperdana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "MBMA",
+    "name": "Merdeka Battery Materials Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "MBSS",
+    "name": "Mitrabahtera Segara Sejati Tbk",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "MBTO",
+    "name": "Martina Berto Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MCAS",
+    "name": "M Cash Integrasi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "MCOL",
+    "name": "Prima Andalan Mandiri Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "MCOR",
+    "name": "Bank China Construction Bank I",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "MDIA",
+    "name": "Intermedia Capital Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MDIY",
+    "name": "Daya Intiguna Yasa Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MDKA",
+    "name": "Merdeka Copper Gold Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "MDKI",
+    "name": "Emdeki Utama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "MDLA",
+    "name": "Medela Potentia Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "MDLN",
+    "name": "Modernland Realty Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "MDRN",
+    "name": "Modern Internasional Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "MEDC",
+    "name": "Medco Energi Internasional Tbk",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "MEDS",
+    "name": "Hetzer Medical Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "MEGA",
+    "name": "Bank Mega Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "MEJA",
+    "name": "Harta Djaya Karya Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MENN",
+    "name": "Menn Teknologi Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Technology"
+  },
+  {
+    "code": "MERI",
+    "name": "Merry Riana Edukasi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MERK",
+    "name": "Merck Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "META",
+    "name": "Nusantara Infrastructure Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "MFMI",
+    "name": "Multifiling Mitra Indonesia Tb",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "MGLV",
+    "name": "NexAI Digital Infrastruktur Tb",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MGNA",
+    "name": "Magna Investama Mandiri Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MGRO",
+    "name": "Mahkota Group Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MHKI",
+    "name": "Multi Hanna Kreasindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "MICE",
+    "name": "Multi Indocitra Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MIDI",
+    "name": "Midi Utama Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MIKA",
+    "name": "Mitra Keluarga Karyasehat Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "MINA",
+    "name": "Sanurhasta Mitra Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MINE",
+    "name": "Sinar Terang Mandiri Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "MIRA",
+    "name": "Mitra International Resources",
+    "board": "Pemantauan Khusus",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "MITI",
+    "name": "Mitra Investindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "MKAP",
+    "name": "Multikarya Asia Pasifik Raya T",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "MKNT",
+    "name": "Mitra Komunikasi Nusantara Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MKPI",
+    "name": "Metropolitan Kentjana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "MKTR",
+    "name": "Menthobi Karyatama Raya Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MLBI",
+    "name": "Multi Bintang Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MLIA",
+    "name": "Mulia Industrindo Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "MLPL",
+    "name": "Multipolar Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MLPT",
+    "name": "Multipolar Technology Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "MMIX",
+    "name": "Multi Medika Internasional Tbk",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "MMLP",
+    "name": "Mega Manunggal Property Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "MNCN",
+    "name": "Media Nusantara Citra Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MOLI",
+    "name": "Madusari Murni Indah Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "MORA",
+    "name": "Ekamas Mora Republik Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "MPIX",
+    "name": "Mitra Pedagang Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "MPMX",
+    "name": "Mitra Pinasthika Mustika Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MPOW",
+    "name": "Megapower Makmur Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "MPPA",
+    "name": "Matahari Putra Prima Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MPRO",
+    "name": "Maha Properti Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "MPXL",
+    "name": "MPX Logistics International Tb",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "MRAT",
+    "name": "Mustika Ratu Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MREI",
+    "name": "Maskapai Reasuransi Indonesia",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "MSIE",
+    "name": "Multisarana Intan Eduka Tbk.",
+    "board": "Akselerasi",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "MSIN",
+    "name": "MNC Digital Entertainment Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MSJA",
+    "name": "Multi Spunindo Jaya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MSKY",
+    "name": "MNC Sky Vision Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "MSTI",
+    "name": "Mastersystem Infotama Tbk.",
+    "board": "Utama",
+    "sector": "Technology"
+  },
+  {
+    "code": "MTDL",
+    "name": "Metrodata Electronics Tbk.",
+    "board": "Utama",
+    "sector": "Technology"
+  },
+  {
+    "code": "MTEL",
+    "name": "Dayamitra Telekomunikasi Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "MTFN",
+    "name": "Capitalinc Investment Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "MTLA",
+    "name": "Metropolitan Land Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "MTMH",
+    "name": "Murni Sadar Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "MTPS",
+    "name": "Meta Epsi Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "MTRA",
+    "name": "Mitra Pemuda Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "MTSM",
+    "name": "Metro Realty Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "MTWI",
+    "name": "Malacca Trust Wuwungan Insuran",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "MUTU",
+    "name": "Mutuagung Lestari Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "MYOH",
+    "name": "Samindo Resources Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "MYOR",
+    "name": "Mayora Indah Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "MYTX",
+    "name": "Asia Pacific Investama Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "NAIK",
+    "name": "Adiwarna Anugerah Abadi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "NANO",
+    "name": "Nanotech Indonesia Global Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "NASA",
+    "name": "Andalan Perkasa Abadi Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "NASI",
+    "name": "Wahana Inti Makmur Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "NATO",
+    "name": "Olympus Strategic Indonesia Tb",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "NAYZ",
+    "name": "Hassana Boga Sejahtera Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "NCKL",
+    "name": "Trimegah Bangun Persada Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "NELY",
+    "name": "Pelayaran Nelly Dwi Putri Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "NEST",
+    "name": "Esta Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "NETV",
+    "name": "MDTV Media Technologies Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "NFCX",
+    "name": "NFC Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "NICE",
+    "name": "Adhi Kartiko Pratama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "NICK",
+    "name": "Charnic Capital Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "NICL",
+    "name": "PAM Mineral Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "NIKL",
+    "name": "Pelat Timah Nusantara Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "NINE",
+    "name": "Techno9 Indonesia Tbk.",
+    "board": "Akselerasi",
+    "sector": "Technology"
+  },
+  {
+    "code": "NIRO",
+    "name": "City Retail Developments Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "NISP",
+    "name": "Bank OCBC NISP Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "NOBU",
+    "name": "Bank Nationalnobu Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "NPGF",
+    "name": "Nusa Palapa Gemilang Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "NRCA",
+    "name": "Nusa Raya Cipta Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "NSSS",
+    "name": "Nusantara Sawit Sejahtera Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "NTBK",
+    "name": "Nusatama Berkah Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "NUSA",
+    "name": "Sinergi Megah Internusa Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "NZIA",
+    "name": "Nusantara Almazia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "OASA",
+    "name": "Maharaksa Biru Energi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "OBAT",
+    "name": "Brigit Biofarmaka Teknologi Tb",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "OBMD",
+    "name": "OBM Drilchem Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "OCAP",
+    "name": "Onix Capital Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Financials"
+  },
+  {
+    "code": "OILS",
+    "name": "Indo Oil Perkasa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "OKAS",
+    "name": "Ancora Indonesia Resources Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "OLIV",
+    "name": "Atlas Nexus Group Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "OMED",
+    "name": "Jayamas Medica Industri Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "OMRE",
+    "name": "Indonesia Prima Property Tbk",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "OPMS",
+    "name": "Optima Prima Metal Sinergi Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "PACK",
+    "name": "Abadi Nusantara Hijau Investam",
+    "board": "Akselerasi",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "PADA",
+    "name": "Personel Alih Daya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "PADI",
+    "name": "Minna Padi Investama Sekuritas",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "PALM",
+    "name": "Provident Investasi Bersama Tb",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "PAMG",
+    "name": "Bima Sakti Pertiwi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "PANI",
+    "name": "Pantai Indah Kapuk Dua Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "PANR",
+    "name": "Panorama Sentrawisata Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PANS",
+    "name": "Panin Sekuritas Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "PART",
+    "name": "Cipta Perdana Lancar Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PBID",
+    "name": "Panca Budi Idaman Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "PBRX",
+    "name": "Pan Brothers Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PBSA",
+    "name": "Paramita Bangun Sarana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "PCAR",
+    "name": "Prima Cakrawala Abadi Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "PDES",
+    "name": "Destinasi Tirta Nusantara Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PDPP",
+    "name": "Primadaya Plastisindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "PEGE",
+    "name": "Panca Global Kapital Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "PEHA",
+    "name": "Phapros Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "PEVE",
+    "name": "Penta Valent Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "PGAS",
+    "name": "Perusahaan Gas Negara (Persero",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "PGEO",
+    "name": "Pertamina Geothermal Energy Tb",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "PGJO",
+    "name": "Bahtera Bumi Raya Tbk.",
+    "board": "Akselerasi",
+    "sector": "Technology"
+  },
+  {
+    "code": "PGLI",
+    "name": "Pembangunan Graha Lestari Inda",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PGUN",
+    "name": "Pradiksi Gunatama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "PICO",
+    "name": "Pelangi Indah Canindo Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "PIPA",
+    "name": "Oxala Energy International Tbk",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "PJAA",
+    "name": "Pembangunan Jaya Ancol Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PJHB",
+    "name": "Pelayaran Jaya Hidup Baru Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "PKPK",
+    "name": "Paragon Karya Perkasa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "PLAN",
+    "name": "Planet Properindo Jaya Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PLAS",
+    "name": "Polaris Investama Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Financials"
+  },
+  {
+    "code": "PLIN",
+    "name": "Plaza Indonesia Realty Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "PMJS",
+    "name": "Putra Mandiri Jembar Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PMMP",
+    "name": "Panca Mitra Multiperdana Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "PMUI",
+    "name": "Prima Multi Usaha Indonesia Tb",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PNBN",
+    "name": "Bank Pan Indonesia Tbk",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "PNBS",
+    "name": "Bank Panin Dubai Syariah Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "PNGO",
+    "name": "AEP Pinago Plantations Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "PNIN",
+    "name": "Paninvest Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "PNLF",
+    "name": "Panin Financial Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "PNSE",
+    "name": "Pudjiadi & Sons Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "POLA",
+    "name": "Pool Advista Finance Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "POLI",
+    "name": "Pollux Hotels Group Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "POLL",
+    "name": "Pollux Properties Indonesia Tb",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "POLU",
+    "name": "Golden Flower Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "POLY",
+    "name": "Asia Pacific Fibers Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "POOL",
+    "name": "Pool Advista Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Financials"
+  },
+  {
+    "code": "PORT",
+    "name": "Nusantara Pelabuhan Handal Tbk",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "POSA",
+    "name": "Bliss Properti Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "POWR",
+    "name": "Cikarang Listrindo Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "PPGL",
+    "name": "Prima Globalindo Logistik Tbk.",
+    "board": "Akselerasi",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "PPRE",
+    "name": "PP Presisi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "PPRI",
+    "name": "Paperocks Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "PPRO",
+    "name": "PP Properti Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "PRAY",
+    "name": "Famon Awal Bros Sedaya Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "PRDA",
+    "name": "Prodia Widyahusada Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "PRDL",
+    "name": "Prodia Diagnostic Line Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "PRIM",
+    "name": "Royal Prima Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "PSAB",
+    "name": "J Resources Asia Pasifik Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "PSAT",
+    "name": "Pancaran Samudera Transport Tb",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "PSDN",
+    "name": "Prasidha Aneka Niaga Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "PSGO",
+    "name": "Palma Serasih Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "PSKT",
+    "name": "Red Planet Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PSSI",
+    "name": "IMC Pelita Logistik Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "PTBA",
+    "name": "Bukit Asam (Persero) Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "PTDU",
+    "name": "Djasa Ubersakti Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "PTIS",
+    "name": "Indo Straits Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "PTMP",
+    "name": "Mitra Pack Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "PTMR",
+    "name": "Master Print Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "PTPP",
+    "name": "PP (Persero) Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "PTPS",
+    "name": "Pulau Subur Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "PTPW",
+    "name": "Pratama Widya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "PTRO",
+    "name": "Petrosea Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "PTSN",
+    "name": "Sat Nusapersada Tbk",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "PTSP",
+    "name": "Pioneerindo Gourmet Internatio",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "PUDP",
+    "name": "Pudjiadi Prestige Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "PURA",
+    "name": "Putra Rajawali Kencana Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "PURE",
+    "name": "Trinitan Metals and Minerals T",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "PURI",
+    "name": "Puri Global Sukses Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "PWON",
+    "name": "Pakuwon Jati Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "PYFA",
+    "name": "Pyridam Farma Tbk",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "PZZA",
+    "name": "Sarimelati Kencana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "RAAM",
+    "name": "Tripar Multivision Plus Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "RAFI",
+    "name": "Sari Kreasi Boga Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "RAJA",
+    "name": "Rukun Raharja Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "RALS",
+    "name": "Ramayana Lestari Sentosa Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "RANC",
+    "name": "Supra Boga Lestari Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "RANS",
+    "name": "Rans Entertainmen Indonesia Tb",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "RATU",
+    "name": "Raharja Energi Cepu Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "RBMS",
+    "name": "Ristia Bintang Mahkotasejati T",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "RCCC",
+    "name": "Utama Radar Cahaya Tbk.",
+    "board": "Akselerasi",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "RDTX",
+    "name": "Roda Vivatex Tbk",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "REAL",
+    "name": "Repower Asia Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "RELF",
+    "name": "Graha Mitra Asia Tbk.",
+    "board": "Akselerasi",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "RELI",
+    "name": "Reliance Sekuritas Indonesia T",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "RGAS",
+    "name": "Kian Santang Muliatama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "RICY",
+    "name": "Ricky Putra Globalindo Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "RIGS",
+    "name": "Rig Tenders Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "RIMO",
+    "name": "Rimo International Lestari Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "RISE",
+    "name": "Jaya Sukses Makmur Sentosa Tbk",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "RLCO",
+    "name": "Abadi Lestari Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "RMKE",
+    "name": "RMK Energy Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "RMKO",
+    "name": "Royaltama Mulia Kontraktorindo",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "ROCK",
+    "name": "Rockfields Properti Indonesia",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "RODA",
+    "name": "Pikko Land Development Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "RONY",
+    "name": "Aracord Nusantara Group Tbk.",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "ROTI",
+    "name": "Nippon Indosari Corpindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "RSCH",
+    "name": "Charlie Hospital Semarang Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "RSGK",
+    "name": "Kedoya Adyaraya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "RUIS",
+    "name": "Radiant Utama Interinsco Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "RUNS",
+    "name": "Global Sukses Solusi Tbk.",
+    "board": "Akselerasi",
+    "sector": "Technology"
+  },
+  {
+    "code": "SAFE",
+    "name": "Steady Safe Tbk",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "SAGE",
+    "name": "Saptausaha Gemilangindah Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "SAME",
+    "name": "Sarana Meditama Metropolitan T",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "SAMF",
+    "name": "Saraswanti Anugerah Makmur Tbk",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SAPX",
+    "name": "Satria Antaran Prima Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "SATU",
+    "name": "Kota Satu Properti Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "SBAT",
+    "name": "Sejahtera Bintang Abadi Textil",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SBMA",
+    "name": "Surya Biru Murni Acetylene Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SCCO",
+    "name": "Supreme Cable Manufacturing &",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "SCMA",
+    "name": "Surya Citra Media Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SCNP",
+    "name": "Selaras Citra Nusantara Perkas",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SCPI",
+    "name": "Organon Pharma Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "SDMU",
+    "name": "Sidomulyo Selaras Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "SDPC",
+    "name": "Millennium Pharmacon Internati",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SDRA",
+    "name": "Bank Woori Saudara Indonesia 1",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "SEMA",
+    "name": "Semacom Integrated Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "SFAN",
+    "name": "Surya Fajar Capital Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "SGER",
+    "name": "Sumber Global Energy Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "SGRO",
+    "name": "Prime Agri Resources Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SHID",
+    "name": "Hotel Sahid Jaya International",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SHIP",
+    "name": "Sillo Maritime Perdana Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "SICO",
+    "name": "Sigma Energy Compressindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "SIDO",
+    "name": "Industri Jamu dan Farmasi Sido",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "SILO",
+    "name": "Siloam International Hospitals",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "SIMA",
+    "name": "Siwani Makmur Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SIMP",
+    "name": "Salim Ivomas Pratama Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SINI",
+    "name": "Singaraja Putra Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "SIPD",
+    "name": "Sreeya Sewu Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SKBM",
+    "name": "Sekar Bumi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SKLT",
+    "name": "Sekar Laut Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SKRN",
+    "name": "Superkrane Mitra Utama Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "SKYB",
+    "name": "Northcliff Citranusa Indonesia",
+    "board": "Pemantauan Khusus",
+    "sector": "Technology"
+  },
+  {
+    "code": "SLIS",
+    "name": "Gaya Abadi Sempurna Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SMAR",
+    "name": "Sinar Mas Agro Resources and T",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SMBR",
+    "name": "Semen Baturaja (Persero) Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SMCB",
+    "name": "Solusi Bangun Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SMDM",
+    "name": "Suryamas Dutamakmur Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "SMDR",
+    "name": "Samudera Indonesia  Tbk.",
+    "board": "Utama",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "SMGA",
+    "name": "Sumber Mineral Global Abadi Tb",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SMGR",
+    "name": "Semen Indonesia (Persero) Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SMIL",
+    "name": "Sarana Mitra Luas Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "SMKL",
+    "name": "Satyamitra Kemas Lestari Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SMKM",
+    "name": "Sumber Mas Konstruksi Tbk.",
+    "board": "Akselerasi",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "SMLE",
+    "name": "Sinergi Multi Lestarindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SMMA",
+    "name": "Sinarmas Multiartha Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "SMMT",
+    "name": "Golden Eagle Energy Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "SMRA",
+    "name": "Summarecon Agung Tbk.",
+    "board": "Utama",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "SMRU",
+    "name": "SMR Utama Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "SMSM",
+    "name": "Selamat Sempurna Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SNLK",
+    "name": "Sunter Lakeside Hotel Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SOCI",
+    "name": "Soechi Lines Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "SOFA",
+    "name": "Solusi Environment Asia Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SOHO",
+    "name": "Soho Global Health Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "SOLA",
+    "name": "Xolare RCR Energy Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SONA",
+    "name": "Sona Topas Tourism Industry Tb",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SOSS",
+    "name": "ALSOK Indonesia Services Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "SOTS",
+    "name": "Satria Mega Kencana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SOUL",
+    "name": "Mitra Tirta Buwana Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SPMA",
+    "name": "Suparma Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SPRE",
+    "name": "Soraya Berjaya Indonesia Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SPTO",
+    "name": "Surya Pertiwi Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "SQMI",
+    "name": "Wilton Makmur Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SRAJ",
+    "name": "Sejahteraraya Anugrahjaya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "SRIL",
+    "name": "Sri Rejeki Isman Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "SRSN",
+    "name": "Indo Acidatama Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SRTG",
+    "name": "Saratoga Investama Sedaya Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "SSIA",
+    "name": "Surya Semesta Internusa Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "SSMS",
+    "name": "Sawit Sumbermas Sarana Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SSTM",
+    "name": "Sunson Textile Manufacture Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "STAA",
+    "name": "Sumber Tani Agung Resources Tb",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "STAR",
+    "name": "Calculus Global Ventures Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "STRK",
+    "name": "Lovina Beach Brewery Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "STTP",
+    "name": "Siantar Top Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "SUGI",
+    "name": "Sugih Energy Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "SULI",
+    "name": "SLJ Global Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SUNI",
+    "name": "Sunindo Pratama Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "SUPA",
+    "name": "Super Bank Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "SUPR",
+    "name": "Solusi Tunas Pratama Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "SURE",
+    "name": "Super Energy Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "SURI",
+    "name": "Maja Agung Latexindo Tbk.",
+    "board": "Pengembangan",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "SWAT",
+    "name": "Sriwahana Adityakarta Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "SWID",
+    "name": "Saraswanti Indoland Developmen",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "TALF",
+    "name": "Tunas Alfin Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "TAMA",
+    "name": "Lancartama Sejati Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "TAMU",
+    "name": "Pelayaran Tamarin Samudra Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "TAPG",
+    "name": "Triputra Agro Persada Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "TARA",
+    "name": "Agung Semesta Sejahtera Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "TAXI",
+    "name": "Express Transindo Utama Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "TAYS",
+    "name": "Jaya Swarasa Agung Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "TBIG",
+    "name": "Tower Bersama Infrastructure T",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "TBLA",
+    "name": "Tunas Baru Lampung Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "TBMS",
+    "name": "Tembaga Mulia Semanan Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "TCID",
+    "name": "Mandom Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "TCPI",
+    "name": "Transcoal Pacific Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "TDPM",
+    "name": "Tianrong Chemicals Industry Tb",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "TEBE",
+    "name": "Dana Brata Luhur Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "TECH",
+    "name": "Indosterling Technomedia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Technology"
+  },
+  {
+    "code": "TELE",
+    "name": "Omni Inovasi Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "TFAS",
+    "name": "Telefast Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "TFCO",
+    "name": "Tifico Fiber Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "TGKA",
+    "name": "Tigaraksa Satria Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "TGRA",
+    "name": "Terregra Asia Energy Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "TGUK",
+    "name": "Platinum Wahab Nusantara Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "TIFA",
+    "name": "KDB Tifa Finance Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "TINS",
+    "name": "TIMAH (Persero) Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "TIRA",
+    "name": "Tira Austenite Tbk",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "TIRT",
+    "name": "Tirta Mahakam Resources Tbk",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "TKIM",
+    "name": "Pabrik Kertas Tjiwi Kimia Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "TLDN",
+    "name": "Teladan Prima Agro Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "TLKM",
+    "name": "Telkom Indonesia (Persero) Tbk",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "TMAS",
+    "name": "Temas Tbk.",
+    "board": "Utama",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "TMPO",
+    "name": "Tempo Intimedia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "TNCA",
+    "name": "Trimuda Nuansa Citra Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "TOBA",
+    "name": "TBS Energi Utama Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "TOOL",
+    "name": "Rohartindo Nusantara Luas Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "TOPS",
+    "name": "Totalindo Eka Persada Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "TOSK",
+    "name": "Topindo Solusi Komunika Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "TOTL",
+    "name": "Total Bangun Persada Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "TOTO",
+    "name": "Surya Toto Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "TOWR",
+    "name": "Sarana Menara Nusantara Tbk.",
+    "board": "Utama",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "TOYS",
+    "name": "Sunindo Adipersada Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "TPIA",
+    "name": "Chandra Asri Pacific Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "TPMA",
+    "name": "Trans Power Marine Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "TRAM",
+    "name": "Trada Alam Minera Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Energy"
+  },
+  {
+    "code": "TRGU",
+    "name": "Cerestar Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "TRIL",
+    "name": "Triwira Insanlestari Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "TRIM",
+    "name": "Trimegah Sekuritas Indonesia T",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "TRIN",
+    "name": "Perintis Triniti Properti Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "TRIO",
+    "name": "Trikomsel Oke Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "TRIS",
+    "name": "Trisula International Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "TRJA",
+    "name": "Transkon Jaya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "TRON",
+    "name": "Teknologi Karya Digital Nusa T",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "TRST",
+    "name": "Trias Sentosa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "TRUE",
+    "name": "Triniti Dinamik Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "TRUK",
+    "name": "Guna Timur Raya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "TRUS",
+    "name": "Trust Finance Indonesia Tbk",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "TSPC",
+    "name": "Tempo Scan Pacific Tbk.",
+    "board": "Utama",
+    "sector": "Healthcare"
+  },
+  {
+    "code": "TUGU",
+    "name": "Asuransi Tugu Pratama Indonesi",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "TYRE",
+    "name": "King Tire Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "UANG",
+    "name": "Pakuan Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "UCID",
+    "name": "Uni-Charm Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "UDNG",
+    "name": "Agro Bahari Nusantara Tbk.",
+    "board": "Akselerasi",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "UFOE",
+    "name": "Damai Sejahtera Abadi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ULTJ",
+    "name": "Ultrajaya Milk Industry & Trad",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "UNIC",
+    "name": "Unggul Indah Cahaya Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "UNIQ",
+    "name": "Ulima Nitra Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "UNIT",
+    "name": "Nusantara Inti Corpora Tbk",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "UNSP",
+    "name": "Bakrie Sumatera Plantations Tb",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "UNTD",
+    "name": "Terang Dunia Internusa Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "UNTR",
+    "name": "United Tractors Tbk.",
+    "board": "Utama",
+    "sector": "Industrials"
+  },
+  {
+    "code": "UNVR",
+    "name": "Unilever Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "URBN",
+    "name": "Urban Jakarta Propertindo Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "UVCR",
+    "name": "Trimegah Karya Pratama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "VAST",
+    "name": "Vastland Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "VERN",
+    "name": "Verona Indah Pictures Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "VICI",
+    "name": "Victoria Care Indonesia Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "VICO",
+    "name": "Victoria Investama Tbk.",
+    "board": "Utama",
+    "sector": "Financials"
+  },
+  {
+    "code": "VINS",
+    "name": "Victoria Insurance Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "VISI",
+    "name": "Satu Visi Putra Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "VIVA",
+    "name": "Visi Media Asia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "VKTR",
+    "name": "VKTR Teknologi Mobilitas Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "VOKS",
+    "name": "Voksel Electric Tbk.",
+    "board": "Pengembangan",
+    "sector": "Industrials"
+  },
+  {
+    "code": "VRNA",
+    "name": "Mizuho Leasing Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "VTNY",
+    "name": "Venteny Fortuna International",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "WAPO",
+    "name": "Wahana Pronatural Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "WBSA",
+    "name": "BSA Logistics Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "WEGE",
+    "name": "Wijaya Karya Bangunan Gedung T",
+    "board": "Pengembangan",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "WEHA",
+    "name": "WEHA Transportasi Indonesia Tb",
+    "board": "Pengembangan",
+    "sector": "Transportation & Logistic"
+  },
+  {
+    "code": "WGSH",
+    "name": "Wira Global Solusi Tbk.",
+    "board": "Akselerasi",
+    "sector": "Technology"
+  },
+  {
+    "code": "WICO",
+    "name": "Wicaksana Overseas Internation",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "WIDI",
+    "name": "Widiant Jaya Krenindo Tbk.",
+    "board": "Akselerasi",
+    "sector": "Industrials"
+  },
+  {
+    "code": "WIFI",
+    "name": "Solusi Sinergi Digital Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "WIIM",
+    "name": "Wismilak Inti Makmur Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "WIKA",
+    "name": "Wijaya Karya (Persero) Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "WINE",
+    "name": "Hatten Bali Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "WINR",
+    "name": "Winner Nusantara Jaya Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Properties & Real Estate"
+  },
+  {
+    "code": "WINS",
+    "name": "Wintermar Offshore Marine Tbk.",
+    "board": "Utama",
+    "sector": "Energy"
+  },
+  {
+    "code": "WIRG",
+    "name": "WIR ASIA Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  },
+  {
+    "code": "WMPP",
+    "name": "Widodo Makmur Perkasa Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "WMUU",
+    "name": "Widodo Makmur Unggas Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "WOMF",
+    "name": "Wahana Ottomitra Multiartha Tb",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "WOOD",
+    "name": "Integra Indocabinet Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "WOWS",
+    "name": "Ginting Jaya Energi Tbk.",
+    "board": "Pengembangan",
+    "sector": "Energy"
+  },
+  {
+    "code": "WSBP",
+    "name": "Waskita Beton Precast Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "WSKT",
+    "name": "Waskita Karya (Persero) Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Infrastructures"
+  },
+  {
+    "code": "WTON",
+    "name": "Wijaya Karya Beton Tbk.",
+    "board": "Utama",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "YELO",
+    "name": "Yelooo Integra Datanet Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "YOII",
+    "name": "Asuransi Digital Bersama Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "YPAS",
+    "name": "Yanaprima Hastapersada Tbk",
+    "board": "Pengembangan",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "YULE",
+    "name": "Yulie Sekuritas Indonesia Tbk.",
+    "board": "Pengembangan",
+    "sector": "Financials"
+  },
+  {
+    "code": "YUPI",
+    "name": "Yupi Indo Jelly Gum Tbk.",
+    "board": "Utama",
+    "sector": "Consumer Non-Cyclicals"
+  },
+  {
+    "code": "ZATA",
+    "name": "Bersama Zatta Jaya Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ZBRA",
+    "name": "Dosni Roha Indonesia Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Industrials"
+  },
+  {
+    "code": "ZINC",
+    "name": "Kapuas Prima Coal Tbk.",
+    "board": "Pemantauan Khusus",
+    "sector": "Basic Materials"
+  },
+  {
+    "code": "ZONE",
+    "name": "Mega Perintis Tbk.",
+    "board": "Pengembangan",
+    "sector": "Consumer Cyclicals"
+  },
+  {
+    "code": "ZYRX",
+    "name": "Zyrexindo Mandiri Buana Tbk.",
+    "board": "Pengembangan",
+    "sector": "Technology"
+  }
+]
