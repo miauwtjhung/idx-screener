@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { computeSignal, buildSectorAvgPeMap } from "./signal";
 
 const STORAGE_KEY = "idx-portfolios";
 
@@ -57,6 +58,7 @@ export default function Portfolio({ companies }) {
   const [state, setState] = useState({ portfolios: [], activeId: null });
   const [quotes, setQuotes] = useState({});
   const [loadingQuotes, setLoadingQuotes] = useState(false);
+  const [sectorAvgMap, setSectorAvgMap] = useState({});
   const [showPortfolioMenu, setShowPortfolioMenu] = useState(false);
   const [editingName, setEditingName] = useState(false);
   const [nameInput, setNameInput] = useState("");
@@ -100,6 +102,45 @@ export default function Portfolio({ companies }) {
       .catch(() => {})
       .finally(() => setLoadingQuotes(false));
   }, [transactions]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // For the Buy/Hold/Sell signal we need each held stock's sector-average
+  // P/E. Rather than loading all 962 IDX tickers, only fetch peers from
+  // whatever sectors your current holdings actually belong to.
+  useEffect(() => {
+    if (holdings.length === 0 || companies.length === 0) return;
+
+    const heldSectors = new Set(
+      holdings
+        .map((h) => companies.find((c) => c.code === h.ticker)?.sector)
+        .filter(Boolean)
+    );
+    if (heldSectors.size === 0) return;
+
+    const peers = companies.filter((c) => heldSectors.has(c.sector));
+    const CHUNK = 75;
+
+    async function loadPeerPe() {
+      const peerRows = [];
+      for (let i = 0; i < peers.length; i += CHUNK) {
+        const chunk = peers.slice(i, i + CHUNK);
+        const symbols = chunk.map((c) => `${c.code}.JK`).join(",");
+        try {
+          const res = await fetch(`/api/idx-quotes?symbols=${encodeURIComponent(symbols)}`);
+          const data = await res.json();
+          if (data.error) continue;
+          (data.quotes || []).forEach((q) => {
+            const company = chunk.find((c) => c.code === q.ticker);
+            if (company) peerRows.push({ sector: company.sector, pe: q.pe });
+          });
+        } catch {
+          // skip this chunk on failure, partial data is fine for an average
+        }
+      }
+      setSectorAvgMap(buildSectorAvgPeMap(peerRows));
+    }
+
+    loadPeerPe();
+  }, [holdings.length, companies]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function switchPortfolio(id) {
     persist({ ...state, activeId: id });
@@ -196,11 +237,12 @@ export default function Portfolio({ companies }) {
 
   const rows = holdings.map((h) => {
     const q = quotes[h.ticker] || {};
+    const sector = companies.find((c) => c.code === h.ticker)?.sector || null;
     const currentPrice = q.price ?? null;
     const marketValue = currentPrice != null ? currentPrice * h.qty : null;
     const pnl = marketValue != null ? marketValue - h.invested : null;
     const pnlPct = h.invested > 0 && pnl != null ? (pnl / h.invested) * 100 : null;
-    return { ...h, currentPrice, chg: q.chg ?? null, marketValue, pnl, pnlPct };
+    return { ...h, sector, price: currentPrice, currentPrice, chg: q.chg ?? null, pe: q.pe ?? null, div: q.div ?? null, low52: q.low52 ?? null, high52: q.high52 ?? null, marketValue, pnl, pnlPct };
   });
 
   const totals = rows.reduce(
@@ -357,6 +399,7 @@ export default function Portfolio({ companies }) {
               <thead>
                 <tr className="border-b border-stone-300 text-slate-500">
                   <th className="px-3 py-2 text-left font-medium">Symbol</th>
+                  <th className="px-3 py-2 text-left font-medium">Signal</th>
                   <th className="px-3 py-2 text-right font-medium">Current Price</th>
                   <th className="px-3 py-2 text-right font-medium">Avg Price</th>
                   <th className="px-3 py-2 text-right font-medium">Qty</th>
@@ -370,6 +413,9 @@ export default function Portfolio({ companies }) {
                 {rows.map((r) => (
                   <tr key={r.ticker} className="border-b border-stone-100 last:border-0 hover:bg-stone-50">
                     <td className="px-3 py-2 font-medium">{r.ticker}</td>
+                    <td className="px-3 py-2">
+                      <SignalBadge row={r} sectorAvgPe={sectorAvgMap[r.sector]} />
+                    </td>
                     <td className="px-3 py-2 text-right tabular-nums">
                       {r.currentPrice != null ? (
                         <>
@@ -432,7 +478,7 @@ export default function Portfolio({ companies }) {
         )}
 
         <p className="text-xs text-slate-400 mt-6">
-          Stored in this browser's local storage only — it won't sync across devices and will be lost if you clear browser data. Average cost is computed using the weighted-average method.
+          Stored in this browser's local storage only — it won't sync across devices and will be lost if you clear browser data. Average cost is computed using the weighted-average method. The Signal column is an automated heuristic based on valuation, dividend, momentum, and 52-week range — not financial advice.
         </p>
       </div>
     </div>
@@ -446,5 +492,23 @@ function SummaryCard({ label, value, accent }) {
       <div className="text-xs text-slate-400 mb-1">{label}</div>
       <div className={`text-lg font-semibold tabular-nums ${color}`}>{value}</div>
     </div>
+  );
+}
+
+const SIGNAL_STYLES = {
+  Buy: "bg-emerald-100 text-emerald-800",
+  Hold: "bg-amber-100 text-amber-800",
+  Sell: "bg-rose-100 text-rose-800",
+};
+
+function SignalBadge({ row, sectorAvgPe }) {
+  if (row.price == null) {
+    return <span className="text-xs text-slate-300">—</span>;
+  }
+  const { label } = computeSignal(row, sectorAvgPe);
+  return (
+    <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${SIGNAL_STYLES[label]}`}>
+      {label}
+    </span>
   );
 }
