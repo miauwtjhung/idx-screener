@@ -80,3 +80,21 @@ export function sectorAveragePe(companies, sector) {
   if (peers.length === 0) return null;
   return peers.reduce((sum, c) => sum + c.pe, 0) / peers.length;
 }
+
+// Precomputes sector -> average P/E for every sector present, in one pass,
+// so rendering a signal for many rows (e.g. a table) doesn't refilter the
+// whole dataset once per row.
+export function buildSectorAvgPeMap(companies) {
+  const sums = {};
+  const counts = {};
+  for (const c of companies) {
+    if (!c.sector || c.pe == null || c.pe <= 0) continue;
+    sums[c.sector] = (sums[c.sector] || 0) + c.pe;
+    counts[c.sector] = (counts[c.sector] || 0) + 1;
+  }
+  const map = {};
+  for (const sector in sums) {
+    map[sector] = sums[sector] / counts[sector];
+  }
+  return map;
+}

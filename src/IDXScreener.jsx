@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import StockDetailModal from "./StockDetailModal";
+import { computeSignal, buildSectorAvgPeMap } from "./signal";
 
 const PAGE_SIZE = 50;
 const CHUNK_SIZE = 75; // tickers per Yahoo request while preloading
@@ -11,6 +12,7 @@ function fmtCap(v) {
 
 const COLUMNS = [
   { key: "code", label: "Ticker", align: "left" },
+  { key: "signal", label: "Signal", align: "left", noSort: true },
   { key: "name", label: "Company", align: "left" },
   { key: "sector", label: "Sector", align: "left" },
   { key: "price", label: "Price (Rp)", align: "right" },
@@ -126,6 +128,7 @@ export default function IDXScreener() {
   }, [companies, quotes, query, board, sector, sortKey, sortDir]);
 
   const sectorOptions = useMemo(() => getSectorOptions(companies), [companies]);
+  const sectorAvgMap = useMemo(() => buildSectorAvgPeMap(allRowsWithQuotes), [allRowsWithQuotes]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const pageRows = filtered.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
@@ -204,8 +207,8 @@ export default function IDXScreener() {
                 {COLUMNS.map((col) => (
                   <th
                     key={col.key}
-                    onClick={() => handleSort(col.key)}
-                    className={`px-3 py-2 font-medium text-slate-500 cursor-pointer select-none whitespace-nowrap ${col.align === "right" ? "text-right" : "text-left"}`}
+                    onClick={() => !col.noSort && handleSort(col.key)}
+                    className={`px-3 py-2 font-medium text-slate-500 select-none whitespace-nowrap ${col.noSort ? "" : "cursor-pointer"} ${col.align === "right" ? "text-right" : "text-left"}`}
                   >
                     {col.label}
                     {sortKey === col.key && (
@@ -223,6 +226,9 @@ export default function IDXScreener() {
                   className="border-b border-stone-100 last:border-0 hover:bg-stone-50 cursor-pointer"
                 >
                   <td className="px-3 py-2 font-medium tabular-nums">{row.code}</td>
+                  <td className="px-3 py-2">
+                    <SignalBadge row={row} sectorAvgPe={sectorAvgMap[row.sector]} />
+                  </td>
                   <td className="px-3 py-2 text-slate-700">{row.name}</td>
                   <td className="px-3 py-2 text-slate-500">{row.sector || "—"}</td>
                   <td className="px-3 py-2 text-right tabular-nums">
@@ -239,7 +245,7 @@ export default function IDXScreener() {
               ))}
               {!listLoading && pageRows.length === 0 && (
                 <tr>
-                  <td colSpan={9} className="px-3 py-8 text-center text-slate-400">No stocks match this search.</td>
+                  <td colSpan={10} className="px-3 py-8 text-center text-slate-400">No stocks match this search.</td>
                 </tr>
               )}
             </tbody>
@@ -267,11 +273,31 @@ export default function IDXScreener() {
         )}
 
         <p className="text-xs text-slate-400 mt-4">
-          Ticker list from IDX (as of 12 Sep 2026). Live prices via Yahoo Finance (unofficial, delayed), preloaded in the background. Click any row for stats and an informational signal — not financial advice.
+          Ticker list from IDX (as of 12 Sep 2026). Live prices via Yahoo Finance (unofficial, delayed), preloaded in the background. The Signal column is an automated heuristic based on valuation, dividend, momentum, and 52-week range — not financial advice. Click a row for the full breakdown.
         </p>
       </div>
 
       <StockDetailModal row={selectedRow} companies={allRowsWithQuotes} onClose={() => setSelectedRow(null)} />
     </div>
+  );
+}
+
+const SIGNAL_STYLES = {
+  Buy: "bg-emerald-100 text-emerald-800",
+  Hold: "bg-amber-100 text-amber-800",
+  Sell: "bg-rose-100 text-rose-800",
+};
+
+function SignalBadge({ row, sectorAvgPe }) {
+  // Not enough data loaded yet for this row — show a neutral placeholder
+  // rather than a possibly-misleading label.
+  if (row.price == null) {
+    return <span className="text-xs text-slate-300">—</span>;
+  }
+  const { label } = computeSignal(row, sectorAvgPe);
+  return (
+    <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${SIGNAL_STYLES[label]}`}>
+      {label}
+    </span>
   );
 }
