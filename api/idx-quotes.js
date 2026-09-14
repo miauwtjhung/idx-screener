@@ -95,6 +95,8 @@ export default async function handler(req, res) {
       pe: q.trailingPE ?? null,
       div: q.trailingAnnualDividendYield ? q.trailingAnnualDividendYield * 100 : null,
       vol: q.regularMarketVolume ? q.regularMarketVolume / 1_000_000 : null, // millions
+      low52: q.fiftyTwoWeekLow ?? null,
+      high52: q.fiftyTwoWeekHigh ?? null,
     }));
 
     res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate");

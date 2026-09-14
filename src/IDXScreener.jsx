@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
+import StockDetailModal from "./StockDetailModal";
 
 const PAGE_SIZE = 50;
 const CHUNK_SIZE = 75; // tickers per Yahoo request while preloading
@@ -44,6 +45,7 @@ export default function IDXScreener() {
   const [page, setPage] = useState(0);
   const [sortKey, setSortKey] = useState("code");
   const [sortDir, setSortDir] = useState("asc");
+  const [selectedRow, setSelectedRow] = useState(null);
 
   // Load the static, bundled company list — sector and board are already
   // included, straight from IDX's own data, no extra fetch needed.
@@ -92,6 +94,11 @@ export default function IDXScreener() {
     return () => { cancelledRef.current = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [companies]);
+
+  const allRowsWithQuotes = useMemo(
+    () => companies.map((c) => ({ ...c, ...(quotes[c.code] || {}) })),
+    [companies, quotes]
+  );
 
   const filtered = useMemo(() => {
     let r = companies.filter((c) => {
@@ -210,7 +217,11 @@ export default function IDXScreener() {
             </thead>
             <tbody>
               {pageRows.map((row) => (
-                <tr key={row.code} className="border-b border-stone-100 last:border-0 hover:bg-stone-50">
+                <tr
+                  key={row.code}
+                  onClick={() => setSelectedRow(row)}
+                  className="border-b border-stone-100 last:border-0 hover:bg-stone-50 cursor-pointer"
+                >
                   <td className="px-3 py-2 font-medium tabular-nums">{row.code}</td>
                   <td className="px-3 py-2 text-slate-700">{row.name}</td>
                   <td className="px-3 py-2 text-slate-500">{row.sector || "—"}</td>
@@ -256,9 +267,11 @@ export default function IDXScreener() {
         )}
 
         <p className="text-xs text-slate-400 mt-4">
-          Ticker list from IDX (as of 12 Sep 2026). Live prices via Yahoo Finance (unofficial, delayed), preloaded in the background.
+          Ticker list from IDX (as of 12 Sep 2026). Live prices via Yahoo Finance (unofficial, delayed), preloaded in the background. Click any row for stats and an informational signal — not financial advice.
         </p>
       </div>
+
+      <StockDetailModal row={selectedRow} companies={allRowsWithQuotes} onClose={() => setSelectedRow(null)} />
     </div>
   );
 }
