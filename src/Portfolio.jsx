@@ -1,26 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
+import { useAuth, Show, SignInButton } from "@clerk/react";
 import { computeSignal, buildSectorAvgPeMap } from "./signal";
-
-const STORAGE_KEY = "idx-portfolios";
-
-function loadState() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
-  } catch {
-    // fall through to default
-  }
-  const defaultPortfolio = { id: "default", name: "My Portfolio", transactions: [] };
-  return { portfolios: [defaultPortfolio], activeId: "default" };
-}
-
-function saveState(state) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch {
-    // localStorage unavailable (private browsing, etc.) — fail silently
-  }
-}
 
 // Average-cost method: buys move the weighted average cost; sells reduce
 // quantity but leave the average cost of remaining shares unchanged.
@@ -55,7 +35,34 @@ function computeHoldings(transactions) {
 }
 
 export default function Portfolio({ companies }) {
-  const [state, setState] = useState({ portfolios: [], activeId: null });
+  return (
+    <>
+      <Show when="signed-out">
+        <div className="min-h-screen bg-stone-100 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-xl font-semibold text-slate-900 mb-2">Sign in to view your portfolio</h1>
+            <p className="text-sm text-slate-500 mb-4">Your holdings are saved to your account and sync across devices.</p>
+            <SignInButton mode="modal">
+              <button className="bg-slate-900 text-white px-4 py-2 rounded text-sm font-medium">Sign in</button>
+            </SignInButton>
+          </div>
+        </div>
+      </Show>
+      <Show when="signed-in">
+        <PortfolioContent companies={companies} />
+      </Show>
+    </>
+  );
+}
+
+function PortfolioContent({ companies }) {
+  const { getToken } = useAuth();
+
+  const [portfolios, setPortfolios] = useState([]);
+  const [activeId, setActiveId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+
   const [quotes, setQuotes] = useState({});
   const [loadingQuotes, setLoadingQuotes] = useState(false);
   const [sectorAvgMap, setSectorAvgMap] = useState({});
@@ -72,21 +79,56 @@ export default function Portfolio({ companies }) {
   });
   const [formError, setFormError] = useState("");
 
+  const authedFetch = useCallback(
+    async (url, options = {}) => {
+      const token = await getToken();
+      return fetch(url, {
+        ...options,
+        headers: {
+          ...options.headers,
+          Authorization: `Bearer ${token}`,
+          ...(options.body ? { "Content-Type": "application/json" } : {}),
+        },
+      });
+    },
+    [getToken]
+  );
+
+  const loadPortfolios = useCallback(async () => {
+    setLoading(true);
+    setLoadError("");
+    try {
+      const res = await authedFetch("/api/portfolios");
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+
+      let list = data.portfolios || [];
+      if (list.length === 0) {
+        const createRes = await authedFetch("/api/portfolios", {
+          method: "POST",
+          body: JSON.stringify({ name: "My Portfolio" }),
+        });
+        const createData = await createRes.json();
+        if (createData.error) throw new Error(createData.error);
+        list = [createData.portfolio];
+      }
+      setPortfolios(list);
+      setActiveId((prev) => prev ?? list[0].id);
+    } catch (e) {
+      setLoadError("Couldn't load your portfolios. " + e.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [authedFetch]);
+
   useEffect(() => {
-    setState(loadState());
-  }, []);
+    loadPortfolios();
+  }, [loadPortfolios]);
 
-  function persist(next) {
-    setState(next);
-    saveState(next);
-  }
-
-  const activePortfolio = state.portfolios.find((p) => p.id === state.activeId) || state.portfolios[0];
+  const activePortfolio = portfolios.find((p) => p.id === activeId) || portfolios[0];
   const transactions = activePortfolio ? activePortfolio.transactions : [];
-
   const holdings = useMemo(() => computeHoldings(transactions), [transactions]);
 
-  // Fetch live prices for whatever's currently held in the active portfolio.
   useEffect(() => {
     if (holdings.length === 0) return;
     setLoadingQuotes(true);
@@ -103,16 +145,10 @@ export default function Portfolio({ companies }) {
       .finally(() => setLoadingQuotes(false));
   }, [transactions]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // For the Buy/Hold/Sell signal we need each held stock's sector-average
-  // P/E. Rather than loading all 962 IDX tickers, only fetch peers from
-  // whatever sectors your current holdings actually belong to.
   useEffect(() => {
     if (holdings.length === 0 || companies.length === 0) return;
-
     const heldSectors = new Set(
-      holdings
-        .map((h) => companies.find((c) => c.code === h.ticker)?.sector)
-        .filter(Boolean)
+      holdings.map((h) => companies.find((c) => c.code === h.ticker)?.sector).filter(Boolean)
     );
     if (heldSectors.size === 0) return;
 
@@ -133,46 +169,49 @@ export default function Portfolio({ companies }) {
             if (company) peerRows.push({ sector: company.sector, pe: q.pe });
           });
         } catch {
-          // skip this chunk on failure, partial data is fine for an average
+          // partial data is fine for an average
         }
       }
       setSectorAvgMap(buildSectorAvgPeMap(peerRows));
     }
-
     loadPeerPe();
   }, [holdings.length, companies]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function switchPortfolio(id) {
-    persist({ ...state, activeId: id });
+    setActiveId(id);
     setShowPortfolioMenu(false);
   }
 
-  function createPortfolio() {
+  async function createPortfolio() {
     const name = prompt("Name for the new portfolio:", "New Portfolio");
     if (!name || !name.trim()) return;
-    const id = `p_${Date.now()}`;
-    const next = {
-      portfolios: [...state.portfolios, { id, name: name.trim(), transactions: [] }],
-      activeId: id,
-    };
-    persist(next);
+    try {
+      const res = await authedFetch("/api/portfolios", { method: "POST", body: JSON.stringify({ name: name.trim() }) });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setPortfolios((prev) => [...prev, data.portfolio]);
+      setActiveId(data.portfolio.id);
+    } catch (e) {
+      alert("Couldn't create portfolio: " + e.message);
+    }
     setShowPortfolioMenu(false);
   }
 
-  function deletePortfolio(id) {
-    if (state.portfolios.length <= 1) {
-      alert("You need at least one portfolio.");
-      return;
-    }
-    const portfolio = state.portfolios.find((p) => p.id === id);
+  async function deletePortfolio(id) {
+    if (portfolios.length <= 1) return alert("You need at least one portfolio.");
+    const portfolio = portfolios.find((p) => p.id === id);
     if (!confirm(`Delete "${portfolio.name}"? This removes all its transactions and can't be undone.`)) return;
 
-    const remaining = state.portfolios.filter((p) => p.id !== id);
-    const next = {
-      portfolios: remaining,
-      activeId: state.activeId === id ? remaining[0].id : state.activeId,
-    };
-    persist(next);
+    try {
+      const res = await authedFetch(`/api/portfolios?id=${id}`, { method: "DELETE" });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      const remaining = portfolios.filter((p) => p.id !== id);
+      setPortfolios(remaining);
+      if (activeId === id) setActiveId(remaining[0].id);
+    } catch (e) {
+      alert("Couldn't delete portfolio: " + e.message);
+    }
   }
 
   function startRename() {
@@ -181,29 +220,23 @@ export default function Portfolio({ companies }) {
     setShowPortfolioMenu(false);
   }
 
-  function saveRename() {
+  async function saveRename() {
     if (!nameInput.trim()) return setEditingName(false);
-    const next = {
-      ...state,
-      portfolios: state.portfolios.map((p) =>
-        p.id === activePortfolio.id ? { ...p, name: nameInput.trim() } : p
-      ),
-    };
-    persist(next);
+    try {
+      const res = await authedFetch(`/api/portfolios?id=${activePortfolio.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({ name: nameInput.trim() }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setPortfolios((prev) => prev.map((p) => (p.id === activePortfolio.id ? { ...p, name: data.portfolio.name } : p)));
+    } catch (e) {
+      alert("Couldn't rename portfolio: " + e.message);
+    }
     setEditingName(false);
   }
 
-  function updateActiveTransactions(newTransactions) {
-    const next = {
-      ...state,
-      portfolios: state.portfolios.map((p) =>
-        p.id === activePortfolio.id ? { ...p, transactions: newTransactions } : p
-      ),
-    };
-    persist(next);
-  }
-
-  function addTransaction(e) {
+  async function addTransaction(e) {
     e.preventDefault();
     setFormError("");
 
@@ -221,18 +254,37 @@ export default function Portfolio({ companies }) {
     if (form.type === "sell") {
       const current = computeHoldings(transactions).find((h) => h.ticker === ticker);
       const heldQty = current ? current.qty : 0;
-      if (qty > heldQty) {
-        return setFormError(`You only hold ${heldQty} shares of ${ticker} in this portfolio.`);
-      }
+      if (qty > heldQty) return setFormError(`You only hold ${heldQty} shares of ${ticker} in this portfolio.`);
     }
 
-    const next = [...transactions, { id: Date.now(), ticker, type: form.type, price, qty, date: form.date }];
-    updateActiveTransactions(next);
-    setForm((f) => ({ ...f, ticker: "", price: "", qty: "" }));
+    try {
+      const res = await authedFetch("/api/transactions", {
+        method: "POST",
+        body: JSON.stringify({ portfolioId: activePortfolio.id, ticker, type: form.type, price, qty, date: form.date }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+
+      setPortfolios((prev) =>
+        prev.map((p) => (p.id === activePortfolio.id ? { ...p, transactions: [...p.transactions, data.transaction] } : p))
+      );
+      setForm((f) => ({ ...f, ticker: "", price: "", qty: "" }));
+    } catch (e) {
+      setFormError("Couldn't save transaction: " + e.message);
+    }
   }
 
-  function removeTransaction(id) {
-    updateActiveTransactions(transactions.filter((t) => t.id !== id));
+  async function removeTransaction(id) {
+    try {
+      const res = await authedFetch(`/api/transactions?id=${id}`, { method: "DELETE" });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      setPortfolios((prev) =>
+        prev.map((p) => (p.id === activePortfolio.id ? { ...p, transactions: p.transactions.filter((t) => t.id !== id) } : p))
+      );
+    } catch (e) {
+      alert("Couldn't remove transaction: " + e.message);
+    }
   }
 
   const rows = holdings.map((h) => {
@@ -246,78 +298,60 @@ export default function Portfolio({ companies }) {
   });
 
   const totals = rows.reduce(
-    (acc, r) => ({
-      invested: acc.invested + r.invested,
-      marketValue: acc.marketValue + (r.marketValue ?? 0),
-    }),
+    (acc, r) => ({ invested: acc.invested + r.invested, marketValue: acc.marketValue + (r.marketValue ?? 0) }),
     { invested: 0, marketValue: 0 }
   );
   const totalPnl = totals.marketValue - totals.invested;
   const totalPnlPct = totals.invested > 0 ? (totalPnl / totals.invested) * 100 : 0;
 
+  if (loading) {
+    return <div className="min-h-screen bg-stone-100 flex items-center justify-center text-slate-400 text-sm">Loading your portfolios…</div>;
+  }
+  if (loadError) {
+    return <div className="min-h-screen bg-stone-100 flex items-center justify-center text-rose-700 text-sm">{loadError}</div>;
+  }
   if (!activePortfolio) return null;
 
   return (
     <div className="min-h-screen bg-stone-100 text-slate-900 font-sans">
       <div className="max-w-5xl mx-auto px-6 py-8">
         <header className="mb-6 border-b border-stone-300 pb-4">
-          <div className="flex items-center justify-between">
-            <div className="relative">
-              {editingName ? (
-                <input
-                  autoFocus
-                  value={nameInput}
-                  onChange={(e) => setNameInput(e.target.value)}
-                  onBlur={saveRename}
-                  onKeyDown={(e) => e.key === "Enter" && saveRename()}
-                  className="text-2xl font-semibold tracking-tight bg-white border border-slate-400 rounded px-2 py-0.5"
-                />
-              ) : (
-                <button
-                  onClick={() => setShowPortfolioMenu((v) => !v)}
-                  className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-slate-900"
-                >
-                  {activePortfolio.name}
-                  <span className="text-base text-slate-400">▾</span>
-                </button>
-              )}
+          <div className="relative">
+            {editingName ? (
+              <input
+                autoFocus
+                value={nameInput}
+                onChange={(e) => setNameInput(e.target.value)}
+                onBlur={saveRename}
+                onKeyDown={(e) => e.key === "Enter" && saveRename()}
+                className="text-2xl font-semibold tracking-tight bg-white border border-slate-400 rounded px-2 py-0.5"
+              />
+            ) : (
+              <button onClick={() => setShowPortfolioMenu((v) => !v)} className="flex items-center gap-2 text-2xl font-semibold tracking-tight text-slate-900">
+                {activePortfolio.name}
+                <span className="text-base text-slate-400">▾</span>
+              </button>
+            )}
 
-              {showPortfolioMenu && (
-                <div className="absolute left-0 top-full mt-2 bg-white border border-stone-300 rounded shadow-lg w-64 z-10 py-1">
-                  {state.portfolios.map((p) => (
-                    <div
-                      key={p.id}
-                      className={`flex items-center justify-between px-3 py-2 text-sm hover:bg-stone-50 cursor-pointer ${p.id === activePortfolio.id ? "font-medium" : ""}`}
-                    >
-                      <button onClick={() => switchPortfolio(p.id)} className="flex-1 text-left">
-                        {p.name}
-                      </button>
-                      {state.portfolios.length > 1 && (
-                        <button
-                          onClick={() => deletePortfolio(p.id)}
-                          className="text-xs text-slate-300 hover:text-rose-600 ml-2"
-                        >
-                          Delete
-                        </button>
-                      )}
-                    </div>
-                  ))}
-                  <div className="border-t border-stone-200 mt-1 pt-1">
-                    <button onClick={startRename} className="w-full text-left px-3 py-2 text-sm text-slate-600 hover:bg-stone-50">
-                      Rename current portfolio
-                    </button>
-                    <button onClick={createPortfolio} className="w-full text-left px-3 py-2 text-sm text-slate-600 hover:bg-stone-50">
-                      + New portfolio
-                    </button>
+            {showPortfolioMenu && (
+              <div className="absolute left-0 top-full mt-2 bg-white border border-stone-300 rounded shadow-lg w-64 z-10 py-1">
+                {portfolios.map((p) => (
+                  <div key={p.id} className={`flex items-center justify-between px-3 py-2 text-sm hover:bg-stone-50 ${p.id === activePortfolio.id ? "font-medium" : ""}`}>
+                    <button onClick={() => switchPortfolio(p.id)} className="flex-1 text-left">{p.name}</button>
+                    {portfolios.length > 1 && (
+                      <button onClick={() => deletePortfolio(p.id)} className="text-xs text-slate-300 hover:text-rose-600 ml-2">Delete</button>
+                    )}
                   </div>
+                ))}
+                <div className="border-t border-stone-200 mt-1 pt-1">
+                  <button onClick={startRename} className="w-full text-left px-3 py-2 text-sm text-slate-600 hover:bg-stone-50">Rename current portfolio</button>
+                  <button onClick={createPortfolio} className="w-full text-left px-3 py-2 text-sm text-slate-600 hover:bg-stone-50">+ New portfolio</button>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
           <p className="text-sm text-slate-500 mt-1">
-            {holdings.length === 0
-              ? "No holdings yet — log a buy below to get started."
-              : `${holdings.length} holding${holdings.length === 1 ? "" : "s"} · saved in this browser only`}
+            {holdings.length === 0 ? "No holdings yet — log a buy below to get started." : `${holdings.length} holding${holdings.length === 1 ? "" : "s"} · saved to your account`}
           </p>
         </header>
 
@@ -325,11 +359,7 @@ export default function Portfolio({ companies }) {
           <div className="grid grid-cols-3 gap-4 mb-6">
             <SummaryCard label="Invested" value={`Rp ${Math.round(totals.invested).toLocaleString("id-ID")}`} />
             <SummaryCard label="Market value" value={`Rp ${Math.round(totals.marketValue).toLocaleString("id-ID")}`} />
-            <SummaryCard
-              label="P&L"
-              value={`${totalPnl >= 0 ? "+" : ""}Rp ${Math.round(totalPnl).toLocaleString("id-ID")} (${totalPnlPct >= 0 ? "+" : ""}${totalPnlPct.toFixed(2)}%)`}
-              accent={totalPnl >= 0 ? "up" : "down"}
-            />
+            <SummaryCard label="P&L" value={`${totalPnl >= 0 ? "+" : ""}Rp ${Math.round(totalPnl).toLocaleString("id-ID")} (${totalPnlPct >= 0 ? "+" : ""}${totalPnlPct.toFixed(2)}%)`} accent={totalPnl >= 0 ? "up" : "down"} />
           </div>
         )}
 
@@ -338,57 +368,28 @@ export default function Portfolio({ companies }) {
           <div className="flex flex-wrap gap-3 items-end">
             <div>
               <label className="block text-xs text-slate-400 mb-1">Ticker</label>
-              <input
-                type="text"
-                value={form.ticker}
-                onChange={(e) => setForm((f) => ({ ...f, ticker: e.target.value.toUpperCase() }))}
-                placeholder="BBCA"
-                className="w-28 bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500"
-              />
+              <input type="text" value={form.ticker} onChange={(e) => setForm((f) => ({ ...f, ticker: e.target.value.toUpperCase() }))} placeholder="BBCA" className="w-28 bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500" />
             </div>
             <div>
               <label className="block text-xs text-slate-400 mb-1">Type</label>
-              <select
-                value={form.type}
-                onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))}
-                className="bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500"
-              >
+              <select value={form.type} onChange={(e) => setForm((f) => ({ ...f, type: e.target.value }))} className="bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500">
                 <option value="buy">Buy</option>
                 <option value="sell">Sell</option>
               </select>
             </div>
             <div>
               <label className="block text-xs text-slate-400 mb-1">Price (Rp)</label>
-              <input
-                type="number"
-                value={form.price}
-                onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))}
-                placeholder="6350"
-                className="w-28 bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500"
-              />
+              <input type="number" value={form.price} onChange={(e) => setForm((f) => ({ ...f, price: e.target.value }))} placeholder="6350" className="w-28 bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500" />
             </div>
             <div>
               <label className="block text-xs text-slate-400 mb-1">Volume</label>
-              <input
-                type="number"
-                value={form.qty}
-                onChange={(e) => setForm((f) => ({ ...f, qty: e.target.value }))}
-                placeholder="100"
-                className="w-24 bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500"
-              />
+              <input type="number" value={form.qty} onChange={(e) => setForm((f) => ({ ...f, qty: e.target.value }))} placeholder="100" className="w-24 bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500" />
             </div>
             <div>
               <label className="block text-xs text-slate-400 mb-1">Date</label>
-              <input
-                type="date"
-                value={form.date}
-                onChange={(e) => setForm((f) => ({ ...f, date: e.target.value }))}
-                className="bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500"
-              />
+              <input type="date" value={form.date} onChange={(e) => setForm((f) => ({ ...f, date: e.target.value }))} className="bg-white border border-stone-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:border-slate-500" />
             </div>
-            <button type="submit" className="bg-slate-900 text-white px-4 py-1.5 rounded text-sm font-medium">
-              Add
-            </button>
+            <button type="submit" className="bg-slate-900 text-white px-4 py-1.5 rounded text-sm font-medium">Add</button>
           </div>
           {formError && <p className="text-sm text-rose-700 mt-2">{formError}</p>}
         </form>
@@ -413,9 +414,7 @@ export default function Portfolio({ companies }) {
                 {rows.map((r) => (
                   <tr key={r.ticker} className="border-b border-stone-100 last:border-0 hover:bg-stone-50">
                     <td className="px-3 py-2 font-medium">{r.ticker}</td>
-                    <td className="px-3 py-2">
-                      <SignalBadge row={r} sectorAvgPe={sectorAvgMap[r.sector]} />
-                    </td>
+                    <td className="px-3 py-2"><SignalBadge row={r} sectorAvgPe={sectorAvgMap[r.sector]} /></td>
                     <td className="px-3 py-2 text-right tabular-nums">
                       {r.currentPrice != null ? (
                         <>
@@ -430,12 +429,8 @@ export default function Portfolio({ companies }) {
                     <td className="px-3 py-2 text-right tabular-nums">{r.qty.toLocaleString("id-ID")}</td>
                     <td className="px-3 py-2 text-right tabular-nums">{r.marketValue != null ? Math.round(r.marketValue).toLocaleString("id-ID") : "—"}</td>
                     <td className="px-3 py-2 text-right tabular-nums">{Math.round(r.invested).toLocaleString("id-ID")}</td>
-                    <td className={`px-3 py-2 text-right tabular-nums font-medium ${r.pnl > 0 ? "text-emerald-700" : r.pnl < 0 ? "text-rose-700" : "text-slate-500"}`}>
-                      {r.pnl != null ? `${r.pnl > 0 ? "+" : ""}${Math.round(r.pnl).toLocaleString("id-ID")}` : "—"}
-                    </td>
-                    <td className={`px-3 py-2 text-right tabular-nums font-medium ${r.pnlPct > 0 ? "text-emerald-700" : r.pnlPct < 0 ? "text-rose-700" : "text-slate-500"}`}>
-                      {r.pnlPct != null ? `${r.pnlPct > 0 ? "+" : ""}${r.pnlPct.toFixed(2)}%` : "—"}
-                    </td>
+                    <td className={`px-3 py-2 text-right tabular-nums font-medium ${r.pnl > 0 ? "text-emerald-700" : r.pnl < 0 ? "text-rose-700" : "text-slate-500"}`}>{r.pnl != null ? `${r.pnl > 0 ? "+" : ""}${Math.round(r.pnl).toLocaleString("id-ID")}` : "—"}</td>
+                    <td className={`px-3 py-2 text-right tabular-nums font-medium ${r.pnlPct > 0 ? "text-emerald-700" : r.pnlPct < 0 ? "text-rose-700" : "text-slate-500"}`}>{r.pnlPct != null ? `${r.pnlPct > 0 ? "+" : ""}${r.pnlPct.toFixed(2)}%` : "—"}</td>
                   </tr>
                 ))}
               </tbody>
@@ -464,11 +459,9 @@ export default function Portfolio({ companies }) {
                       <td className="px-3 py-2 text-slate-500">{t.date}</td>
                       <td className="px-3 py-2 font-medium">{t.ticker}</td>
                       <td className={`px-3 py-2 ${t.type === "buy" ? "text-emerald-700" : "text-rose-700"}`}>{t.type === "buy" ? "Buy" : "Sell"}</td>
-                      <td className="px-3 py-2 text-right tabular-nums">{t.price.toLocaleString("id-ID")}</td>
+                      <td className="px-3 py-2 text-right tabular-nums">{Number(t.price).toLocaleString("id-ID")}</td>
                       <td className="px-3 py-2 text-right tabular-nums">{t.qty.toLocaleString("id-ID")}</td>
-                      <td className="px-3 py-2 text-right">
-                        <button onClick={() => removeTransaction(t.id)} className="text-xs text-slate-400 hover:text-rose-600">Remove</button>
-                      </td>
+                      <td className="px-3 py-2 text-right"><button onClick={() => removeTransaction(t.id)} className="text-xs text-slate-400 hover:text-rose-600">Remove</button></td>
                     </tr>
                   ))}
                 </tbody>
@@ -478,7 +471,7 @@ export default function Portfolio({ companies }) {
         )}
 
         <p className="text-xs text-slate-400 mt-6">
-          Stored in this browser's local storage only — it won't sync across devices and will be lost if you clear browser data. Average cost is computed using the weighted-average method. The Signal column is an automated heuristic based on valuation, dividend, momentum, and 52-week range — not financial advice.
+          Saved to your account — syncs across any device you sign in on. The Signal column is an automated heuristic based on valuation, dividend, momentum, and 52-week range — not financial advice.
         </p>
       </div>
     </div>
@@ -502,13 +495,7 @@ const SIGNAL_STYLES = {
 };
 
 function SignalBadge({ row, sectorAvgPe }) {
-  if (row.price == null) {
-    return <span className="text-xs text-slate-300">—</span>;
-  }
+  if (row.price == null) return <span className="text-xs text-slate-300">—</span>;
   const { label } = computeSignal(row, sectorAvgPe);
-  return (
-    <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${SIGNAL_STYLES[label]}`}>
-      {label}
-    </span>
-  );
+  return <span className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${SIGNAL_STYLES[label]}`}>{label}</span>;
 }
