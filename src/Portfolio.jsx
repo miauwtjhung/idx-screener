@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { useAuth, Show, SignInButton } from "@clerk/react";
 import { computeSignal, buildSectorAvgPeMap } from "./signal";
+import StockDetailModal from "./StockDetailModal";
 
 // Average-cost method: buys move the weighted average cost; sells reduce
 // quantity but leave the average cost of remaining shares unchanged.
@@ -66,6 +67,8 @@ function PortfolioContent({ companies }) {
   const [quotes, setQuotes] = useState({});
   const [loadingQuotes, setLoadingQuotes] = useState(false);
   const [sectorAvgMap, setSectorAvgMap] = useState({});
+  const [peerQuotes, setPeerQuotes] = useState({});
+  const [selectedRow, setSelectedRow] = useState(null);
   const [showPortfolioMenu, setShowPortfolioMenu] = useState(false);
   const [editingName, setEditingName] = useState(false);
   const [nameInput, setNameInput] = useState("");
@@ -157,6 +160,7 @@ function PortfolioContent({ companies }) {
 
     async function loadPeerPe() {
       const peerRows = [];
+      const peerQuoteMap = {};
       for (let i = 0; i < peers.length; i += CHUNK) {
         const chunk = peers.slice(i, i + CHUNK);
         const symbols = chunk.map((c) => `${c.code}.JK`).join(",");
@@ -167,12 +171,14 @@ function PortfolioContent({ companies }) {
           (data.quotes || []).forEach((q) => {
             const company = chunk.find((c) => c.code === q.ticker);
             if (company) peerRows.push({ sector: company.sector, pe: q.pe });
+            peerQuoteMap[q.ticker] = q;
           });
         } catch {
           // partial data is fine for an average
         }
       }
       setSectorAvgMap(buildSectorAvgPeMap(peerRows));
+      setPeerQuotes(peerQuoteMap);
     }
     loadPeerPe();
   }, [holdings.length, companies]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -289,13 +295,36 @@ function PortfolioContent({ companies }) {
 
   const rows = holdings.map((h) => {
     const q = quotes[h.ticker] || {};
-    const sector = companies.find((c) => c.code === h.ticker)?.sector || null;
+    const company = companies.find((c) => c.code === h.ticker);
+    const sector = company?.sector || null;
     const currentPrice = q.price ?? null;
     const marketValue = currentPrice != null ? currentPrice * h.qty : null;
     const pnl = marketValue != null ? marketValue - h.invested : null;
     const pnlPct = h.invested > 0 && pnl != null ? (pnl / h.invested) * 100 : null;
-    return { ...h, sector, price: currentPrice, currentPrice, chg: q.chg ?? null, pe: q.pe ?? null, div: q.div ?? null, low52: q.low52 ?? null, high52: q.high52 ?? null, marketValue, pnl, pnlPct };
+    return {
+      ...h,
+      ...q,
+      code: h.ticker,
+      name: company?.name || h.ticker,
+      sector,
+      board: company?.board || null,
+      price: currentPrice,
+      currentPrice,
+      chg: q.chg ?? null,
+      pe: q.pe ?? null,
+      div: q.div ?? null,
+      low52: q.low52 ?? null,
+      high52: q.high52 ?? null,
+      marketValue,
+      pnl,
+      pnlPct,
+    };
   });
+
+  const companiesWithQuotes = useMemo(
+    () => companies.map((c) => ({ ...c, ...(quotes[c.code] || peerQuotes[c.code] || {}) })),
+    [companies, quotes, peerQuotes]
+  );
 
   const totals = rows.reduce(
     (acc, r) => ({ invested: acc.invested + r.invested, marketValue: acc.marketValue + (r.marketValue ?? 0) }),
@@ -412,7 +441,11 @@ function PortfolioContent({ companies }) {
               </thead>
               <tbody>
                 {rows.map((r) => (
-                  <tr key={r.ticker} className="border-b border-stone-100 last:border-0 hover:bg-stone-50">
+                  <tr
+                    key={r.ticker}
+                    onClick={() => setSelectedRow(r)}
+                    className="border-b border-stone-100 last:border-0 hover:bg-stone-50 cursor-pointer"
+                  >
                     <td className="px-3 py-2 font-medium">{r.ticker}</td>
                     <td className="px-3 py-2"><SignalBadge row={r} sectorAvgPe={sectorAvgMap[r.sector]} /></td>
                     <td className="px-3 py-2 text-right tabular-nums">
@@ -474,6 +507,7 @@ function PortfolioContent({ companies }) {
           Saved to your account — syncs across any device you sign in on. The Signal column is an automated heuristic based on valuation, dividend, momentum, and 52-week range — not financial advice.
         </p>
       </div>
+      <StockDetailModal row={selectedRow} companies={companiesWithQuotes} onClose={() => setSelectedRow(null)} />
     </div>
   );
 }
