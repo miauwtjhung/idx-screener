@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/react";
 import IDXScreener from "./IDXScreener";
 import Portfolio from "./Portfolio";
+import MarketSnapshot from "./MarketSnapshot";
 
 export default function App() {
-  const [tab, setTab] = useState("screener");
+  const [tab, setTab] = useState("today");
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function App() {
       <nav className="bg-slate-900 text-white">
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
           <div className="flex gap-1">
+            <TabButton active={tab === "today"} onClick={() => setTab("today")}>Today</TabButton>
             <TabButton active={tab === "screener"} onClick={() => setTab("screener")}>Screener</TabButton>
             <TabButton active={tab === "portfolio"} onClick={() => setTab("portfolio")}>Portfolio</TabButton>
           </div>
@@ -38,7 +40,9 @@ export default function App() {
         </div>
       </nav>
 
-      {tab === "screener" ? <IDXScreener /> : <Portfolio companies={companies} />}
+      {tab === "today" && <MarketSnapshot />}
+      {tab === "screener" && <IDXScreener />}
+      {tab === "portfolio" && <Portfolio companies={companies} />}
     </div>
   );
 }
