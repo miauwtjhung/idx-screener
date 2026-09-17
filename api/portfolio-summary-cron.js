@@ -1,17 +1,17 @@
-// api/portfolio-summary-cron.js
-// Runs once a day via Vercel Cron (see vercel.json — 10:00 UTC = 17:00 WIB,
+﻿// api/portfolio-summary-cron.js
+// Runs once a day via Vercel Cron (see vercel.json â€” 10:00 UTC = 17:00 WIB,
 // right after IDX market close).
 // For every portfolio: computes net worth by asset class using live prices,
 // compares to yesterday's snapshot, asks Claude to narrate the change, and
 // saves the result to portfolio_snapshots.
 // Protected via CRON_SECRET so only Vercel's scheduler (or someone who has
-// the secret) can trigger it — same pattern as market-snapshot-cron.
+// the secret) can trigger it â€” same pattern as market-snapshot-cron.
 
 import { sql } from "./_db.js";
 import { fetchYahooQuotes } from "./_yahoo.js";
-import { generatePortfolioSummary } from "./_claude.js";
+import { generatePortfolioSummary, generateMarketCloseSummary } from "./_claude.js";
 
-// Average-cost holdings calc — mirrors the frontend's computeHoldings so
+// Average-cost holdings calc â€” mirrors the frontend's computeHoldings so
 // the cron's numbers match what the user sees in the app.
 function computeHoldings(transactions) {
   const byTicker = {};
@@ -167,6 +167,66 @@ export default async function handler(req, res) {
 
       results.push({ portfolioId: portfolio.id, netWorth });
     }
+
+  // Market close recap (folded in here to stay within the Hobby plan's
+  // 2-cron-job limit; runs alongside the portfolio summary at 10:00 UTC / 17:00 WIB)
+  try {
+    const MARKET_SYMBOLS = [
+      { symbol: "^JKSE", name: "IDX Composite (IHSG)", category: "indices" },
+      { symbol: "^GSPC", name: "S&P 500", category: "indices" },
+      { symbol: "^DJI", name: "Dow Jones", category: "indices" },
+      { symbol: "^IXIC", name: "Nasdaq", category: "indices" },
+      { symbol: "^N225", name: "Nikkei 225", category: "indices" },
+      { symbol: "^HSI", name: "Hang Seng", category: "indices" },
+      { symbol: "^FTSE", name: "FTSE 100", category: "indices" },
+      { symbol: "^GDAXI", name: "DAX", category: "indices" },
+      { symbol: "^STI", name: "Straits Times", category: "indices" },
+      { symbol: "IDR=X", name: "USD/IDR", category: "currencies" },
+      { symbol: "EURUSD=X", name: "EUR/USD", category: "currencies" },
+      { symbol: "JPY=X", name: "USD/JPY", category: "currencies" },
+      { symbol: "GBPUSD=X", name: "GBP/USD", category: "currencies" },
+      { symbol: "DX-Y.NYB", name: "US Dollar Index", category: "currencies" },
+      { symbol: "GC=F", name: "Gold", category: "commodities" },
+      { symbol: "SI=F", name: "Silver", category: "commodities" },
+      { symbol: "CL=F", name: "Crude Oil (WTI)", category: "commodities" },
+      { symbol: "BTC-USD", name: "Bitcoin", category: "crypto" },
+      { symbol: "ETH-USD", name: "Ethereum", category: "crypto" },
+    ];
+
+    const marketResults = await fetchYahooQuotes(MARKET_SYMBOLS.map((s) => s.symbol));
+    const byMarketSymbol = {};
+    marketResults.forEach((q) => { byMarketSymbol[q.symbol] = q; });
+
+    const marketGrouped = { indices: [], currencies: [], commodities: [], crypto: [] };
+    for (const s of MARKET_SYMBOLS) {
+      const q = byMarketSymbol[s.symbol];
+      marketGrouped[s.category].push({
+        symbol: s.symbol,
+        name: s.name,
+        price: q?.regularMarketPrice ?? null,
+        chg: q?.regularMarketChangePercent ?? null,
+        chgAbs: q?.regularMarketChange ?? null,
+      });
+    }
+
+    const [closeSummaryEn, closeSummaryId] = await Promise.all([
+      generateMarketCloseSummary(marketGrouped, "en"),
+      generateMarketCloseSummary(marketGrouped, "id"),
+    ]);
+
+    await sql`
+      INSERT INTO market_snapshot (snapshot_date, close_data, close_summary_en, close_summary_id)
+      VALUES (${today}, ${JSON.stringify(marketGrouped)}::jsonb, ${closeSummaryEn}, ${closeSummaryId})
+      ON CONFLICT (snapshot_date)
+      DO UPDATE SET
+        close_data = EXCLUDED.close_data,
+        close_summary_en = EXCLUDED.close_summary_en,
+        close_summary_id = EXCLUDED.close_summary_id,
+        created_at = now()
+    `;
+  } catch (err) {
+    console.error("Market close recap failed:", err);
+  }
 
     return res.status(200).json({ ok: true, date: today, portfolios: results });
   } catch (err) {
