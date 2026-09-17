@@ -1,4 +1,4 @@
-// api/_yahoo.js — shared helper: Yahoo Finance session cookie + crumb
+// api/_yahoo.js — shared helper: Yahoo Finance session crumb + cookie
 // handling, extracted from idx-quotes.js so any route that needs live
 // quotes (the IDX screener, the market snapshot cron) can reuse the same
 // auth dance instead of duplicating it.
@@ -55,7 +55,7 @@ async function getCrumbAndCookie() {
   return { crumb, cookie: cookies };
 }
 
-// Fetches raw Yahoo quote results for a list of symbols (e.g. ["BBCA.JK", "^JKSE", "BTC-USD"]).
+// Fetches raw the quote results for a list of symbols (e.g. ["BBCA.JK", "^JKSE", "BTC-USD"]).
 // Returns the raw quoteResponse.result array — callers map it to their own shape.
 export async function fetchYahooQuotes(symbols) {
   const { crumb, cookie } = await getCrumbAndCookie();
@@ -74,4 +74,32 @@ export async function fetchYahooQuotes(symbols) {
 
   const data = await yahooRes.json();
   return data?.quoteResponse?.result || [];
+}
+
+// Fetches intraday chart data for a single symbol (e.g. "^JKSE").
+// Returns { meta, timestamps, closes } — meta includes today's open/high/low/regularMarketPrice.
+export async function fetchYahooChart(symbol, interval = "5m", range = "1d") {
+  const { crumb, cookie } = await getCrumbAndCookie();
+
+  const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(
+    symbol
+  )}?interval=${interval}&range=${range}&crumb=${encodeURIComponent(crumb)}`;
+
+  const chartRes = await fetch(url, { headers: { ...HEADERS, Cookie: cookie } });
+  if (!chartRes.ok) {
+    throw new Error(`Yahoo chart responded with status ${chartRes.status}`);
+  }
+
+  const data = await chartRes.json();
+  const result = data?.chart?.result?.[0];
+  if (!result) throw new Error("No chart data returned");
+
+  const timestamps = result.timestamp || [];
+  const closes = result.indicators?.quote?.[0]?.close || [];
+
+  return {
+    meta: result.meta || {},
+    timestamps,
+    closes,
+  };
 }

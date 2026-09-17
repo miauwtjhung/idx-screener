@@ -1,6 +1,6 @@
 // api/market-snapshot.js
-// Public endpoint — returns the most recent market snapshot (grouped price
-// data + English/Indonesian narrative summaries) for the frontend to render.
+// Public endpoint — returns the most recent market snapshot (pre-opening +
+// market-close data and narrative summaries) for the frontend to render.
 // No auth required: this is market-wide public data, same as the screener.
 
 import { sql } from "./_db.js";
@@ -8,7 +8,8 @@ import { sql } from "./_db.js";
 export default async function handler(req, res) {
   try {
     const rows = await sql`
-      SELECT snapshot_date, data, summary_en, summary_id, created_at
+      SELECT snapshot_date, data, summary_en, summary_id,
+             close_data, close_summary_en, close_summary_id, created_at
       FROM market_snapshot
       ORDER BY snapshot_date DESC
       LIMIT 1

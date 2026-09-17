@@ -11,3 +11,8 @@ CREATE TABLE IF NOT EXISTS market_snapshot (
 );
 
 CREATE INDEX IF NOT EXISTS idx_market_snapshot_date ON market_snapshot (snapshot_date DESC);
+
+-- Added for the 17:00 WIB market-close recap (Today Closing tab)
+ALTER TABLE market_snapshot ADD COLUMN IF NOT EXISTS close_data JSONB;
+ALTER TABLE market_snapshot ADD COLUMN IF NOT EXISTS close_summary_en TEXT;
+ALTER TABLE market_snapshot ADD COLUMN IF NOT EXISTS close_summary_id TEXT;

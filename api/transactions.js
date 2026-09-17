@@ -80,7 +80,7 @@ export default async function handler(req, res) {
           ${resolvedAssetType === "bond" ? maturityDate : null}
         )
         RETURNING
-          id, ticker, type, price::float AS price, qty, date::text AS date,
+          id, ticker, type, price::float AS price, qty::float AS qty, date::text AS date,
           asset_type AS "assetType", currency,
           face_value::float AS "faceValue", coupon_rate::float AS "couponRate",
           coupon_frequency AS "couponFrequency",
