@@ -17,12 +17,17 @@ export default async function handler(req, res) {
       const portfolios = await sql`
         SELECT id, name FROM portfolios WHERE user_id = ${userId} ORDER BY id ASC
       `;
-      const withTransactions = await Promise.all(
+            const withTransactions = await Promise.all(
         portfolios.map(async (p) => {
-          const transactions = await sql`
-            SELECT id, ticker, type, price::float AS price, qty, date::text AS date
-            FROM transactions WHERE portfolio_id = ${p.id} ORDER BY date ASC, id ASC
-          `;
+const transactions = await sql`
+          SELECT
+            id, ticker, type, price::float AS price, qty, date::text AS date,
+            asset_type AS "assetType", currency,
+            face_value::float AS "faceValue", coupon_rate::float AS "couponRate",
+            coupon_frequency AS "couponFrequency",
+            issue_date::text AS "issueDate", maturity_date::text AS "maturityDate"
+          FROM transactions WHERE portfolio_id = ${p.id} ORDER BY date ASC, id ASC
+        `;
           return { ...p, transactions };
         })
       );

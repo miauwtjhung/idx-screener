@@ -1,18 +1,16 @@
-// api/transactions.js
+﻿// api/transactions.js
 //
-// POST   /api/transactions          -> add a transaction { portfolioId, ticker, type, price, qty, date }
-// DELETE /api/transactions?id=X     -> remove a transaction
+// POST   /api/transactions      -> add a transaction { portfolioId, ticker, type, price, qty, date, assetType?, currency?, faceValue?, couponRate?, couponFrequency?, issueDate?, maturityDate? }
+// DELETE /api/transactions?id=X -> remove a transaction
 
 import { sql } from "./_db.js";
 import { getUserId } from "./_auth.js";
 
-// Confirms the given portfolio actually belongs to this user, so nobody
-// can add/remove transactions on a portfolio that isn't theirs just by
-// guessing an ID.
+const VALID_ASSET_TYPES = ["stock", "crypto", "commodity", "bond", "cash", "deposit"];
+const VALID_COUPON_FREQUENCIES = ["monthly", "quarterly", "semi-annual", "annual"];
+
 async function ownsPortfolio(portfolioId, userId) {
-  const [row] = await sql`
-    SELECT id FROM portfolios WHERE id = ${portfolioId} AND user_id = ${userId}
-  `;
+  const [row] = await sql`SELECT id FROM portfolios WHERE id = ${portfolioId} AND user_id = ${userId}`;
   return !!row;
 }
 
@@ -22,7 +20,21 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === "POST") {
-      const { portfolioId, ticker, type, price, qty, date } = req.body || {};
+      const {
+        portfolioId,
+        ticker,
+        type,
+        price,
+        qty,
+        date,
+        assetType,
+        currency,
+        faceValue,
+        couponRate,
+        couponFrequency,
+        issueDate,
+        maturityDate,
+      } = req.body || {};
 
       if (!portfolioId || !ticker || !type || !price || !qty || !date) {
         return res.status(400).json({ error: "Missing required fields" });
@@ -30,14 +42,49 @@ export default async function handler(req, res) {
       if (type !== "buy" && type !== "sell") {
         return res.status(400).json({ error: "Type must be 'buy' or 'sell'" });
       }
+
+      const resolvedAssetType = assetType || "stock";
+      if (!VALID_ASSET_TYPES.includes(resolvedAssetType)) {
+        return res.status(400).json({ error: "Invalid asset type" });
+      }
+
+      const resolvedCurrency = currency || "IDR";
+
+      if (resolvedAssetType === "bond") {
+        if (!faceValue || !couponRate || !couponFrequency || !issueDate || !maturityDate) {
+          return res.status(400).json({
+            error: "Bonds require faceValue, couponRate, couponFrequency, issueDate, and maturityDate",
+          });
+        }
+        if (!VALID_COUPON_FREQUENCIES.includes(couponFrequency)) {
+          return res.status(400).json({ error: "Invalid coupon frequency" });
+        }
+      }
+
       if (!(await ownsPortfolio(portfolioId, userId))) {
         return res.status(404).json({ error: "Portfolio not found" });
       }
 
       const [txn] = await sql`
-        INSERT INTO transactions (portfolio_id, ticker, type, price, qty, date)
-        VALUES (${portfolioId}, ${ticker.toUpperCase()}, ${type}, ${price}, ${qty}, ${date})
-        RETURNING id, ticker, type, price::float AS price, qty, date::text AS date
+        INSERT INTO transactions (
+          portfolio_id, ticker, type, price, qty, date,
+          asset_type, currency, face_value, coupon_rate, coupon_frequency, issue_date, maturity_date
+        )
+        VALUES (
+          ${portfolioId}, ${ticker.toUpperCase()}, ${type}, ${price}, ${qty}, ${date},
+          ${resolvedAssetType}, ${resolvedCurrency},
+          ${resolvedAssetType === "bond" ? faceValue : null},
+          ${resolvedAssetType === "bond" ? couponRate : null},
+          ${resolvedAssetType === "bond" ? couponFrequency : null},
+          ${resolvedAssetType === "bond" ? issueDate : null},
+          ${resolvedAssetType === "bond" ? maturityDate : null}
+        )
+        RETURNING
+          id, ticker, type, price::float AS price, qty, date::text AS date,
+          asset_type AS "assetType", currency,
+          face_value::float AS "faceValue", coupon_rate::float AS "couponRate",
+          coupon_frequency AS "couponFrequency",
+          issue_date::text AS "issueDate", maturity_date::text AS "maturityDate"
       `;
       return res.status(201).json({ transaction: txn });
     }
@@ -46,7 +93,6 @@ export default async function handler(req, res) {
       const id = parseInt(req.query.id, 10);
       if (!id) return res.status(400).json({ error: "Id is required" });
 
-      // Delete only if the transaction's portfolio belongs to this user.
       const [deleted] = await sql`
         DELETE FROM transactions t
         USING portfolios p
