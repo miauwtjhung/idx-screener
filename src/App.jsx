@@ -3,6 +3,7 @@ import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/react";
 import IDXScreener from "./IDXScreener";
 import Portfolio from "./Portfolio";
 import MarketSnapshot from "./MarketSnapshot";
+import Charting from "./Charting";
 
 export default function App() {
   const [tab, setTab] = useState("today");
@@ -22,6 +23,7 @@ export default function App() {
           <div className="flex gap-1">
             <TabButton active={tab === "today"} onClick={() => setTab("today")}>Today</TabButton>
             <TabButton active={tab === "screener"} onClick={() => setTab("screener")}>Screener</TabButton>
+            <TabButton active={tab === "charting"} onClick={() => setTab("charting")}>Charting</TabButton>
             <TabButton active={tab === "portfolio"} onClick={() => setTab("portfolio")}>Portfolio</TabButton>
           </div>
           <div className="flex items-center gap-3 py-2">
@@ -42,6 +44,7 @@ export default function App() {
 
       {tab === "today" && <MarketSnapshot />}
       {tab === "screener" && <IDXScreener />}
+      {tab === "charting" && <Charting companies={companies} />}
       {tab === "portfolio" && <Portfolio companies={companies} />}
     </div>
   );

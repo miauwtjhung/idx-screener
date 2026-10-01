@@ -2,6 +2,7 @@
 import { useAuth, Show, SignInButton } from "@clerk/react";
 import { computeSignal, buildSectorAvgPeMap } from "./signal";
 import StockDetailModal from "./StockDetailModal";
+import PortfolioCharts from "./PortfolioCharts";
 
 const ASSET_TABS = [
   { key: "summary", label: "Summary" },
@@ -654,6 +655,8 @@ function PortfolioContent({ companies }) {
               </div>
             </div>
 
+            <PortfolioCharts portfolioId={activePortfolio.id} authedFetch={authedFetch} />
+
             <p className="text-xs text-slate-400 mb-6">
               Bonds are shown at face value, held to maturity.
             </p>
@@ -843,6 +846,12 @@ function PortfolioContent({ companies }) {
         {activeTab === "commodity" && <LivePriceHoldingsTable title="Commodity holdings" holdings={commodityHoldings} quotes={commodityQuotes} />}
         {activeTab === "bond" && <BondHoldingsTable bonds={bondHoldings} />}
         {activeTab === "cash" && <SimpleHoldingsTable title="Cash & Deposits" holdings={cashHoldings} />}
+
+        {(activeTab === "stock" || activeTab === "crypto" || activeTab === "commodity") && (
+          <div className="mt-6">
+            <PortfolioCharts key={activeTab} portfolioId={activePortfolio.id} authedFetch={authedFetch} assetClass={activeTab} />
+          </div>
+        )}
 
         {activeTab !== "summary" && historyTransactions.length > 0 && (
           <div>

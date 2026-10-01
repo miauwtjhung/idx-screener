@@ -1,5 +1,6 @@
 import React from "react";
 import { computeSignal, sectorAveragePe } from "./signal";
+import TradingViewChart from "./TradingViewChart";
 
 function fmtCap(v) {
   if (v == null) return "—";
@@ -43,6 +44,12 @@ export default function StockDetailModal({ row, companies, onClose }) {
         </div>
 
         <div className="p-5 space-y-5">
+          {/* Chart */}
+          <div>
+            <h3 className="text-xs font-medium uppercase tracking-wide text-slate-400 mb-2">Chart</h3>
+            <TradingViewChart code={row.code} />
+          </div>
+
           {/* Signal */}
           <div className={`border rounded-lg p-4 ${LABEL_STYLES[label]}`}>
             <div className="flex items-center justify-between mb-2">
