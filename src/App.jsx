@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/react";
 import IDXScreener from "./IDXScreener";
+import Fundamentals from "./Fundamentals";
 import Portfolio from "./Portfolio";
 import MarketSnapshot from "./MarketSnapshot";
 import Charting from "./Charting";
@@ -20,13 +21,14 @@ export default function App() {
     <div>
       <nav className="bg-slate-900 text-white">
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-          <div className="flex gap-1">
+          <div className="flex gap-1 min-w-0 overflow-x-auto [scrollbar-width:none]">
             <TabButton active={tab === "today"} onClick={() => setTab("today")}>Today</TabButton>
             <TabButton active={tab === "screener"} onClick={() => setTab("screener")}>Screener</TabButton>
+            <TabButton active={tab === "fundamentals"} onClick={() => setTab("fundamentals")}>Fundamentals</TabButton>
             <TabButton active={tab === "charting"} onClick={() => setTab("charting")}>Charting</TabButton>
             <TabButton active={tab === "portfolio"} onClick={() => setTab("portfolio")}>Portfolio</TabButton>
           </div>
-          <div className="flex items-center gap-3 py-2">
+          <div className="flex items-center gap-3 py-2 pl-3 shrink-0">
             <Show when="signed-out">
               <SignInButton mode="modal">
                 <button className="text-sm text-slate-300 hover:text-white">Sign in</button>
@@ -44,6 +46,7 @@ export default function App() {
 
       {tab === "today" && <MarketSnapshot />}
       {tab === "screener" && <IDXScreener />}
+      {tab === "fundamentals" && <Fundamentals companies={companies} />}
       {tab === "charting" && <Charting companies={companies} />}
       {tab === "portfolio" && <Portfolio companies={companies} />}
     </div>
@@ -54,7 +57,7 @@ function TabButton({ active, onClick, children }) {
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+      className={`px-4 py-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0 ${
         active ? "border-white text-white" : "border-transparent text-slate-400 hover:text-slate-200"
       }`}
     >
