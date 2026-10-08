@@ -228,7 +228,12 @@ export function dividendHistory(chart, price, today = new Date().toISOString().s
     byYearMap[y].total += p.amount;
     byYearMap[y].count += 1;
   }
+  // The 10-year window usually starts mid-year, so its first year holds only
+  // part of that year's dividends. Leave that year out of the yearly totals.
+  const firstDate = chart?.dates?.[0];
+  const firstFullYear = firstDate ? (firstDate.slice(5, 7) === "01" ? firstDate.slice(0, 4) : String(Number(firstDate.slice(0, 4)) + 1)) : null;
   const byYear = Object.values(byYearMap)
+    .filter((y) => !firstFullYear || y.year >= firstFullYear)
     .sort((a, b) => b.year.localeCompare(a.year))
     .map((y) => {
       const refPrice = y.year === thisYear && isNum(price) ? price : yearEnd[y.year];
