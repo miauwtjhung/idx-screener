@@ -103,3 +103,17 @@ export async function fetchYahooChart(symbol, interval = "5m", range = "1d") {
     closes,
   };
 }
+
+// Generic GET for the other Yahoo Finance endpoints (quoteSummary,
+// fundamentals timeseries, chart with dividend events, search), with the
+// same session cookie and crumb. Added for the AI Analysis tab; the functions
+// above are unchanged.
+export async function fetchYahooJson(url) {
+  const { crumb, cookie } = await getCrumbAndCookie();
+  const sep = url.includes("?") ? "&" : "?";
+  const res = await fetch(`${url}${sep}crumb=${encodeURIComponent(crumb)}`, {
+    headers: { ...HEADERS, Accept: "application/json", Cookie: cookie },
+  });
+  if (!res.ok) throw new Error(`Yahoo responded with status ${res.status}`);
+  return res.json();
+}

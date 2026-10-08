@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/react";
 import IDXScreener from "./IDXScreener";
 import Fundamentals from "./Fundamentals";
+import StockAnalysis from "./StockAnalysis";
 import Portfolio from "./Portfolio";
 import MarketSnapshot from "./MarketSnapshot";
 import Charting from "./Charting";
@@ -25,6 +26,7 @@ export default function App() {
             <TabButton active={tab === "today"} onClick={() => setTab("today")}>Today</TabButton>
             <TabButton active={tab === "screener"} onClick={() => setTab("screener")}>Screener</TabButton>
             <TabButton active={tab === "fundamentals"} onClick={() => setTab("fundamentals")}>Fundamentals</TabButton>
+            <TabButton active={tab === "analysis"} onClick={() => setTab("analysis")}>AI Analysis</TabButton>
             <TabButton active={tab === "charting"} onClick={() => setTab("charting")}>Charting</TabButton>
             <TabButton active={tab === "portfolio"} onClick={() => setTab("portfolio")}>Portfolio</TabButton>
           </div>
@@ -47,6 +49,7 @@ export default function App() {
       {tab === "today" && <MarketSnapshot />}
       {tab === "screener" && <IDXScreener />}
       {tab === "fundamentals" && <Fundamentals companies={companies} />}
+      {tab === "analysis" && <StockAnalysis companies={companies} />}
       {tab === "charting" && <Charting companies={companies} />}
       {tab === "portfolio" && <Portfolio companies={companies} />}
     </div>

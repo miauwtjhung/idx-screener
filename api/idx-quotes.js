@@ -10,6 +10,14 @@ import { fetchYahooQuotes } from "./_yahoo.js";
 import { mapFundamentalQuote } from "./_fundamentals.js";
 
 export default async function handler(req, res) {
+  // The AI Analysis tab asks for one stock at a time with ?view=analysis or
+  // ?view=ai (see _analysis.js). Loaded only when needed, so the Screener's
+  // requests stay as light as before.
+  if (req.query.view === "analysis" || req.query.view === "ai") {
+    const { handleAnalysis } = await import("./_analysis.js");
+    return handleAnalysis(req, res);
+  }
+
   const symbols = (req.query.symbols || "")
     .split(",")
     .map((s) => s.trim())
