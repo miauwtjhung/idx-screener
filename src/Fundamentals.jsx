@@ -96,7 +96,7 @@ export default function Fundamentals({ companies = [] }) {
         const symbols = chunk.map((c) => `${c.code}.JK`).join(",");
 
         try {
-          const res = await fetch(`/api/idx-fundamentals?symbols=${encodeURIComponent(symbols)}`);
+          const res = await fetch(`/api/idx-quotes?view=fundamentals&symbols=${encodeURIComponent(symbols)}`);
           const data = await res.json();
           if (data.error) throw new Error(data.error);
           (data.quotes || []).forEach((q) => { collected[q.ticker] = q; });

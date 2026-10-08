@@ -1,13 +1,12 @@
-// Vercel serverless function: /api/idx-fundamentals
-// Used only by the Fundamentals tab. Fetches the same Yahoo Finance quote
-// data as /api/idx-quotes, but also passes through the valuation fields that
-// the Screener doesn't need: price-to-book, EPS, book value per share,
-// forward P/E and the annual dividend per share.
+// api/_fundamentals.js — shared helper for the Fundamentals tab.
+// Maps a raw Yahoo quote to the shape the Fundamentals tab expects: the same
+// fields the Screener gets, plus the valuation figures it doesn't need
+// (price-to-book, EPS, book value per share, forward P/E, dividend per share).
 //
-// Kept as a separate route on purpose, so the Screener's own endpoint and
-// its response shape stay exactly as they are.
-
-import { fetchYahooQuotes } from "./_yahoo.js";
+// The underscore keeps this file from becoming its own route. The Vercel
+// Hobby plan allows at most 12 routes per deployment, and the app already
+// uses all 12, so /api/idx-quotes serves this shape when asked with
+// ?view=fundamentals.
 
 const num = (v) => (typeof v === "number" && Number.isFinite(v) ? v : null);
 
@@ -39,26 +38,4 @@ export function mapFundamentalQuote(q) {
     divRate: num(q.trailingAnnualDividendRate), // dividend per share, last 12 months
     fcur: q.financialCurrency || null, // currency the company reports in
   };
-}
-
-export default async function handler(req, res) {
-  const symbols = (req.query.symbols || "")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-
-  if (symbols.length === 0) {
-    return res.status(400).json({ error: "No symbols provided" });
-  }
-
-  try {
-    const results = await fetchYahooQuotes(symbols);
-    const quotes = results.map(mapFundamentalQuote);
-
-    // Valuation figures move slowly, so cache a little longer than live prices.
-    res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate");
-    return res.status(200).json({ quotes });
-  } catch (err) {
-    return res.status(500).json({ error: "Failed to fetch fundamentals", detail: String(err) });
-  }
 }

@@ -7,6 +7,7 @@
 // shape the IDX screener/portfolio pages expect.
 
 import { fetchYahooQuotes } from "./_yahoo.js";
+import { mapFundamentalQuote } from "./_fundamentals.js";
 
 export default async function handler(req, res) {
   const symbols = (req.query.symbols || "")
@@ -20,6 +21,14 @@ export default async function handler(req, res) {
 
   try {
     const results = await fetchYahooQuotes(symbols);
+
+    // The Fundamentals tab asks for extra valuation fields with
+    // ?view=fundamentals. Without that parameter the response below is
+    // unchanged, so the Screener and Portfolio are not affected.
+    if (req.query.view === "fundamentals") {
+      res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate");
+      return res.status(200).json({ quotes: results.map(mapFundamentalQuote) });
+    }
 
     const quotes = results.map((q) => ({
       ticker: q.symbol.replace(".JK", ""),
