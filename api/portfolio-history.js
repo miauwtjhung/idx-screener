@@ -1,6 +1,6 @@
 // api/portfolio-history.js
 //
-// GET /api/portfolio-history?portfolioId=X&days=180&benchmark=^JKSE
+// GET /api/portfolio-history?portfolioId=X&days=180&benchmark=^JKSE   (days: 7 to 3660)
 //   -> daily snapshots (net worth + value per asset class), money added/withdrawn
 //      between snapshots (so buys/sells don't count as gains or losses),
 //      and IHSG (^JKSE) daily closes for the same period.
@@ -20,7 +20,8 @@ export default async function handler(req, res) {
 
   const portfolioId = parseInt(req.query.portfolioId, 10);
   if (!portfolioId) return res.status(400).json({ error: "portfolioId is required" });
-  const days = Math.min(Math.max(parseInt(req.query.days, 10) || 180, 7), 730);
+  // Up to 10 years, so the monthly and yearly history can cover everything.
+  const days = Math.min(Math.max(parseInt(req.query.days, 10) || 180, 7), 3660);
   const BENCHMARKS = ["^JKSE", "BTC-IDR", "GC=F"];
   const benchmark = BENCHMARKS.includes(req.query.benchmark) ? req.query.benchmark : "^JKSE";
 
@@ -80,7 +81,7 @@ export default async function handler(req, res) {
     // Benchmark daily closes (IHSG by default)
     let ihsg = [];
     try {
-      const range = days <= 90 ? "6mo" : days <= 365 ? "1y" : "2y";
+      const range = days <= 90 ? "6mo" : days <= 365 ? "1y" : days <= 730 ? "2y" : days <= 1825 ? "5y" : "10y";
       const { timestamps, closes } = await fetchYahooChart(benchmark, "1d", range);
       ihsg = timestamps
         .map((t, i) => ({ date: jakartaDate(t), close: closes[i] }))

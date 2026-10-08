@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { PERIODS, periodRows } from "./historyPeriods";
 
 // Two charts for the Portfolio > Summary tab, built from daily snapshots:
 //  1. Performance vs IHSG — cumulative % return. Buys/sells are excluded so
@@ -11,6 +12,10 @@ const RANGES = [
   { key: "6M", days: 183 },
   { key: "1Y", days: 366 },
 ];
+
+// Monthly and yearly history use every snapshot there is, not just the
+// range picked for the charts. 3660 days is the server's upper limit.
+const FULL_HISTORY_DAYS = 3660;
 
 const CLASSES = [
   { key: "stock", label: "Stocks", color: "#4f46e5" },
@@ -37,6 +42,7 @@ const PAD = { top: 12, right: 12, bottom: 28, left: 64 };
 
 function fmtPct(v) {
   if (v == null) return "—";
+  if (Math.abs(v) < 0.005) return "0.00%"; // avoid showing "-0.00%"
   return `${v >= 0 ? "+" : ""}${v.toFixed(2)}%`;
 }
 
@@ -155,38 +161,45 @@ export default function PortfolioCharts({ portfolioId, authedFetch, assetClass =
       .finally(() => setLoading(false));
   }, [portfolioId, range, assetClass]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const series = useMemo(() => {
-    // Normalise: `value` / `flow` are either the whole portfolio or one asset class.
-    const points = (data?.points || []).map((p) => ({
-      ...p,
-      value: assetClass ? p[assetClass] || 0 : p.netWorth,
-      flow: assetClass ? (p.flows || {})[assetClass] || 0 : p.flow || 0,
-    }));
-    if (points.length === 0) return null;
+  const series = useMemo(() => buildSeries(data, assetClass), [data, assetClass]);
 
-    // Portfolio: time-weighted cumulative return, ignoring money added/withdrawn.
-    let growth = 1;
-    const portfolio = points.map((p, i) => {
-      if (i > 0) {
-        const prev = points[i - 1].value;
-        if (prev > 0) growth *= 1 + (p.value - prev - p.flow) / prev;
+  // Monthly / yearly history: loaded only when asked for, over the full
+  // history rather than the chart's range.
+  const [period, setPeriod] = useState("daily");
+  const [fullHistory, setFullHistory] = useState(null); // { key, data }
+  const [fullLoading, setFullLoading] = useState(false);
+  const [fullError, setFullError] = useState("");
+  const fullKey = `${portfolioId}|${view.benchmark}`;
+
+  useEffect(() => {
+    if (period === "daily" || !portfolioId || fullHistory?.key === fullKey) return;
+    let cancelled = false;
+
+    async function load() {
+      setFullLoading(true);
+      setFullError("");
+      try {
+        const r = await authedFetch(
+          `/api/portfolio-history?portfolioId=${portfolioId}&days=${FULL_HISTORY_DAYS}&benchmark=${encodeURIComponent(view.benchmark)}`
+        );
+        const d = await r.json();
+        if (d.error) throw new Error(d.error);
+        if (!cancelled) setFullHistory({ key: fullKey, data: d });
+      } catch (e) {
+        if (!cancelled) setFullError(String(e.message || e));
+      } finally {
+        if (!cancelled) setFullLoading(false);
       }
-      return (growth - 1) * 100;
-    });
+    }
 
-    // IHSG: close on or before each snapshot date, relative to the first.
-    const ihsgList = data?.ihsg || [];
-    let j = 0;
-    let lastClose = null;
-    const closes = points.map((p) => {
-      while (j < ihsgList.length && ihsgList[j].date <= p.date) { lastClose = ihsgList[j].close; j++; }
-      return lastClose;
-    });
-    const base = closes.find((c) => c != null);
-    const ihsg = closes.map((c) => (c != null && base ? (c / base - 1) * 100 : null));
+    load();
+    return () => { cancelled = true; };
+  }, [period, fullKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    return { dates: points.map((p) => p.date), points, portfolio, ihsg };
-  }, [data, assetClass]);
+  const fullSeries = useMemo(
+    () => (fullHistory?.key === fullKey ? buildSeries(fullHistory.data, assetClass) : null),
+    [fullHistory, fullKey, assetClass]
+  );
 
   const header = (
     <div className="flex items-center justify-between mb-2">
@@ -327,9 +340,12 @@ export default function PortfolioCharts({ portfolioId, authedFetch, assetClass =
       </div>
 
       <HistoryTable
-        points={points}
-        portfolio={portfolio}
-        ihsg={ihsg}
+        period={period}
+        onPeriod={setPeriod}
+        daily={series}
+        full={fullSeries}
+        fullLoading={fullLoading}
+        fullError={fullError}
         activeClasses={assetClass ? [] : CLASSES}
         valueLabel={view.valueLabel}
         benchLabel={view.benchLabel}
@@ -343,37 +359,97 @@ function pctClass(v) {
   return v > 0 ? "text-emerald-700" : "text-rose-700";
 }
 
-// Daily history, newest first. "Day %" is the flow-adjusted daily return
-// (same basis as the performance chart); "Net flow" is money added (+) or withdrawn (−).
-function HistoryTable({ points, portfolio, ihsg, activeClasses, valueLabel, benchLabel }) {
+// Builds the chart series from the /api/portfolio-history response.
+// `value` / `flow` are either the whole portfolio or one asset class.
+function buildSeries(data, assetClass) {
+  const points = (data?.points || []).map((p) => ({
+    ...p,
+    value: assetClass ? p[assetClass] || 0 : p.netWorth,
+    flow: assetClass ? (p.flows || {})[assetClass] || 0 : p.flow || 0,
+  }));
+  if (points.length === 0) return null;
+
+  // Portfolio: time-weighted cumulative return, ignoring money added/withdrawn.
+  let growth = 1;
+  const portfolio = points.map((p, i) => {
+    if (i > 0) {
+      const prev = points[i - 1].value;
+      if (prev > 0) growth *= 1 + (p.value - prev - p.flow) / prev;
+    }
+    return (growth - 1) * 100;
+  });
+
+  // IHSG: close on or before each snapshot date, relative to the first.
+  const ihsgList = data?.ihsg || [];
+  let j = 0;
+  let lastClose = null;
+  const closes = points.map((p) => {
+    while (j < ihsgList.length && ihsgList[j].date <= p.date) { lastClose = ihsgList[j].close; j++; }
+    return lastClose;
+  });
+  const base = closes.find((c) => c != null);
+  const ihsg = closes.map((c) => (c != null && base ? (c / base - 1) * 100 : null));
+
+  return { dates: points.map((p) => p.date), points, portfolio, ihsg };
+}
+
+function fmtPeriodLabel(row) {
+  if (row.period === "daily") return fmtDate(row.key);
+  if (row.period === "yearly") return row.key;
+  return new Date(row.key + "-01T00:00:00").toLocaleDateString("en-GB", { month: "short", year: "numeric" });
+}
+
+// Shown under a month or year the data doesn't fully cover.
+function fmtCoverage(row) {
+  if (row.partialStart && row.partialEnd) return `${fmtDate(row.first)} – ${fmtDate(row.last)}`;
+  if (row.partialStart) return `from ${fmtDate(row.first)}`;
+  if (row.partialEnd) return `to ${fmtDate(row.last)}`;
+  return null;
+}
+
+// History table, newest first, by day, month or year. "%" is the
+// flow-adjusted return (same basis as the performance chart); "Net flow" is
+// money added (+) or withdrawn (−) in the period.
+function HistoryTable({ period, onPeriod, daily, full, fullLoading, fullError, activeClasses, valueLabel, benchLabel }) {
   const [showAll, setShowAll] = useState(false);
+  const meta = PERIODS.find((p) => p.key === period);
 
-  const rows = points
-    .map((p, i) => {
-      const prev = i > 0 ? points[i - 1] : null;
-      const change = prev ? p.value - prev.value : null;
-      const dayPct = i > 0 ? ((1 + portfolio[i] / 100) / (1 + portfolio[i - 1] / 100) - 1) * 100 : null;
-      const ihsgPct = i > 0 && ihsg[i] != null && ihsg[i - 1] != null
-        ? ((1 + ihsg[i] / 100) / (1 + ihsg[i - 1] / 100) - 1) * 100
-        : null;
-      return { ...p, change, dayPct, ihsgPct };
-    })
-    .reverse();
-
+  const source = period === "daily" ? daily : full;
+  const rows = source ? periodRows(source.points, source.portfolio, source.ihsg, period).reverse() : [];
   const visible = showAll ? rows : rows.slice(0, 10);
   const rp = (v) => Math.round(v || 0).toLocaleString("id-ID");
 
+  const notice =
+    period === "daily" ? null
+      : fullError ? `Couldn't load the full history: ${fullError}`
+      : !source || fullLoading ? "Loading…"
+      : null;
+
   return (
     <div className="mb-6">
-      <h2 className="text-xs font-medium uppercase tracking-wide text-slate-400 mb-2">Daily history</h2>
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="text-xs font-medium uppercase tracking-wide text-slate-400">{meta.label} history</h2>
+        <div className="flex gap-1">
+          {PERIODS.map((p) => (
+            <button
+              key={p.key}
+              onClick={() => { onPeriod(p.key); setShowAll(false); }}
+              aria-pressed={period === p.key}
+              className={`text-xs px-2 py-0.5 rounded ${period === p.key ? "bg-slate-900 text-white" : "text-slate-500 hover:bg-stone-200"}`}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="bg-white border border-stone-300 rounded overflow-x-auto">
         <table className="w-full text-sm whitespace-nowrap">
           <thead>
             <tr className="border-b border-stone-300 text-slate-500">
-              <th className="px-3 py-2 text-left font-medium">Date</th>
+              <th className="px-3 py-2 text-left font-medium">{period === "daily" ? "Date" : meta.unit}</th>
               <th className="px-3 py-2 text-right font-medium">{valueLabel} (Rp)</th>
               <th className="px-3 py-2 text-right font-medium">Change (Rp)</th>
-              <th className="px-3 py-2 text-right font-medium">Day %</th>
+              <th className="px-3 py-2 text-right font-medium">{meta.unit} %</th>
               <th className="px-3 py-2 text-right font-medium">{benchLabel} %</th>
               <th className="px-3 py-2 text-right font-medium">Net flow (Rp)</th>
               {activeClasses.map((c) => (
@@ -382,33 +458,47 @@ function HistoryTable({ points, portfolio, ihsg, activeClasses, valueLabel, benc
             </tr>
           </thead>
           <tbody>
-            {visible.map((r) => (
-              <tr key={r.date} className="border-b border-stone-100 last:border-0">
-                <td className="px-3 py-2 font-medium">{fmtDate(r.date)}</td>
-                <td className="px-3 py-2 text-right tabular-nums">{rp(r.value)}</td>
-                <td className={`px-3 py-2 text-right tabular-nums ${pctClass(r.change)}`}>
-                  {r.change == null ? "—" : `${r.change >= 0 ? "+" : ""}${rp(r.change)}`}
-                </td>
-                <td className={`px-3 py-2 text-right tabular-nums ${pctClass(r.dayPct)}`}>{fmtPct(r.dayPct)}</td>
-                <td className={`px-3 py-2 text-right tabular-nums ${pctClass(r.ihsgPct)}`}>{fmtPct(r.ihsgPct)}</td>
-                <td className="px-3 py-2 text-right tabular-nums text-slate-500">
-                  {r.flow ? `${r.flow > 0 ? "+" : ""}${rp(r.flow)}` : "—"}
-                </td>
-                {activeClasses.map((c) => (
-                  <td key={c.key} className="px-3 py-2 text-right tabular-nums">{rp(r[c.key])}</td>
-                ))}
+            {notice ? (
+              <tr>
+                <td colSpan={6 + activeClasses.length} className="px-3 py-6 text-center text-slate-400">{notice}</td>
               </tr>
-            ))}
+            ) : (
+              visible.map((r) => {
+                const coverage = fmtCoverage(r);
+                return (
+                  <tr key={r.key} className="border-b border-stone-100 last:border-0">
+                    <td className="px-3 py-2 font-medium">
+                      {fmtPeriodLabel(r)}
+                      {coverage && <span className="ml-2 text-xs font-normal text-slate-400">{coverage}</span>}
+                    </td>
+                    <td className="px-3 py-2 text-right tabular-nums">{rp(r.value)}</td>
+                    <td className={`px-3 py-2 text-right tabular-nums ${pctClass(r.change)}`}>
+                      {r.change == null ? "—" : `${r.change >= 0 ? "+" : ""}${rp(r.change)}`}
+                    </td>
+                    <td className={`px-3 py-2 text-right tabular-nums ${pctClass(r.pct)}`}>{fmtPct(r.pct)}</td>
+                    <td className={`px-3 py-2 text-right tabular-nums ${pctClass(r.benchPct)}`}>{fmtPct(r.benchPct)}</td>
+                    <td className="px-3 py-2 text-right tabular-nums text-slate-500">
+                      {r.flow ? `${r.flow > 0 ? "+" : ""}${rp(r.flow)}` : "—"}
+                    </td>
+                    {activeClasses.map((c) => (
+                      <td key={c.key} className="px-3 py-2 text-right tabular-nums">{rp(r.point[c.key])}</td>
+                    ))}
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
       </div>
-      {rows.length > 10 && (
+      {!notice && rows.length > 10 && (
         <button onClick={() => setShowAll((v) => !v)} className="text-xs text-slate-500 hover:text-slate-700 mt-2">
-          {showAll ? "Show less" : `Show all ${rows.length} days`}
+          {showAll ? "Show less" : `Show all ${rows.length} ${meta.plural}`}
         </button>
       )}
       <p className="text-xs text-slate-400 mt-2">
-        Day % excludes money added or withdrawn; Net flow shows buys (+) and sells (−) since the previous day.
+        {period === "daily"
+          ? "Day % excludes money added or withdrawn; Net flow shows buys (+) and sells (−) since the previous day."
+          : `Values are at the end of each ${meta.unit.toLowerCase()}, or the latest day for the current one. ${meta.unit} % excludes money added or withdrawn and covers your whole history, not just the chart's range; Net flow totals buys (+) and sells (−) in the ${meta.unit.toLowerCase()}.`}
       </p>
     </div>
   );

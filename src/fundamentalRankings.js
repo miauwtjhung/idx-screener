@@ -13,6 +13,9 @@ export const MAX_YIELD = 25; // % — yields above this are almost always a one-
 export const MIN_SECTOR_PEERS = 5; // sector needs this many P/Es before we compare against it
 export const HIGH_ROE = 15; // % — "quality" cut-off for the ROE-and-cheap list
 export const PER_SECTOR = 3; // rows per sector in the sector leaders list
+export const MIN_PBV = 0.02; // PBV outside these limits is almost certainly a data error
+export const MAX_PBV = 100;
+export const MAX_ROE = 1000; // % — same
 
 export const SIZE_OPTIONS = [
   { id: "300", label: "300 biggest companies", n: 300 },
@@ -45,10 +48,35 @@ export function buildSectorMedianPe(rows) {
   return map;
 }
 
+// Some IDX companies report in US dollars (coal and metal miners such as
+// ADRO, ITMG, INCO). For them Yahoo gives price and EPS in rupiah but book
+// value per share and dividend per share in dollars, which makes PBV, yield
+// and ROE wildly wrong. This puts those two figures back into rupiah at the
+// current USD/IDR rate. Without a rate, or for any other currency, the
+// figures that depend on them are left blank rather than shown wrong.
+export function normaliseCurrency(r, usdIdr) {
+  if (!r.fcur || r.fcur === "IDR") return r;
+
+  if (r.fcur === "USD" && isNum(usdIdr) && usdIdr > 0) {
+    const bvps = isNum(r.bvps) ? r.bvps * usdIdr : null;
+    const divRate = isNum(r.divRate) ? r.divRate * usdIdr : null;
+    return {
+      ...r,
+      bvps,
+      divRate,
+      pbv: isNum(r.price) && bvps > 0 ? r.price / bvps : null,
+      div: isNum(r.price) && r.price > 0 && divRate > 0 ? (divRate / r.price) * 100 : null,
+      converted: "USD",
+    };
+  }
+
+  return { ...r, bvps: null, divRate: null, pbv: null, div: null, unconverted: r.fcur };
+}
+
 // Joins the static company list with live quotes and adds the derived
-// figures every ranking needs.
-export function enrichRows(companies, quotes) {
-  const rows = companies.map((c) => ({ ...c, ...(quotes[c.code] || {}) }));
+// figures every ranking needs. `usdIdr` is the current rupiah per US dollar.
+export function enrichRows(companies, quotes, { usdIdr = null } = {}) {
+  const rows = companies.map((c) => normaliseCurrency({ ...c, ...(quotes[c.code] || {}) }, usdIdr));
   const sectorPeMap = buildSectorMedianPe(rows);
 
   // Rank by market cap (1 = biggest) so "the 100 biggest" means the same
@@ -61,17 +89,15 @@ export function enrichRows(companies, quotes) {
     const sectorPe = sectorPeMap[r.sector] ?? null;
 
     // ROE approximated from per-share figures: earnings per share over book
-    // value per share. Both come from the same report, so the ratio holds
-    // whatever currency the company reports in.
-    const roe = isNum(r.eps) && isNum(r.bvps) && r.bvps > 0 ? (r.eps / r.bvps) * 100 : null;
+    // value per share (both in rupiah by this point). Implausible results are
+    // treated as data errors and left blank.
+    const rawRoe = isNum(r.eps) && isNum(r.bvps) && r.bvps > 0 ? (r.eps / r.bvps) * 100 : null;
+    const roe = rawRoe != null && Math.abs(rawRoe) <= MAX_ROE ? rawRoe : null;
+    const pbv = isNum(r.pbv) && r.pbv >= MIN_PBV && r.pbv <= MAX_PBV ? r.pbv : null;
 
-    // Share of profit paid out as dividend. Skipped when the company reports
-    // in another currency, because dividend and EPS would not be comparable.
-    const sameCurrency = !r.fcur || r.fcur === "IDR";
+    // Share of profit paid out as dividend.
     const payout =
-      sameCurrency && isNum(r.divRate) && r.divRate > 0 && isNum(r.eps) && r.eps > 0
-        ? (r.divRate / r.eps) * 100
-        : null;
+      isNum(r.divRate) && r.divRate > 0 && isNum(r.eps) && r.eps > 0 ? (r.divRate / r.eps) * 100 : null;
 
     const valueTraded = isNum(r.price) && isNum(r.vol) ? r.price * r.vol * 1_000_000 : null; // IDR
 
@@ -83,6 +109,7 @@ export function enrichRows(companies, quotes) {
     return {
       ...r,
       profitable,
+      pbv,
       roe,
       payout,
       valueTraded,
@@ -304,5 +331,7 @@ export function dataCoverage(rows) {
     pbv: count("pbv"),
     roe: count("roe"),
     div: priced.filter((r) => isNum(r.div) && r.div > 0).length,
+    converted: priced.filter((r) => r.converted).length,
+    unconverted: priced.filter((r) => r.unconverted).length,
   };
 }

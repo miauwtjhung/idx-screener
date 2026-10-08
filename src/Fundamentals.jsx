@@ -15,7 +15,7 @@ const LIMIT_OPTIONS = [25, 50, 100];
 
 // Kept outside the component so switching to another tab and back doesn't
 // reload ~960 quotes every time.
-let cache = { at: 0, quotes: {} };
+let cache = { at: 0, quotes: {}, usdIdr: null };
 
 function fmtCap(v) {
   if (v == null) return "—";
@@ -61,6 +61,7 @@ function getSectorOptions(companies) {
 
 export default function Fundamentals({ companies = [] }) {
   const [quotes, setQuotes] = useState(cache.quotes);
+  const [usdIdr, setUsdIdr] = useState(cache.usdIdr ?? null);
   const [loadedCount, setLoadedCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState("");
@@ -90,6 +91,18 @@ export default function Fundamentals({ companies = [] }) {
 
       const collected = {};
       let failed = false;
+
+      // Current rupiah per US dollar, for companies that report in dollars.
+      let rate = null;
+      try {
+        const res = await fetch(`/api/idx-quotes?symbols=${encodeURIComponent("IDR=X")}`);
+        const data = await res.json();
+        rate = data.quotes?.[0]?.price ?? null;
+      } catch {
+        rate = null; // their dollar-based figures are left blank instead
+      }
+      if (cancelled) return;
+      setUsdIdr(rate);
       for (let i = 0; i < companies.length; i += CHUNK_SIZE) {
         if (cancelled) return;
         const chunk = companies.slice(i, i + CHUNK_SIZE);
@@ -109,7 +122,7 @@ export default function Fundamentals({ companies = [] }) {
       }
       if (cancelled) return;
       // Only keep a complete load, so a partial one is retried next time.
-      if (!failed && Object.keys(collected).length > 0) cache = { at: Date.now(), quotes: collected };
+      if (!failed && Object.keys(collected).length > 0) cache = { at: Date.now(), quotes: collected, usdIdr: rate };
       setLoading(false);
     }
 
@@ -117,7 +130,7 @@ export default function Fundamentals({ companies = [] }) {
     return () => { cancelled = true; };
   }, [companies]);
 
-  const rows = useMemo(() => enrichRows(companies, quotes), [companies, quotes]);
+  const rows = useMemo(() => enrichRows(companies, quotes, { usdIdr }), [companies, quotes, usdIdr]);
   const sectorOptions = useMemo(() => getSectorOptions(companies), [companies]);
   const coverage = useMemo(() => dataCoverage(rows), [rows]);
 
@@ -262,6 +275,14 @@ export default function Fundamentals({ companies = [] }) {
                   <td className="px-3 py-2 text-right tabular-nums text-slate-400">{row.position}</td>
                   <td className="px-3 py-2 font-medium tabular-nums whitespace-nowrap">
                     {row.code}
+                    {row.converted && (
+                      <span
+                        className="ml-1 align-top text-[10px] font-medium text-slate-400 cursor-help"
+                        title={`Reports in US dollars. Book value and dividend converted at Rp ${Math.round(usdIdr).toLocaleString("id-ID")} per USD.`}
+                      >
+                        USD
+                      </span>
+                    )}
                     {row.caution && (
                       <span className="ml-1 text-amber-600 cursor-help" title={row.caution} aria-label={row.caution}>⚠</span>
                     )}
@@ -306,6 +327,12 @@ export default function Fundamentals({ companies = [] }) {
           {!loading && coverage.priced > 0 && (
             <>
               Data coverage: of {coverage.priced} companies with a price, {coverage.pe} have a P/E, {coverage.pbv} a PBV, {coverage.roe} an ROE and {coverage.div} pay a dividend. Companies without a figure can't appear in a list that ranks by it.{" "}
+              {coverage.converted > 0 && usdIdr && (
+                <>{coverage.converted} companies report in US dollars (marked USD); their book value and dividend are converted at Rp {Math.round(usdIdr).toLocaleString("id-ID")} per USD.{" "}</>
+              )}
+              {coverage.unconverted > 0 && (
+                <>{coverage.unconverted} report in another currency, so their PBV, ROE and yield are left blank.{" "}</>
+              )}
             </>
           )}
           Figures via Yahoo Finance (unofficial, delayed) and can be incomplete or out of date, especially for smaller companies. ROE is approximated from per-share figures. These lists are simple rankings of public numbers, not recommendations and not financial advice. Click a row for the chart and key stats.
