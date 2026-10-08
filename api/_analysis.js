@@ -503,7 +503,12 @@ export function buildAiFacts(b) {
   };
 }
 
-export function buildAiPrompt(facts) {
+const LANGUAGE_RULE = {
+  en: "Write the reasons, newsSummary and risks in plain English.",
+  id: "Write the reasons, newsSummary and risks in Bahasa Indonesia, in the natural style of an Indonesian equity research note. Keep the figures exactly as given, but write the unit words in Indonesian (trillion = triliun, billion = miliar, million = juta) and use Indonesian number style (a comma for decimals). Keep the values of \"view\" and \"confidence\" in English exactly as listed, because the app translates them.",
+};
+
+export function buildAiPrompt(facts, lang = "en") {
   return `You are an equity analyst writing a short, balanced view on an Indonesia Stock Exchange (IDX) stock for an experienced private investor.
 
 Here are the facts (JSON). Every number has already been calculated; copy figures exactly as written and do not compute new ones. Headlines are titles only and may be rumours or opinion; treat them as unconfirmed and never state them as fact.
@@ -528,7 +533,8 @@ Reply with JSON only, no other text, in exactly this shape:
   "newsSummary": "2 or 3 sentences on what recent headlines are about, saying clearly that they are unconfirmed; or say there were no relevant headlines",
   "risks": ["2 or 3 key risks"]
 }
-No price targets. No markdown. Plain English.`;
+No price targets. No markdown.
+${LANGUAGE_RULE[lang] || LANGUAGE_RULE.en}`;
 }
 
 // Validates and tidies the model's reply. Returns null if it is unusable.
@@ -575,20 +581,21 @@ async function callClaude(prompt) {
   return (data.content || []).filter((c) => c.type === "text").map((c) => c.text).join("\n");
 }
 
-const aiCache = new Map(); // code -> { at, view }
+const aiCache = new Map(); // "CODE|lang" -> { at, view }
 const AI_TTL = 6 * 60 * 60 * 1000;
 
-export async function generateAiView(bundle) {
-  const cached = aiCache.get(bundle.code);
+export async function generateAiView(bundle, lang = "en") {
+  const key = `${bundle.code}|${lang}`;
+  const cached = aiCache.get(key);
   if (cached && Date.now() - cached.at < AI_TTL) return cached.view;
 
-  const facts = buildAiFacts(bundle);
-  let parsed = parseAiReply(await callClaude(buildAiPrompt(facts)));
-  if (!parsed) parsed = parseAiReply(await callClaude(buildAiPrompt(facts))); // one retry
+  const prompt = buildAiPrompt(buildAiFacts(bundle), lang);
+  let parsed = parseAiReply(await callClaude(prompt));
+  if (!parsed) parsed = parseAiReply(await callClaude(prompt)); // one retry
   if (!parsed) throw new Error("The AI reply could not be read");
 
-  const view = { ...parsed, generatedAt: new Date().toISOString(), model: MODEL };
-  aiCache.set(bundle.code, { at: Date.now(), view });
+  const view = { ...parsed, lang, generatedAt: new Date().toISOString(), model: MODEL };
+  aiCache.set(key, { at: Date.now(), view });
   return view;
 }
 
@@ -607,7 +614,8 @@ export async function handleAnalysis(req, res) {
       res.setHeader("Cache-Control", "private, no-store");
       const bundle = await buildAnalysis(code);
       if (!bundle) return res.status(404).json({ error: `No price found for ${code}` });
-      return res.status(200).json({ code, view: await generateAiView(bundle) });
+      const lang = req.query.lang === "id" ? "id" : "en";
+      return res.status(200).json({ code, view: await generateAiView(bundle, lang) });
     }
 
     const bundle = await buildAnalysis(code);
