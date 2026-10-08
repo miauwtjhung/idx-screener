@@ -3,7 +3,10 @@
 // Served through /api/idx-quotes (the Vercel Hobby plan allows 12 routes and
 // the app already uses all 12):
 //   GET /api/idx-quotes?view=analysis&symbol=BBCA  -> data bundle (public market data)
-//   GET /api/idx-quotes?view=ai&symbol=BBCA        -> AI short/long-term view (signed-in users only)
+//   GET /api/idx-quotes?view=ai&symbol=BBCA&lang=en
+//       -> today's saved AI view for that stock and language, if there is one (anyone)
+//   GET /api/idx-quotes?view=ai&symbol=BBCA&lang=en&generate=1
+//       -> writes a new AI view (signed-in users, at most AI_DAILY_LIMIT a day for the whole app)
 //
 // Every figure is fetched or calculated here in code. The AI only writes the
 // view and the reasons, from figures it is handed already worked out, so it
@@ -581,22 +584,137 @@ async function callClaude(prompt) {
   return (data.content || []).filter((c) => c.type === "text").map((c) => c.text).join("\n");
 }
 
-const aiCache = new Map(); // "CODE|lang" -> { at, view }
-const AI_TTL = 6 * 60 * 60 * 1000;
-
 export async function generateAiView(bundle, lang = "en") {
-  const key = `${bundle.code}|${lang}`;
-  const cached = aiCache.get(key);
-  if (cached && Date.now() - cached.at < AI_TTL) return cached.view;
-
   const prompt = buildAiPrompt(buildAiFacts(bundle), lang);
   let parsed = parseAiReply(await callClaude(prompt));
   if (!parsed) parsed = parseAiReply(await callClaude(prompt)); // one retry
   if (!parsed) throw new Error("The AI reply could not be read");
 
-  const view = { ...parsed, lang, generatedAt: new Date().toISOString(), model: MODEL };
-  aiCache.set(key, { at: Date.now(), view });
-  return view;
+  return { ...parsed, lang, generatedAt: new Date().toISOString(), model: MODEL };
+}
+
+// ---------------------------------------------------------------------------
+// Saved AI views and the daily limit
+// ---------------------------------------------------------------------------
+// Each AI view is saved per stock, language and day (Jakarta time) and shared
+// by every visitor, so a stock is written at most once a day per language.
+// New views are capped for the whole app: ai_usage_daily holds one counter
+// per day, and a slot is reserved atomically before the AI is called.
+
+export const AI_DAILY_LIMIT = Number(process.env.AI_DAILY_LIMIT) || 50;
+
+// The database client is loaded only when needed, so the data view
+// (?view=analysis) doesn't depend on the database.
+let dbClient = null;
+async function getDb() {
+  if (!dbClient) dbClient = (await import("./_db.js")).sql;
+  return dbClient;
+}
+export function setDbForTests(fake) {
+  dbClient = fake;
+  tablesReady = false;
+}
+let resolveUser = getUserId;
+export function setAuthForTests(fn) {
+  resolveUser = fn || getUserId;
+}
+
+// Creates the two tables on first use (same as ai-analysis-schema.sql).
+let tablesReady = false;
+async function ensureTables(sql) {
+  if (tablesReady) return;
+  await sql`
+    CREATE TABLE IF NOT EXISTS ai_analysis_views (
+      code TEXT NOT NULL,
+      lang TEXT NOT NULL,
+      view_date DATE NOT NULL,
+      view JSONB NOT NULL,
+      created_by TEXT,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      PRIMARY KEY (code, lang, view_date)
+    )`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS ai_usage_daily (
+      usage_date DATE PRIMARY KEY,
+      count INTEGER NOT NULL DEFAULT 0
+    )`;
+  tablesReady = true;
+}
+
+// Today's date in Jakarta, YYYY-MM-DD. The limit resets at 00:00 WIB.
+export const jakartaToday = (now = new Date()) => jakartaDate(Math.floor(now.getTime() / 1000));
+
+async function usedToday(sql, day) {
+  const [row] = await sql`SELECT count FROM ai_usage_daily WHERE usage_date = ${day}`;
+  return row ? Number(row.count) : 0;
+}
+
+// Takes one of today's slots, or returns null when the limit is reached.
+async function reserveSlot(sql, day, limit) {
+  if (limit <= 0) return null;
+  const rows = await sql`
+    INSERT INTO ai_usage_daily (usage_date, count) VALUES (${day}, 1)
+    ON CONFLICT (usage_date) DO UPDATE SET count = ai_usage_daily.count + 1
+    WHERE ai_usage_daily.count < ${limit}
+    RETURNING count`;
+  return rows.length ? Number(rows[0].count) : null;
+}
+
+// Gives a slot back when writing the view failed.
+async function releaseSlot(sql, day) {
+  await sql`UPDATE ai_usage_daily SET count = count - 1 WHERE usage_date = ${day} AND count > 0`;
+}
+
+async function handleAiView(req, res, code) {
+  res.setHeader("Cache-Control", "private, no-store");
+  const lang = req.query.lang === "id" ? "id" : "en";
+  const sql = await getDb();
+  await ensureTables(sql);
+  const day = jakartaToday();
+
+  // 1. Already written today? Free, and open to everyone.
+  const [saved] = await sql`
+    SELECT view FROM ai_analysis_views WHERE code = ${code} AND lang = ${lang} AND view_date = ${day}`;
+  if (saved) {
+    const view = typeof saved.view === "string" ? JSON.parse(saved.view) : saved.view;
+    return res.status(200).json({ code, view, saved: true, usage: { used: await usedToday(sql, day), limit: AI_DAILY_LIMIT } });
+  }
+
+  // 2. Only looking: report that there is none yet.
+  if (req.query.generate !== "1") {
+    return res.status(200).json({ code, view: null, usage: { used: await usedToday(sql, day), limit: AI_DAILY_LIMIT } });
+  }
+
+  // 3. Writing a new one: signed-in users only, within today's limit.
+  const userId = await resolveUser(req);
+  if (!userId) return res.status(401).json({ error: "Sign in to generate an AI view", reason: "signin" });
+
+  const bundle = await buildAnalysis(code);
+  if (!bundle) return res.status(404).json({ error: `No price found for ${code}` });
+
+  const used = await reserveSlot(sql, day, AI_DAILY_LIMIT);
+  if (used == null) {
+    return res.status(429).json({
+      error: `Today's limit of ${AI_DAILY_LIMIT} AI views has been reached`,
+      reason: "limit",
+      usage: { used: AI_DAILY_LIMIT, limit: AI_DAILY_LIMIT },
+    });
+  }
+
+  let view;
+  try {
+    view = await generateAiView(bundle, lang);
+  } catch (err) {
+    await releaseSlot(sql, day);
+    throw err;
+  }
+
+  await sql`
+    INSERT INTO ai_analysis_views (code, lang, view_date, view, created_by)
+    VALUES (${code}, ${lang}, ${day}, ${JSON.stringify(view)}::jsonb, ${userId})
+    ON CONFLICT (code, lang, view_date) DO NOTHING`;
+
+  return res.status(200).json({ code, view, saved: false, usage: { used, limit: AI_DAILY_LIMIT } });
 }
 
 // ---------------------------------------------------------------------------
@@ -607,16 +725,7 @@ export async function handleAnalysis(req, res) {
   if (!code) return res.status(400).json({ error: "Enter an IDX ticker such as BBCA" });
 
   try {
-    if (req.query.view === "ai") {
-      // Uses the Claude API, so only for signed-in users.
-      const userId = await getUserId(req);
-      if (!userId) return res.status(401).json({ error: "Sign in to see the AI view" });
-      res.setHeader("Cache-Control", "private, no-store");
-      const bundle = await buildAnalysis(code);
-      if (!bundle) return res.status(404).json({ error: `No price found for ${code}` });
-      const lang = req.query.lang === "id" ? "id" : "en";
-      return res.status(200).json({ code, view: await generateAiView(bundle, lang) });
-    }
+    if (req.query.view === "ai") return await handleAiView(req, res, code);
 
     const bundle = await buildAnalysis(code);
     if (!bundle) return res.status(404).json({ error: `No price found for ${code}` });

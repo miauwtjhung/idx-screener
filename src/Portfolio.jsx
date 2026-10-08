@@ -650,7 +650,7 @@ function PortfolioContent({ companies }) {
                     <p className="text-xs text-slate-400 mt-3">As of {new Date(String(dailySummary.snapshotDate).slice(0, 10) + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })}, generated automatically at market close.</p>
                   </>
                 ) : (
-                  <p className="text-sm text-slate-500">No daily summary yet — this generates automatically once a day shortly after market close (17:00 WIB).</p>
+                  <p className="text-sm text-slate-500">No AI summary for this portfolio today. Summaries are written once a day after market close (17:00 WIB), for a limited number of portfolios a day in this showcase app.</p>
                 )}
               </div>
             </div>

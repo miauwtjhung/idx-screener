@@ -92,84 +92,10 @@ async function getCommodityValue(holdings) {
   return total;
 }
 
-export default async function handler(req, res) {
-  const authHeader = req.headers.authorization || "";
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-
-  try {
-    const portfolios = await sql`SELECT id, name FROM portfolios ORDER BY id ASC`;
-    const today = new Date().toISOString().slice(0, 10);
-    const results = [];
-
-    for (const portfolio of portfolios) {
-      const transactions = await sql`
-        SELECT ticker, type, price::float AS price, qty::float AS qty, date::text AS date,
-               asset_type AS "assetType", face_value::float AS "faceValue"
-        FROM transactions WHERE portfolio_id = ${portfolio.id}
-      `;
-
-      const stockTxns = transactions.filter((t) => !t.assetType || t.assetType === "stock");
-      const cryptoTxns = transactions.filter((t) => t.assetType === "crypto");
-      const commodityTxns = transactions.filter((t) => t.assetType === "commodity");
-      const bondTxns = transactions.filter((t) => t.assetType === "bond" && t.type === "buy");
-      const cashTxns = transactions.filter((t) => t.assetType === "cash" || t.assetType === "deposit");
-
-      const stockHoldings = computeHoldings(stockTxns);
-      const cryptoHoldings = computeHoldings(cryptoTxns);
-      const commodityHoldings = computeHoldings(commodityTxns);
-      const cashHoldings = computeHoldings(cashTxns);
-
-      const stockValue = await getStockValue(stockHoldings);
-      const cryptoValue = await getCryptoValue(cryptoHoldings);
-      const commodityValue = await getCommodityValue(commodityHoldings);
-      const bondValue = bondTxns.reduce((sum, t) => sum + (t.faceValue || 0), 0);
-      const cashValue = cashHoldings.reduce((sum, h) => sum + h.invested, 0);
-      const netWorth = stockValue + cryptoValue + commodityValue + bondValue + cashValue;
-
-      const [yesterday] = await sql`
-        SELECT net_worth AS "netWorth", stock_value AS "stockValue", crypto_value AS "cryptoValue",
-               commodity_value AS "commodityValue", bond_value AS "bondValue", cash_value AS "cashValue"
-        FROM portfolio_snapshots
-        WHERE portfolio_id = ${portfolio.id} AND snapshot_date < ${today}
-        ORDER BY snapshot_date DESC LIMIT 1
-      `;
-
-      let summaryText = null;
-      try {
-        summaryText = await generatePortfolioSummary(
-          {
-            portfolioName: portfolio.name,
-            today: { netWorth, stockValue, cryptoValue, commodityValue, bondValue, cashValue },
-            yesterday: yesterday || null,
-          },
-          "en"
-        );
-      } catch (err) {
-        summaryText = null; // don't block saving the snapshot if Claude call fails
-      }
-
-      await sql`
-        INSERT INTO portfolio_snapshots
-          (portfolio_id, snapshot_date, net_worth, stock_value, crypto_value, commodity_value, bond_value, cash_value, summary_text)
-        VALUES
-          (${portfolio.id}, ${today}, ${netWorth}, ${stockValue}, ${cryptoValue}, ${commodityValue}, ${bondValue}, ${cashValue}, ${summaryText})
-        ON CONFLICT (portfolio_id, snapshot_date) DO UPDATE SET
-          net_worth = EXCLUDED.net_worth,
-          stock_value = EXCLUDED.stock_value,
-          crypto_value = EXCLUDED.crypto_value,
-          commodity_value = EXCLUDED.commodity_value,
-          bond_value = EXCLUDED.bond_value,
-          cash_value = EXCLUDED.cash_value,
-          summary_text = EXCLUDED.summary_text
-      `;
-
-      results.push({ portfolioId: portfolio.id, netWorth });
-    }
-
-  // Market close recap (folded in here to stay within the Hobby plan's
-  // 2-cron-job limit; runs alongside the portfolio summary at 10:00 UTC / 17:00 WIB)
+// Market close recap (folded in here to stay within the Hobby plan's
+// 2-cron-job limit). Written before the portfolios, so it is never lost
+// if the portfolio part runs out of time. A fixed 2 AI calls a day.
+async function writeMarketCloseRecap(today) {
   try {
     const MARKET_SYMBOLS = [
       { symbol: "^JKSE", name: "IDX Composite (IHSG)", category: "indices" },
@@ -227,8 +153,118 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error("Market close recap failed:", err);
   }
+}
 
-    return res.status(200).json({ ok: true, date: today, portfolios: results });
+// AI portfolio summaries are capped per day for the whole app (this is a
+// showcase app). Every portfolio still gets its daily value snapshot;
+// portfolios past the limit just get no AI text that day. Oldest
+// portfolios first. Set PORTFOLIO_AI_DAILY_LIMIT in Vercel to change it
+// (0 turns the summaries off).
+const limitFromEnv = Number(process.env.PORTFOLIO_AI_DAILY_LIMIT);
+export const PORTFOLIO_AI_DAILY_LIMIT =
+  process.env.PORTFOLIO_AI_DAILY_LIMIT != null && process.env.PORTFOLIO_AI_DAILY_LIMIT !== "" && Number.isFinite(limitFromEnv) && limitFromEnv >= 0
+    ? Math.floor(limitFromEnv)
+    : 10;
+
+export default async function handler(req, res) {
+  const authHeader = req.headers.authorization || "";
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+
+    // 1. Market close recap first.
+    await writeMarketCloseRecap(today);
+
+    // 2. Portfolios. Summaries already written today (e.g. if this job is
+    // run twice) count toward the limit and are kept, not rewritten.
+    const portfolios = await sql`SELECT id, name FROM portfolios ORDER BY id ASC`;
+    const results = [];
+    const written = await sql`
+      SELECT portfolio_id FROM portfolio_snapshots
+      WHERE snapshot_date = ${today} AND summary_text IS NOT NULL
+    `;
+    const hasSummary = new Set(written.map((r) => Number(r.portfolio_id)));
+    let aiLeft = Math.max(0, PORTFOLIO_AI_DAILY_LIMIT - hasSummary.size);
+    const ai = { limit: PORTFOLIO_AI_DAILY_LIMIT, alreadyWritten: hasSummary.size, written: 0, overLimit: 0, empty: 0 };
+
+    for (const portfolio of portfolios) {
+      const transactions = await sql`
+        SELECT ticker, type, price::float AS price, qty::float AS qty, date::text AS date,
+               asset_type AS "assetType", face_value::float AS "faceValue"
+        FROM transactions WHERE portfolio_id = ${portfolio.id}
+      `;
+
+      const stockTxns = transactions.filter((t) => !t.assetType || t.assetType === "stock");
+      const cryptoTxns = transactions.filter((t) => t.assetType === "crypto");
+      const commodityTxns = transactions.filter((t) => t.assetType === "commodity");
+      const bondTxns = transactions.filter((t) => t.assetType === "bond" && t.type === "buy");
+      const cashTxns = transactions.filter((t) => t.assetType === "cash" || t.assetType === "deposit");
+
+      const stockHoldings = computeHoldings(stockTxns);
+      const cryptoHoldings = computeHoldings(cryptoTxns);
+      const commodityHoldings = computeHoldings(commodityTxns);
+      const cashHoldings = computeHoldings(cashTxns);
+
+      const stockValue = await getStockValue(stockHoldings);
+      const cryptoValue = await getCryptoValue(cryptoHoldings);
+      const commodityValue = await getCommodityValue(commodityHoldings);
+      const bondValue = bondTxns.reduce((sum, t) => sum + (t.faceValue || 0), 0);
+      const cashValue = cashHoldings.reduce((sum, h) => sum + h.invested, 0);
+      const netWorth = stockValue + cryptoValue + commodityValue + bondValue + cashValue;
+
+      const [yesterday] = await sql`
+        SELECT net_worth AS "netWorth", stock_value AS "stockValue", crypto_value AS "cryptoValue",
+               commodity_value AS "commodityValue", bond_value AS "bondValue", cash_value AS "cashValue"
+        FROM portfolio_snapshots
+        WHERE portfolio_id = ${portfolio.id} AND snapshot_date < ${today}
+        ORDER BY snapshot_date DESC LIMIT 1
+      `;
+
+      let summaryText = null;
+      const isEmpty = transactions.length === 0 || netWorth === 0;
+      const needsSummary = !isEmpty && !hasSummary.has(Number(portfolio.id));
+      if (isEmpty) ai.empty += 1;
+      else if (needsSummary && aiLeft <= 0) ai.overLimit += 1;
+      if (needsSummary && aiLeft > 0) {
+        aiLeft -= 1;
+        try {
+          summaryText = await generatePortfolioSummary(
+            {
+              portfolioName: portfolio.name,
+              today: { netWorth, stockValue, cryptoValue, commodityValue, bondValue, cashValue },
+              yesterday: yesterday || null,
+            },
+            "en"
+          );
+          ai.written += 1;
+        } catch (err) {
+          summaryText = null; // don't block saving the snapshot if Claude call fails
+          aiLeft += 1; // a failed call doesn't use up a slot
+        }
+      }
+
+      await sql`
+        INSERT INTO portfolio_snapshots
+          (portfolio_id, snapshot_date, net_worth, stock_value, crypto_value, commodity_value, bond_value, cash_value, summary_text)
+        VALUES
+          (${portfolio.id}, ${today}, ${netWorth}, ${stockValue}, ${cryptoValue}, ${commodityValue}, ${bondValue}, ${cashValue}, ${summaryText})
+        ON CONFLICT (portfolio_id, snapshot_date) DO UPDATE SET
+          net_worth = EXCLUDED.net_worth,
+          stock_value = EXCLUDED.stock_value,
+          crypto_value = EXCLUDED.crypto_value,
+          commodity_value = EXCLUDED.commodity_value,
+          bond_value = EXCLUDED.bond_value,
+          cash_value = EXCLUDED.cash_value,
+          summary_text = COALESCE(EXCLUDED.summary_text, portfolio_snapshots.summary_text)
+      `;
+
+      results.push({ portfolioId: portfolio.id, netWorth });
+    }
+
+    return res.status(200).json({ ok: true, date: today, portfolios: results, ai });
   } catch (err) {
     return res.status(500).json({ error: "Failed to build portfolio summary", detail: String(err) });
   }

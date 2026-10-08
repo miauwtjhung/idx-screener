@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useAuth, SignInButton } from "@clerk/react";
 import TradingViewChart from "./TradingViewChart";
 import { LANGS, TEXT, initialLang, makeFormat, saveLang } from "./analysisText";
@@ -88,46 +88,67 @@ function AiView({ code }) {
   const { lang, t, fmt } = useLang();
   const { isLoaded, isSignedIn, getToken } = useAuth();
   const key = `${code}|${lang}`;
-  const [state, setState] = useState({ key: null, view: null, error: "", loading: false });
+  const currentKey = useRef(key);
+  useEffect(() => { currentKey.current = key; }, [key]);
+  // status: loading | ready | none | generating | limit | error
+  const [state, setState] = useState({ key: null, status: "loading", view: null, usage: null, error: "" });
 
+  async function request(generate) {
+    const headers = {};
+    if (generate) headers.Authorization = `Bearer ${await getToken()}`;
+    const r = await fetch(
+      `/api/idx-quotes?view=ai&symbol=${encodeURIComponent(code)}&lang=${lang}${generate ? "&generate=1" : ""}`,
+      { headers }
+    );
+    const d = await r.json().catch(() => ({}));
+    return { r, d };
+  }
+
+  // Look up today's saved view: free, and works without signing in.
   useEffect(() => {
-    if (!isLoaded || !isSignedIn) return;
     let cancelled = false;
-    async function load() {
-      setState({ key, view: null, error: "", loading: true });
+    async function lookUp() {
+      setState({ key, status: "loading", view: null, usage: null, error: "" });
       try {
-        const token = await getToken();
-        const r = await fetch(`/api/idx-quotes?view=ai&symbol=${encodeURIComponent(code)}&lang=${lang}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const d = await r.json();
+        const { r, d } = await request(false);
         if (!r.ok || d.error) throw new Error(d.error || `status ${r.status}`);
-        if (!cancelled) setState({ key, view: d.view, error: "", loading: false });
+        if (!cancelled) setState({ key, status: d.view ? "ready" : "none", view: d.view, usage: d.usage, error: "" });
       } catch (e) {
-        if (!cancelled) setState({ key, view: null, error: String(e.message || e), loading: false });
+        if (!cancelled) setState({ key, status: "error", view: null, usage: null, error: String(e.message || e) });
       }
     }
-    load();
+    lookUp();
     return () => { cancelled = true; };
-  }, [key, isLoaded, isSignedIn]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [key]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Write a new view: signed-in users, counts toward today's limit.
+  async function generate() {
+    const thisKey = key;
+    setState((s) => ({ ...s, status: "generating", error: "" }));
+    try {
+      const { r, d } = await request(true);
+      if (currentKey.current !== thisKey) return;
+      if (r.status === 429) {
+        setState((s) => ({ ...s, status: "limit", usage: d.usage || s.usage }));
+        return;
+      }
+      if (!r.ok || d.error) throw new Error(d.error || `status ${r.status}`);
+      setState({ key: thisKey, status: "ready", view: d.view, usage: d.usage, error: "" });
+    } catch (e) {
+      if (currentKey.current === thisKey) setState((s) => ({ ...s, status: "error", error: String(e.message || e) }));
+    }
+  }
+
+  const usage = state.usage;
+  const limitHit = state.status === "limit" || (usage && usage.used >= usage.limit);
+  const ready = state.key === key && state.status === "ready" && state.view;
 
   let body;
-  if (!isLoaded) {
-    body = <p className="text-sm text-slate-400">{t.checkingSignIn}</p>;
-  } else if (!isSignedIn) {
-    body = (
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-slate-600">{t.signInPrompt(code)}</p>
-        <SignInButton mode="modal">
-          <button className="bg-slate-900 text-white px-3 py-1.5 rounded text-sm font-medium">{t.signIn}</button>
-        </SignInButton>
-      </div>
-    );
-  } else if (state.loading || state.key !== key || (!state.view && !state.error)) {
+  if (state.key !== key || state.status === "loading") {
+    body = <p className="text-sm text-slate-400">{t.lookingUp}</p>;
+  } else if (state.status === "generating") {
     body = <p className="text-sm text-slate-400">{t.writing}</p>;
-  } else if (state.error) {
-    body = <p className="text-sm text-rose-700">{t.aiError(state.error)}</p>;
-  } else {
+  } else if (ready) {
     const v = state.view;
     body = (
       <>
@@ -157,12 +178,44 @@ function AiView({ code }) {
         <p className="text-xs text-slate-400 mt-4">{t.writtenAt(fmt.dateTime(v.generatedAt))}</p>
       </>
     );
+  } else {
+    // No view yet today (or the last attempt failed)
+    let action;
+    if (limitHit) {
+      action = <p className="text-sm text-amber-700">{t.limitReached(usage?.limit ?? 50)}</p>;
+    } else if (!isLoaded) {
+      action = <p className="text-sm text-slate-400">{t.checkingSignIn}</p>;
+    } else if (isSignedIn) {
+      action = (
+        <div className="flex flex-wrap items-center gap-3">
+          <button onClick={generate} className="bg-slate-900 text-white px-3 py-1.5 rounded text-sm font-medium">{t.generate}</button>
+          {usage && <span className="text-xs text-slate-400">{t.remaining(Math.max(0, usage.limit - usage.used), usage.limit)}</span>}
+        </div>
+      );
+    } else {
+      action = (
+        <div className="flex flex-wrap items-center gap-3">
+          <SignInButton mode="modal">
+            <button className="bg-slate-900 text-white px-3 py-1.5 rounded text-sm font-medium">{t.signIn}</button>
+          </SignInButton>
+          <span className="text-sm text-slate-600">{t.signInToGenerate}</span>
+        </div>
+      );
+    }
+    body = (
+      <div className="space-y-3">
+        {state.status === "error" && <p className="text-sm text-rose-700">{t.aiError(state.error)}</p>}
+        <p className="text-sm text-slate-600">{t.noViewYet(code)}</p>
+        {action}
+      </div>
+    );
   }
 
   return (
     <Card title={t.aiView}>
       {body}
-      <p className="text-xs text-slate-400 mt-3 leading-relaxed">{t.aiLegend}</p>
+      {usage && <p className="text-xs text-slate-400 mt-3">{t.usage(Math.min(usage.used, usage.limit), usage.limit)}</p>}
+      <p className="text-xs text-slate-400 mt-2 leading-relaxed">{t.aiLegend}</p>
     </Card>
   );
 }
