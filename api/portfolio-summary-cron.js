@@ -9,7 +9,8 @@
 
 import { sql } from "./_db.js";
 import { fetchYahooQuotes } from "./_yahoo.js";
-import { generatePortfolioSummary, generateMarketCloseSummary } from "./_claude.js";
+import { generatePortfolioSummary } from "./_claude.js";
+import { fetchAntamBuybackPrice } from "./_antam.js";
 
 // Average-cost holdings calc â€” mirrors the frontend's computeHoldings so
 // the cron's numbers match what the user sees in the app.
@@ -73,12 +74,7 @@ async function getCommodityValue(holdings) {
     try {
       let price = null;
       if (h.ticker === "ANTAM") {
-        const r = await fetch("https://logam-mulia-api.iamutaki.workers.dev/api/prices/logammulia");
-        const data = await r.json();
-        const oneGram = (data.data || []).find(
-          (row) => row.material === "gold" && row.materialType === "Emas Batangan" && row.weight === 1
-        );
-        price = oneGram ? oneGram.sellPrice : null;
+        price = (await fetchAntamBuybackPrice()).price;
       } else {
         const r = await fetch(`https://api.goldprice.dev/v1/convert?from=${h.ticker}&to=IDR&amount=1&unit=gram`);
         const data = await r.json();
@@ -90,69 +86,6 @@ async function getCommodityValue(holdings) {
     }
   }
   return total;
-}
-
-// Market close recap (folded in here to stay within the Hobby plan's
-// 2-cron-job limit). Written before the portfolios, so it is never lost
-// if the portfolio part runs out of time. A fixed 2 AI calls a day.
-async function writeMarketCloseRecap(today) {
-  try {
-    const MARKET_SYMBOLS = [
-      { symbol: "^JKSE", name: "IDX Composite (IHSG)", category: "indices" },
-      { symbol: "^GSPC", name: "S&P 500", category: "indices" },
-      { symbol: "^DJI", name: "Dow Jones", category: "indices" },
-      { symbol: "^IXIC", name: "Nasdaq", category: "indices" },
-      { symbol: "^N225", name: "Nikkei 225", category: "indices" },
-      { symbol: "^HSI", name: "Hang Seng", category: "indices" },
-      { symbol: "^FTSE", name: "FTSE 100", category: "indices" },
-      { symbol: "^GDAXI", name: "DAX", category: "indices" },
-      { symbol: "^STI", name: "Straits Times", category: "indices" },
-      { symbol: "IDR=X", name: "USD/IDR", category: "currencies" },
-      { symbol: "EURUSD=X", name: "EUR/USD", category: "currencies" },
-      { symbol: "JPY=X", name: "USD/JPY", category: "currencies" },
-      { symbol: "GBPUSD=X", name: "GBP/USD", category: "currencies" },
-      { symbol: "DX-Y.NYB", name: "US Dollar Index", category: "currencies" },
-      { symbol: "GC=F", name: "Gold", category: "commodities" },
-      { symbol: "SI=F", name: "Silver", category: "commodities" },
-      { symbol: "CL=F", name: "Crude Oil (WTI)", category: "commodities" },
-      { symbol: "BTC-USD", name: "Bitcoin", category: "crypto" },
-      { symbol: "ETH-USD", name: "Ethereum", category: "crypto" },
-    ];
-
-    const marketResults = await fetchYahooQuotes(MARKET_SYMBOLS.map((s) => s.symbol));
-    const byMarketSymbol = {};
-    marketResults.forEach((q) => { byMarketSymbol[q.symbol] = q; });
-
-    const marketGrouped = { indices: [], currencies: [], commodities: [], crypto: [] };
-    for (const s of MARKET_SYMBOLS) {
-      const q = byMarketSymbol[s.symbol];
-      marketGrouped[s.category].push({
-        symbol: s.symbol,
-        name: s.name,
-        price: q?.regularMarketPrice ?? null,
-        chg: q?.regularMarketChangePercent ?? null,
-        chgAbs: q?.regularMarketChange ?? null,
-      });
-    }
-
-    const [closeSummaryEn, closeSummaryId] = await Promise.all([
-      generateMarketCloseSummary(marketGrouped, "en"),
-      generateMarketCloseSummary(marketGrouped, "id"),
-    ]);
-
-    await sql`
-      INSERT INTO market_snapshot (snapshot_date, close_data, close_summary_en, close_summary_id)
-      VALUES (${today}, ${JSON.stringify(marketGrouped)}::jsonb, ${closeSummaryEn}, ${closeSummaryId})
-      ON CONFLICT (snapshot_date)
-      DO UPDATE SET
-        close_data = EXCLUDED.close_data,
-        close_summary_en = EXCLUDED.close_summary_en,
-        close_summary_id = EXCLUDED.close_summary_id,
-        created_at = now()
-    `;
-  } catch (err) {
-    console.error("Market close recap failed:", err);
-  }
 }
 
 // AI portfolio summaries are capped per day for the whole app (this is a
@@ -175,10 +108,7 @@ export default async function handler(req, res) {
   try {
     const today = new Date().toISOString().slice(0, 10);
 
-    // 1. Market close recap first.
-    await writeMarketCloseRecap(today);
-
-    // 2. Portfolios. Summaries already written today (e.g. if this job is
+    // Portfolios. Summaries already written today (e.g. if this job is
     // run twice) count toward the limit and are kept, not rewritten.
     const portfolios = await sql`SELECT id, name FROM portfolios ORDER BY id ASC`;
     const results = [];

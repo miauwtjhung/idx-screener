@@ -166,25 +166,3 @@ ${langInstruction} Write in plain prose only - one or two natural paragraphs. Do
 
   return callClaude(prompt, 400);
 }
-
-export async function generateMarketCloseSummary(snapshotData, lang) {
-  const langInstruction =
-    lang === "id" ? "Write the summary in Bahasa Indonesia." : "Write the summary in English.";
-
-  const prompt = `You are a market commentator writing a short end-of-day recap for an Indonesian retail investor audience who also tracks global markets, published shortly after the Indonesia Stock Exchange (IDX) closes at 17:00 WIB.
-
-Here is today's closing market data (JSON), grouped by category. Each entry has a name, the latest price, and the percentage change from the prior close:
-
-${JSON.stringify(snapshotData, null, 2)}
-
-Write a concise market close recap (roughly 150-220 words) that:
-- Begins with the exact line "MARKET CLOSING: " followed by a short 4-8 word characterization of how the session ended, then a blank line, then continues with the paragraphs below
-- Opens with how the overall session played out (risk-on/risk-off) based on how the major indices closed
-- Highlights the most notable movers across indices, currencies, commodities, and crypto, with a brief plain-language note on why each might matter to an Indonesia-based investor
-- Gives a short, specific note on how the IDX Composite (IHSG) closed today and what drove it, if that's inferable from the data
-- Ends with one sentence noting this is automated commentary based on price data only, not financial advice
-
-${langInstruction} Write in plain prose only - a few natural paragraphs. Do not use markdown formatting of any kind: no headers (no "#" or "##"), no bold ("**"), no bullet points or numbered lists. Just plain sentences and paragraphs, as if for a plain-text email.`;
-
-  return callClaude(prompt, 700);
-}
