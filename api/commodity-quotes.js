@@ -2,7 +2,9 @@
 //
 // GET /api/commodity-quotes?symbols=XAU,XAG,ANTAM
 // XAU/XAG: live spot price in IDR per gram via goldprice.dev
-// ANTAM: official Logam Mulia (Antam) sell price per gram via logam-mulia-api
+// ANTAM: Antam 1 g bar buyback price per gram via logam-mulia-api (see _antam.js)
+
+import { fetchAntamBuybackPrice } from "./_antam.js";
 
 async function fetchSpotPrice(symbol) {
   const url = `https://api.goldprice.dev/v1/convert?from=${symbol}&to=IDR&amount=1&unit=gram`;
@@ -13,15 +15,14 @@ async function fetchSpotPrice(symbol) {
 }
 
 async function fetchAntamPrice() {
-  const url = "https://logam-mulia-api.iamutaki.workers.dev/api/prices/logammulia";
-  const r = await fetch(url);
-  if (!r.ok) throw new Error(`logam-mulia-api returned ${r.status}`);
-  const data = await r.json();
-  // The standard 1-gram "Emas Batangan" bar is the reference Antam price.
-  const oneGram = (data.data || []).find(
-    (row) => row.material === "gold" && row.materialType === "Emas Batangan" && row.weight === 1
-  );
-  return { ticker: "ANTAM", price: oneGram ? oneGram.sellPrice : null, chg: null };
+  // Buyback price per gram; falls back across sources (see _antam.js).
+  // A failure gives price null so XAU/XAG still load.
+  try {
+    const { price, source } = await fetchAntamBuybackPrice();
+    return { ticker: "ANTAM", price, chg: null, source };
+  } catch (err) {
+    return { ticker: "ANTAM", price: null, chg: null, error: String(err.message || err) };
+  }
 }
 
 export default async function handler(req, res) {
