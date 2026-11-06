@@ -376,6 +376,15 @@ export async function buildAnalysis(code, { now = new Date() } = {}) {
   const bvpsIdr = isNum(f.bvps) ? (usd ? (isNum(usdIdr) ? f.bvps * usdIdr : null) : f.bvps) : null;
   const pbv = isNum(bvpsIdr) && bvpsIdr > 0 ? price / bvpsIdr : null;
 
+  // Yahoo's forward P/E and EV/EBITDA for US-dollar reporters divide a rupiah
+  // price by dollar earnings, so they come out about 18,000 times too big.
+  // Convert those, and leave out anything still implausible.
+  const ratio = (v) => {
+    if (!isNum(v)) return null;
+    const x = usd && v > 500 && isNum(usdIdr) && usdIdr > 0 ? v / usdIdr : v;
+    return x > 0 && x <= 500 ? x : null;
+  };
+
   const dividends = dividendHistory(monthly, price, now.toISOString().slice(0, 10));
 
   const bundle = {
@@ -401,6 +410,9 @@ export async function buildAnalysis(code, { now = new Date() } = {}) {
       eps: f.eps ?? (isNum(q.epsTrailingTwelveMonths) ? q.epsTrailingTwelveMonths : null),
       pbv: pbv != null && pbv >= 0.02 && pbv <= 100 ? pbv : null,
       bvpsIdr,
+      forwardPe: ratio(f.forwardPe),
+      evToEbitda: ratio(f.evToEbitda),
+      forwardEps: usd ? null : f.forwardEps, // dollars for US-dollar reporters; not shown
       dividendYield: dividends.trailingYield, // from actual payments, last 12 months
       usdIdr: usd ? usdIdr : null,
     },
