@@ -9,12 +9,6 @@ const CATEGORY_LABELS = {
 
 const CATEGORY_ORDER = ["indices", "currencies", "commodities", "crypto"];
 
-const VIEW_TITLES = {
-  live: "Market Snapshot",
-  preopen: "Earlier Today Brief",
-  close: "Today Closing",
-};
-
 function fmtPrice(v) {
   if (v == null) return "-";
   return v >= 100 ? v.toLocaleString("en-US", { maximumFractionDigits: 2 }) : v.toFixed(4);
@@ -166,12 +160,10 @@ export default function MarketSnapshot() {
   const [snapshotError, setSnapshotError] = useState("");
 
   const [liveData, setLiveData] = useState(null);
-  const [loadingLive, setLoadingLive] = useState(false);
+  const [loadingLive, setLoadingLive] = useState(true);
   const [liveError, setLiveError] = useState("");
-  const [liveFetchedFor, setLiveFetchedFor] = useState(null);
 
   const [lang, setLang] = useState("en");
-  const [view, setView] = useState("live");
 
   useEffect(() => {
     fetch("/api/market-snapshot")
@@ -180,7 +172,7 @@ export default function MarketSnapshot() {
         if (data.error) throw new Error(data.error);
         setSnapshot(data.snapshot);
       })
-      .catch((e) => setSnapshotError("Couldn't load today's market snapshot. " + e.message))
+      .catch((e) => setSnapshotError("Couldn't load the pre-opening commentary. " + e.message))
       .finally(() => setLoadingSnapshot(false));
   }, []);
 
@@ -192,127 +184,73 @@ export default function MarketSnapshot() {
       .then((data) => {
         if (data.error) throw new Error(data.error);
         setLiveData(data);
-        setLiveFetchedFor(true);
       })
       .catch((e) => setLiveError("Couldn't load live market data. " + e.message))
       .finally(() => setLoadingLive(false));
   }, []);
 
   useEffect(() => {
-    if (view === "live" && liveFetchedFor === null) {
-      loadLive();
-    }
-  }, [view, lang, liveFetchedFor, loadLive]);
+    loadLive();
+  }, [loadLive]);
 
-  if (loadingSnapshot) {
-    return (
-      <div className="min-h-screen bg-stone-100 flex items-center justify-center text-slate-400 text-sm">
-        Loading today's market snapshot...
-      </div>
-    );
-  }
+  const subtitle = liveData?.fetchedAt
+    ? `Live - fetched ${new Date(liveData.fetchedAt).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}`
+    : "Live";
 
-  if (snapshotError) {
-    return (
-      <div className="min-h-screen bg-stone-100 flex items-center justify-center text-rose-700 text-sm">
-        {snapshotError}
-      </div>
-    );
-  }
-
-  const hasPreopen = snapshot && snapshot.data;
-  const hasClose = snapshot && snapshot.close_data;
-
-  let grouped = null;
-  let summary = null;
-  let subtitle = "";
-
-  if (view === "live") {
-    grouped = liveData?.data || null;
-    summary = null;
-    subtitle = liveData?.fetchedAt ? `Live - fetched ${new Date(liveData.fetchedAt).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}` : "Live";
-  } else if (view === "preopen") {
-    grouped = snapshot?.data || null;
-    summary = lang === "id" ? snapshot?.summary_id : snapshot?.summary_en;
-    subtitle = `Pre-market opening - ${fmtDate(snapshot?.snapshot_date)}`;
-  } else if (view === "close") {
-    grouped = snapshot?.close_data || null;
-    summary = lang === "id" ? snapshot?.close_summary_id : snapshot?.close_summary_en;
-    subtitle = `Market close - ${fmtDate(snapshot?.snapshot_date)}`;
-  }
+  const commentary = lang === "id" ? snapshot?.summary_id : snapshot?.summary_en;
 
   return (
     <div className="min-h-screen bg-stone-100 text-slate-900 font-sans">
       <div className="max-w-5xl mx-auto px-6 py-8">
         <header className="mb-6 flex items-center justify-between flex-wrap gap-3">
           <div>
-            <h1 className="text-2xl font-semibold tracking-tight">{VIEW_TITLES[view]}</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">Market Snapshot</h1>
             <p className="text-sm text-slate-500 mt-1">{subtitle}</p>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap">
-            <div className="flex border border-stone-300 rounded overflow-hidden">
-              <button
-                onClick={() => setView("live")}
-                className={`px-3 py-1.5 text-sm font-medium ${view === "live" ? "bg-slate-900 text-white" : "bg-white text-slate-500 hover:bg-stone-50"}`}
-              >
-                Market Snapshot
-              </button>
-              <button
-                onClick={() => setView("preopen")}
-                disabled={!hasPreopen}
-                className={`px-3 py-1.5 text-sm font-medium border-l border-stone-300 ${
-                  view === "preopen" ? "bg-slate-900 text-white" : "bg-white text-slate-500 hover:bg-stone-50"
-                } disabled:opacity-40 disabled:cursor-not-allowed`}
-              >
-                Earlier Today
-              </button>
-              <button
-                onClick={() => setView("close")}
-                disabled={!hasClose}
-                className={`px-3 py-1.5 text-sm font-medium border-l border-stone-300 ${
-                  view === "close" ? "bg-slate-900 text-white" : "bg-white text-slate-500 hover:bg-stone-50"
-                } disabled:opacity-40 disabled:cursor-not-allowed`}
-              >
-                Today Closing
-              </button>
-            </div>
-            <div className="flex border border-stone-300 rounded overflow-hidden">
-              <button
-                onClick={() => setLang("en")}
-                className={`px-3 py-1.5 text-sm font-medium ${lang === "en" ? "bg-slate-900 text-white" : "bg-white text-slate-500 hover:bg-stone-50"}`}
-              >
-                English
-              </button>
-              <button
-                onClick={() => setLang("id")}
-                className={`px-3 py-1.5 text-sm font-medium border-l border-stone-300 ${lang === "id" ? "bg-slate-900 text-white" : "bg-white text-slate-500 hover:bg-stone-50"}`}
-              >
-                Bahasa
-              </button>
-            </div>
+          <div className="flex border border-stone-300 rounded overflow-hidden">
+            <button
+              onClick={() => setLang("en")}
+              className={`px-3 py-1.5 text-sm font-medium ${lang === "en" ? "bg-slate-900 text-white" : "bg-white text-slate-500 hover:bg-stone-50"}`}
+            >
+              English
+            </button>
+            <button
+              onClick={() => setLang("id")}
+              className={`px-3 py-1.5 text-sm font-medium border-l border-stone-300 ${lang === "id" ? "bg-slate-900 text-white" : "bg-white text-slate-500 hover:bg-stone-50"}`}
+            >
+              Bahasa
+            </button>
           </div>
         </header>
 
-        {view === "live" && <IhsgCard />}
+        <IhsgCard />
 
-        {view !== "live" && (
-        <div className="bg-white border border-stone-300 rounded p-5">
-          {summary ? (
-            <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">{summary}</p>
-          ) : (
-            <p className="text-sm text-slate-500">No narrative available yet for this view.</p>
-          )}
-        </div>
-      )}
-
-        {view === "live" && loadingLive ? (
+        {loadingLive ? (
           <p className="text-sm text-slate-400 mb-6">Fetching live data...</p>
-        ) : view === "live" && liveError ? (
+        ) : liveError ? (
           <p className="text-sm text-rose-700 mb-6">{liveError}</p>
         ) : (
-          <CategoryGrid grouped={grouped} />
+          <CategoryGrid grouped={liveData?.data || null} />
         )}
+
+        <section className="bg-white border border-stone-300 rounded p-5">
+          <div className="flex items-baseline justify-between flex-wrap gap-2 mb-3">
+            <h2 className="text-base font-semibold text-slate-800">Market Pre-Opening Commentary</h2>
+            {snapshot?.snapshot_date && (
+              <span className="text-xs text-slate-400">{fmtDate(snapshot.snapshot_date)}</span>
+            )}
+          </div>
+          {loadingSnapshot ? (
+            <p className="text-sm text-slate-400">Loading commentary...</p>
+          ) : snapshotError ? (
+            <p className="text-sm text-rose-700">{snapshotError}</p>
+          ) : commentary ? (
+            <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">{commentary}</p>
+          ) : (
+            <p className="text-sm text-slate-500">No pre-opening commentary available yet.</p>
+          )}
+        </section>
       </div>
     </div>
   );
