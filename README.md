@@ -18,7 +18,7 @@ Built with React 19 + Vite + Tailwind CSS 4 on the frontend and Vercel serverles
 | **AI Analysis** | Search one stock to see its profile, valuation, annual financials, dividend history, splits, technicals (RSI and moving averages), analyst consensus and recent news (Google News + Yahoo). An optional AI view gives a short-term and long-term Buy/Hold/Sell/Neutral call with confidence, reasons and risks, in English or Bahasa Indonesia. Anyone can read a saved view; only signed-in users can generate a new one, within an app-wide daily cap. | Generating only |
 | **Charting** | A full-page TradingView Advanced Chart for any IDX ticker. | No |
 | **Portfolio** | Multiple portfolios per user. Each one records transactions across **stocks, crypto, commodities (Antam gold, spot gold and silver), bonds and cash/deposits**, valued at live prices. The **Summary** sub-tab shows net worth by asset class, the latest daily AI summary, a time-weighted performance chart against a benchmark (IHSG, BTC or gold), a stacked asset-value history, and a monthly/yearly return table. | Yes |
-| **About** | What Maxtrade is, what each tab does, contact (info@uniqqon.com) and the disclaimer. Also opens when you click the logo. | No |
+| **About** | What Maxtrade is, what each tab does, contact (mt.lim@terasbaru.com) and the disclaimer. Also opens when you click the logo. | No |
 
 ---
 

@@ -43,8 +43,8 @@ export default function About() {
           <h2 className="text-base font-semibold text-slate-800 mb-2">Contact</h2>
           <p className="text-sm text-slate-700 leading-relaxed">
             For information regarding this work, please contact{" "}
-            <a href="mailto:info@uniqqon.com" className="text-red-600 font-medium hover:underline">
-              info@uniqqon.com
+            <a href="mailto:mt.lim@terasbaru.com" className="text-red-600 font-medium hover:underline">
+              mt.lim@terasbaru.com
             </a>
             .
           </p>
