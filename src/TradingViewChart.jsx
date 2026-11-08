@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, memo } from "react";
+import { useTheme } from "./theme";
 
 // Simple TradingView mini chart (price line + period change) for an IDX stock.
 // `code` is the IDX ticker without suffix, e.g. "BBCA" -> "IDX:BBCA".
 function TradingViewChart({ code, height = 220 }) {
   const containerRef = useRef(null);
+  const theme = useTheme();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -21,7 +23,7 @@ function TradingViewChart({ code, height = 220 }) {
       height,
       locale: "en",
       dateRange: "12M",
-      colorTheme: "light",
+      colorTheme: theme,
       isTransparent: true,
       autosize: false,
       chartOnly: false,
@@ -32,7 +34,7 @@ function TradingViewChart({ code, height = 220 }) {
     return () => {
       container.innerHTML = "";
     };
-  }, [code, height]);
+  }, [code, height, theme]);
 
   return (
     <div>

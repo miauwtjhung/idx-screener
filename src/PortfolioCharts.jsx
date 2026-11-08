@@ -95,18 +95,18 @@ function ChartFrame({ dates, yMin, yMax, yFormat, children, tooltip }) {
       >
         {ticks.map((t, i) => (
           <g key={i}>
-            <line x1={PAD.left} x2={W - PAD.right} y1={y(t)} y2={y(t)} stroke="#e7e5e4" strokeWidth="1" />
-            <text x={PAD.left - 8} y={y(t) + 4} textAnchor="end" fontSize="11" fill="#94a3b8">{yFormat(t)}</text>
+            <line x1={PAD.left} x2={W - PAD.right} y1={y(t)} y2={y(t)} className="stroke-stone-200" strokeWidth="1" />
+            <text x={PAD.left - 8} y={y(t) + 4} textAnchor="end" fontSize="11" className="fill-slate-400">{yFormat(t)}</text>
           </g>
         ))}
         {dates.map((d, i) =>
           i % labelEvery === 0 || i === dates.length - 1 ? (
-            <text key={d} x={x(i)} y={H - 8} textAnchor={i === 0 ? "start" : i === dates.length - 1 ? "end" : "middle"} fontSize="11" fill="#94a3b8">{fmtDate(d)}</text>
+            <text key={d} x={x(i)} y={H - 8} textAnchor={i === 0 ? "start" : i === dates.length - 1 ? "end" : "middle"} fontSize="11" className="fill-slate-400">{fmtDate(d)}</text>
           ) : null
         )}
         {children({ x, y })}
         {hover != null && (
-          <line x1={x(hover)} x2={x(hover)} y1={PAD.top} y2={PAD.top + innerH} stroke="#64748b" strokeWidth="1" strokeDasharray="3 3" />
+          <line x1={x(hover)} x2={x(hover)} y1={PAD.top} y2={PAD.top + innerH} className="stroke-slate-500" strokeWidth="1" strokeDasharray="3 3" />
         )}
       </svg>
       {hover != null && (
@@ -283,7 +283,7 @@ export default function PortfolioCharts({ portfolioId, authedFetch, assetClass =
           >
             {({ x, y }) => (
               <>
-                <line x1={PAD.left} x2={W - PAD.right} y1={y(0)} y2={y(0)} stroke="#cbd5e1" strokeWidth="1" />
+                <line x1={PAD.left} x2={W - PAD.right} y1={y(0)} y2={y(0)} className="stroke-slate-300" strokeWidth="1" />
                 <path d={linePath(ihsg, x, y)} fill="none" stroke={IHSG_COLOR} strokeWidth="2" strokeDasharray="5 4" />
                 <path d={linePath(portfolio, x, y)} fill="none" stroke={PORTFOLIO_COLOR} strokeWidth="2.5" />
               </>

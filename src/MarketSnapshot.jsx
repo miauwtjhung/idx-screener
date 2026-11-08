@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect, useCallback } from "react";
+import { useTheme } from "./theme";
 
 const CATEGORY_LABELS = {
   indices: "Indices",
@@ -27,6 +28,7 @@ function fmtDate(dateStr) {
 }
 
 function IhsgSparkline({ points }) {
+  const theme = useTheme();
   if (!points || points.length < 2) return null;
 
   const width = 640;
@@ -43,8 +45,11 @@ function IhsgSparkline({ points }) {
   });
 
   const isUp = points[points.length - 1].price >= points[0].price;
-  const lineColor = isUp ? "#0f6e56" : "#993c1d";
-  const fillColor = isUp ? "rgba(15,110,86,0.08)" : "rgba(153,60,29,0.08)";
+  const dark = theme === "dark";
+  const lineColor = isUp ? (dark ? "#34d399" : "#0f6e56") : (dark ? "#fb7185" : "#993c1d");
+  const fillColor = isUp
+    ? (dark ? "rgba(52,211,153,0.12)" : "rgba(15,110,86,0.08)")
+    : (dark ? "rgba(251,113,133,0.12)" : "rgba(153,60,29,0.08)");
 
   const areaPath = `M0,${height} L${coords.join(" L")} L${width},${height} Z`;
   const linePath = `M${coords.join(" L")}`;

@@ -1,1 +1,73 @@
 @import "tailwindcss";
+
+/*
+  Dark mode. The app is styled with a small palette (white + stone surfaces,
+  slate text, emerald/rose/amber for signals), so instead of adding `dark:`
+  variants to every element we remap those colours inside `.themed` (the area
+  under the nav bar) when <html> has the `dark` class. The nav is already dark
+  and sits outside `.themed`, so it is left alone.
+*/
+
+html.dark {
+  color-scheme: dark;
+  background: #0d1117;
+}
+
+html.dark body {
+  background: #0d1117;
+  color: #e6edf3;
+}
+
+html.dark .themed {
+  /* Surfaces and borders */
+  --color-white: #161b22;
+  --color-stone-50: #1b2129;
+  --color-stone-100: #212833;
+  --color-stone-200: #2a323d;
+  --color-stone-300: #363f4b;
+
+  /* Text and neutral fills, inverted (900 = strongest contrast) */
+  --color-slate-100: #1e2632;
+  --color-slate-200: #2c3644;
+  --color-slate-300: #475569;
+  --color-slate-400: #7d8b9f;
+  --color-slate-500: #98a5b7;
+  --color-slate-600: #b2bdcb;
+  --color-slate-700: #cbd5e1;
+  --color-slate-800: #e2e8f0;
+  --color-slate-900: #f1f5f9;
+}
+
+/* Modal backdrop should stay dark, not turn into a light wash. */
+html.dark .themed .bg-slate-900\/40 {
+  background-color: rgb(0 0 0 / 0.6);
+}
+
+/*
+  Signal colours: only the text, badge background and badge border shades are
+  changed. The solid 400-700 fills used in bars keep their light-mode colours.
+*/
+html.dark .themed .text-emerald-700,
+html.dark .themed .text-emerald-800 { color: #4ade80; }
+html.dark .themed .text-rose-600,
+html.dark .themed .hover\:text-rose-600:hover,
+html.dark .themed .text-rose-700,
+html.dark .themed .text-rose-800,
+html.dark .themed .text-red-500,
+html.dark .themed .text-red-600 { color: #fb7185; }
+html.dark .themed .text-amber-600,
+html.dark .themed .text-amber-700,
+html.dark .themed .text-amber-800 { color: #fbbf24; }
+
+html.dark .themed .bg-emerald-100 { background-color: rgb(16 185 129 / 0.15); }
+html.dark .themed .bg-rose-100 { background-color: rgb(244 63 94 / 0.15); }
+html.dark .themed .bg-amber-100 { background-color: rgb(245 158 11 / 0.15); }
+
+html.dark .themed .border-emerald-300 { border-color: rgb(16 185 129 / 0.4); }
+html.dark .themed .border-rose-300 { border-color: rgb(244 63 94 / 0.4); }
+html.dark .themed .border-amber-300 { border-color: rgb(245 158 11 / 0.4); }
+
+html.dark .themed .shadow-lg,
+html.dark .themed .shadow-sm {
+  --tw-shadow-color: rgb(0 0 0 / 0.5);
+}

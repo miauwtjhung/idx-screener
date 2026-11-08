@@ -7,6 +7,7 @@ import Portfolio from "./Portfolio";
 import MarketSnapshot from "./MarketSnapshot";
 import Charting from "./Charting";
 import About from "./About";
+import { useTheme, setTheme } from "./theme";
 
 export default function App() {
   const [tab, setTab] = useState("today");
@@ -21,7 +22,7 @@ export default function App() {
 
   return (
     <div>
-      <nav className="bg-slate-900 text-white">
+      <nav className="bg-slate-900 text-white border-b border-transparent [.dark_&]:border-slate-800">
         {/* Phones: logo + sign-in on the first row, tabs on a full-width second row.
             Desktop: logo, tabs, sign-in on one row. */}
         <div className="max-w-6xl mx-auto px-4 md:px-6 flex flex-wrap md:flex-nowrap items-center justify-between">
@@ -46,6 +47,7 @@ export default function App() {
             <TabButton active={tab === "about"} onClick={() => setTab("about")}>About</TabButton>
           </div>
           <div className="order-2 md:order-3 flex items-center gap-3 py-2 pl-3 shrink-0">
+            <ThemeToggle />
             <Show when="signed-out">
               <SignInButton mode="modal">
                 <button className="text-sm text-slate-300 hover:text-white">Sign in</button>
@@ -61,6 +63,7 @@ export default function App() {
         </div>
       </nav>
 
+      <main className="themed">
       {tab === "today" && <MarketSnapshot />}
       {tab === "screener" && <IDXScreener />}
       {tab === "fundamentals" && <Fundamentals companies={companies} />}
@@ -68,6 +71,7 @@ export default function App() {
       {tab === "charting" && <Charting companies={companies} />}
       {tab === "portfolio" && <Portfolio companies={companies} />}
       {tab === "about" && <About />}
+      </main>
     </div>
   );
 }
@@ -90,6 +94,30 @@ function LogoMark({ className = "" }) {
         MT
       </text>
     </svg>
+  );
+}
+
+function ThemeToggle() {
+  const theme = useTheme();
+  const dark = theme === "dark";
+  return (
+    <button
+      onClick={() => setTheme(dark ? "light" : "dark")}
+      className="p-1.5 rounded text-slate-300 hover:text-white hover:bg-slate-800"
+      title={dark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
+    >
+      {dark ? (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      )}
+    </button>
   );
 }
 

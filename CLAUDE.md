@@ -27,6 +27,8 @@ src/
   Portfolio.jsx         "Portfolio" tab (sub-tabs: Summary, Stocks, Crypto, Commodities, Bonds, Cash & Deposits)
   PortfolioCharts.jsx   performance vs benchmark (time-weighted) + stacked asset history
   historyPeriods.js     monthly/yearly return table from daily snapshots
+  theme.js              light/dark theme (localStorage + OS default); useTheme() hook. Toggle is in the nav
+  index.css             dark mode: remaps the white/stone/slate palette inside `.themed` (everything below the nav)
 public/
   idx-companies.json    master list of IDX tickers {code,name,board,sector}. Loaded once in App.jsx and passed down
   idx-sectors.json      code -> {sector, industry}
@@ -82,4 +84,5 @@ Cron (`Authorization: Bearer $CRON_SECRET`): `market-snapshot-cron`, `portfolio-
 - Yahoo is unofficial (cookie + crumb). On failure, routes return `500` with `{error, detail}`. The AI Analysis bundle uses `settled()` so one failing source does not break the rest, and reports per-source status in `sources`.
 - Signals and rankings are informational and rule-based by design. Keep every rule visible to the user, and keep the "not financial advice" framing.
 - User-facing AI Analysis text exists in both English and Bahasa Indonesia (`analysisText.js`). Add new strings in both languages.
+- **Dark mode works by remapping colour variables**, not `dark:` variants. Stick to the existing palette (white, stone, slate, and emerald/rose/amber at the shades already listed in `index.css`); a new colour or shade needs a dark value in `index.css`. Inline SVG colours should use Tailwind classes (`stroke-stone-200`, `fill-slate-400`) so they follow the theme.
 - `.agents/skills/` holds vendored Clerk agent skills. They are not app code.

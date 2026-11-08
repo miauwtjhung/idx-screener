@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "./theme";
 
 // Full-page TradingView Advanced Chart: indicators, drawing tools,
 // timeframes, compare, and symbol search built in.
@@ -29,6 +30,7 @@ export default function Charting({ companies = [] }) {
   const [symbol, setSymbol] = useState("IDX:COMPOSITE");
   const [input, setInput] = useState("");
   const [height, setHeight] = useState(600);
+  const theme = useTheme();
 
   // Size the chart to fill the rest of the window below it.
   useEffect(() => {
@@ -53,7 +55,7 @@ export default function Charting({ companies = [] }) {
     symbol,
     interval: "D",
     timezone: "Asia/Jakarta",
-    theme: "light",
+    theme,
     style: "1",
     locale: "en",
     withdateranges: "1",
@@ -61,7 +63,7 @@ export default function Charting({ companies = [] }) {
     saveimage: "1",
     hidesidetoolbar: "0",
     details: "1",
-    toolbarbg: "f1f3f6",
+    toolbarbg: theme === "dark" ? "161b22" : "f1f3f6",
   });
   const src = `https://s.tradingview.com/widgetembed/?${params.toString()}`;
 
